@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CliniCon - Portal</title>
+  <title>CliniCon - Gehaltsrechner</title>
   <link rel="icon" href="assets/Bilder/CliniConLogo.png" />
   <link rel="stylesheet" href="style.css" />
   <script src="config.js"></script>
@@ -175,8 +175,8 @@
     <div>
       <header class="topbar">
         <div class="topbar-left">
-          <h1 id="pageHeading">CliniCon - Portal</h1>
-          <p id="pageSubheading">W&auml;hlen Sie links eine Anwendung aus.</p>
+          <h1 id="pageHeading">CliniCon - Gehaltsrechner</h1>
+          <p id="pageSubheading">AVR Caritas Anlage 31 (Pflegedienst).</p>
         </div>
         <div class="mobile-nav">
           <select id="mobileNav" aria-label="Navigation">
@@ -187,8 +187,8 @@
 
       <main id="mainContent" role="main" class="ppug-layout">
         <section class="card" style="text-align:center; padding:48px;">
-          <h2>Willkommen bei CliniCon</h2>
-          <p>Die Inhalte werden geladen. Bitte w&auml;hlen Sie eine Anwendung in der Navigation aus.</p>
+          <h2>Gehaltsrechner wird geladen</h2>
+          <p>Die Inhalte werden vorbereitet. Bitte einen Moment Geduld.</p>
         </section>
       </main>
 
@@ -513,7 +513,7 @@
         }
         return acc;
       }, {});
-      const key = (location.hash || '#start').replace('#','');
+      const key = (location.hash || '#gehaltsrechner').replace('#','');
       const normalizedKey = key === 'perzentilen' ? 'schichtmatrix' : key;
       const link = map[normalizedKey] || map.start;
       if(link){

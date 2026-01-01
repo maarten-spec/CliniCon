@@ -10,79 +10,84 @@
   .besetzungsbedarf-app{
     display:flex;
     flex-direction:column;
-    gap:24px;
+    gap:18px;
   }
   .besetzungsbedarf-app .besetzungsbedarf-container{
     display:flex;
     flex-direction:column;
-    gap:24px;
+    gap:18px;
     width:100%;
   }
   .besetzungsbedarf-app .formula-block{
     padding:0;
-    border:none;
-    border-radius:28px;
-    color:#fff;
-    box-shadow:var(--shadow);
+    border:1px solid var(--line,#e2e8f0);
+    border-radius:18px;
+    color:var(--text);
+    background:var(--panel,#fff);
+    box-shadow:0 18px 32px rgba(15,23,42,.06);
     overflow:hidden;
     width:100%;
   }
-  .besetzungsbedarf-app .formula-block.rose{background:#5e7fa2;color:#f8fafc;}
-  .besetzungsbedarf-app .formula-block.indigo{background:#9bbcc1;color:#0f172a;}
-  .besetzungsbedarf-app .formula-block.amber{background:#c7d36f;color:#24310d;}
-  .besetzungsbedarf-app .formula-block.mint{background:#b08a64;color:#302012;}
-  .besetzungsbedarf-app .formula-block.slate{background:#c24a2a;color:#fef2f2;}
+  .besetzungsbedarf-app .formula-block.rose,
+  .besetzungsbedarf-app .formula-block.indigo,
+  .besetzungsbedarf-app .formula-block.amber,
+  .besetzungsbedarf-app .formula-block.mint,
+  .besetzungsbedarf-app .formula-block.slate{
+    background:var(--panel,#fff);
+    color:var(--text);
+  }
   .besetzungsbedarf-app .formula-header{
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
-    gap:16px;
-    padding:26px 32px 0;
+    gap:12px;
+    padding:22px 22px 0;
   }
   .besetzungsbedarf-app .formula-header h2{
     margin:0;
-    font-size:1.45rem;
-    color:inherit;
+    font-size:1.35rem;
+    color:#0f172a;
   }
   .besetzungsbedarf-app .formula-header p{
     margin:6px 0 0;
     font-size:.95rem;
-    opacity:.9;
-    color:inherit;
+    color:var(--muted,#64748b);
   }
   .besetzungsbedarf-app .formula-meta{
     display:block;
     margin-top:6px;
     font-size:.85rem;
     font-weight:600;
-    opacity:.85;
+    color:var(--muted,#64748b);
   }
   .besetzungsbedarf-app .formula-value{
-    font-size:1.2rem;
-    font-weight:700;
+    font-size:1rem;
+    font-weight:600;
     text-align:right;
     line-height:1.35;
+    color:var(--muted,#64748b);
   }
-  .besetzungsbedarf-app .formula-value span{font-weight:800;}
+  .besetzungsbedarf-app .formula-value span{font-weight:700; color:#0f172a;}
   .besetzungsbedarf-app .formula-value .meta{
     display:block;
     font-size:.85rem;
-    font-weight:500;
-    opacity:.8;
+    font-weight:600;
+    color:var(--muted,#64748b);
     margin-bottom:4px;
   }
   .besetzungsbedarf-app .formula-panel{
     background:#fff;
     color:var(--text);
-    margin:24px 32px 32px;
-    padding:24px 28px;
-    border-radius:20px;
+    margin:16px 22px 22px;
+    padding:16px;
+    border-radius:14px;
+    border:1px solid var(--line,#e2e8f0);
   }
-  .besetzungsbedarf-app .formula-panel h2{margin:0 0 12px;}
+  .besetzungsbedarf-app .formula-panel h2{margin:0 0 12px; font-size:1.2rem;}
   .besetzungsbedarf-app .formula-panel + .formula-panel{margin-top:0;}
   .besetzungsbedarf-app .grid{
     display:grid;
-    gap:14px;
+    gap:12px;
   }
   .besetzungsbedarf-app .grid.grid-2{grid-template-columns:1fr 1fr;}
   .besetzungsbedarf-app .grid.grid-3{grid-template-columns:repeat(3,1fr);}
@@ -98,42 +103,35 @@
     font-weight:600;
     margin-bottom:6px;
     display:block;
+    color:#475569;
+    font-size:.9rem;
   }
   .besetzungsbedarf-app select,
   .besetzungsbedarf-app input{
     width:100%;
-    padding:10px;
-    border:1px solid var(--line);
+    padding:10px 12px;
+    border:1px solid var(--line,#e2e8f0);
     border-radius:10px;
-    font-size:1rem;
+    font-size:.95rem;
     background:#fff;
+    font:inherit;
   }
-  .besetzungsbedarf-app .muted{color:var(--muted);}
-  .besetzungsbedarf-app .badge{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    background:var(--accent-weak);
-    color:#1e40af;
-    border:1px solid #bfdbfe;
-    padding:6px 10px;
-    border-radius:999px;
-    font-weight:600;
-  }
+  .besetzungsbedarf-app .muted{color:var(--muted,#64748b);}
   .besetzungsbedarf-app .table{
     width:100%;
     border-collapse:collapse;
+    background:#fff;
   }
   .besetzungsbedarf-app .table th,
   .besetzungsbedarf-app .table td{
-    border-bottom:1px solid #e5e7eb;
-    padding:8px 10px;
+    border-bottom:1px solid var(--line,#e2e8f0);
+    padding:10px 12px;
     text-align:left;
     vertical-align:middle;
   }
-  .besetzungsbedarf-app .table th{
-    font-size:.9rem;
-    color:#475569;
+  .besetzungsbedarf-app .table thead th{
+    background:#f8fafc;
+    font-weight:600;
   }
   .besetzungsbedarf-app .table th.art,
   .besetzungsbedarf-app .table td.art,
@@ -148,27 +146,18 @@
     gap:10px;
   }
   .besetzungsbedarf-app .kpi .item{
-    background:#f8fafc;
-    border:1px solid var(--line);
-    border-radius:12px;
+    background:#fff;
+    border:1px solid var(--line,#e2e8f0);
+    border-radius:14px;
     padding:12px;
+    box-shadow:0 10px 20px rgba(15,23,42,.05);
   }
   .besetzungsbedarf-app .kpi .item b{
     display:block;
     font-size:1.1rem;
   }
-  .besetzungsbedarf-app .btn{
-    background:var(--accent);
-    color:#fff;
-    border:none;
-    padding:10px 14px;
-    border-radius:10px;
-    font-weight:700;
-    cursor:pointer;
-  }
-  .besetzungsbedarf-app .btn:hover{background:var(--accent-strong);}
   .besetzungsbedarf-app details.holidays{
-    border:1px solid var(--line);
+    border:1px solid var(--line,#e2e8f0);
     border-radius:14px;
     padding:14px;
     background:#fff;
@@ -186,13 +175,13 @@
   .besetzungsbedarf-app .pill{
     padding:6px 10px;
     border-radius:999px;
-    background:#eef2ff;
-    border:1px solid #c7d2fe;
+    background:#f8fafc;
+    border:1px solid var(--line,#e2e8f0);
   }
   .besetzungsbedarf-app .room-entry{
     margin-bottom:18px;
     padding:16px;
-    border:1px solid var(--line);
+    border:1px solid var(--line,#e2e8f0);
     border-radius:14px;
     background:#fff;
   }
@@ -209,9 +198,9 @@
     display:inline-flex;
     align-items:center;
     justify-content:center;
-    background:#fee2e2;
+    background:#fff5f5;
     color:#991b1b;
-    border:1px solid #fecaca;
+    border:1px solid #fecdd3;
     padding:6px 10px;
     border-radius:8px;
     font-weight:700;
@@ -236,16 +225,16 @@
   .besetzungsbedarf-app .day-btn{
     padding:8px 0;
     text-align:center;
-    border:1px solid var(--line);
+    border:1px solid var(--line,#e2e8f0);
     border-radius:8px;
     background:#f8fafc;
     cursor:pointer;
     font-weight:500;
   }
   .besetzungsbedarf-app .day-btn.active{
-    background:var(--accent);
+    background:var(--accent,#2563eb);
     color:#fff;
-    border-color:var(--accent-strong);
+    border-color:var(--accent,#2563eb);
   }
   .besetzungsbedarf-app .hours-row{
     display:grid;
@@ -262,7 +251,7 @@
     color:#94a3b8;
   }
 </style>
-<section class="card page-frame" id="besetzungsbedarf-frame">
+<section class="card page-frame ppug-layout" id="besetzungsbedarf-frame">
   <div class="page-frame__body">
 <div class="besetzungsbedarf-app">
   <div class="besetzungsbedarf-container">
@@ -322,7 +311,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="badge" style="margin-top:8px;cursor:pointer" onclick="addRoom()">+ weiteren Arbeitsplatz hinzufügen</div>
+                <button type="button" class="btn ghost" style="margin-top:8px;" onclick="addRoom()">+ weiteren Arbeitsplatz hinzufügen</button>
               </div>
             </section>
   
@@ -348,7 +337,7 @@
                   </div>
                 </div>
                 <div style="margin-top:16px">
-                  <button class="btn" style="width:100%" onclick="calculateAll()">Gesamtberechnung durchführen</button>
+                  <button class="btn primary" style="width:100%" onclick="calculateAll()">Gesamtberechnung durchführen</button>
                 </div>
                 <div class="grid grid-4" style="margin-top:10px">
                   <div>

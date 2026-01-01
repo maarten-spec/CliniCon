@@ -1,4 +1,4 @@
-<section class="card page-frame" id="schicht-tool">
+<section class="card page-frame ppug-layout" id="schicht-tool">
   <div class="schicht-grid">
     <section class="card section-header schicht-hero">
       <h2>Schichtbesetzung</h2>
@@ -336,29 +336,24 @@
   #schicht-tool .schicht-grid{
     display:grid;
     grid-template-columns:repeat(12,1fr);
-    column-gap:18px;
-    row-gap:12px;
+    gap:16px;
     padding:12px;
     box-sizing:border-box;
   }
   #schicht-tool .card{
     background:var(--panel,#fff);
     border:1px solid var(--line,#e2e8f0);
-    border-radius:16px;
-    padding:24px;
-    box-shadow:var(--shadow,0 18px 36px rgba(15,23,42,.08));
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 18px 32px rgba(15,23,42,.06);
   }
   #schicht-tool .schicht-hero{
     grid-column:1/-1;
     text-align:left;
-    background:var(--panel,#fff);
-    border:1px solid var(--line,#e2e8f0);
-    box-shadow:var(--shadow,0 18px 36px rgba(15,23,42,.08));
-    padding:20px;
   }
   #schicht-tool .schicht-hero h2{
     margin:0;
-    font-size:var(--font-size-h2,1.5rem);
+    font-size:1.35rem;
   }
   #schicht-tool .schedule-card,
   #schicht-tool .summary-card,
@@ -376,7 +371,7 @@
   }
   #schicht-tool .schedule-header h3{
     margin:0;
-    font-size:1.35rem;
+    font-size:1.2rem;
   }
   #schicht-tool .schedule-header p{
     margin:6px 0 0;
@@ -398,13 +393,13 @@
   #schicht-tool .totals-head h3{margin:0;font-size:var(--font-size-h3,1.2rem);}
   #schicht-tool .totals-head p{margin:4px 0 0;color:var(--muted,#64748b);}
   #schicht-tool .totals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
-  #schicht-tool .totals-item{padding:14px 16px;border:1px solid var(--line,#e2e8f0);border-radius:12px;background:#f8fafc;display:grid;gap:6px;}
+  #schicht-tool .totals-item{padding:14px 16px;border:1px solid var(--line,#e2e8f0);border-radius:14px;background:#fff;display:grid;gap:6px;box-shadow:0 10px 20px rgba(15,23,42,.05);}
   #schicht-tool .totals-label{color:var(--muted,#64748b);font-size:.9rem;}
   #schicht-tool .totals-item strong{font-size:1.35rem;}
   #schicht-tool .legend-item{
     appearance:none;
-    border:1px dashed rgba(37,99,235,0.38);
-    background:linear-gradient(180deg,#fff,#f8fafc);
+    border:1px solid var(--line,#e2e8f0);
+    background:#fff;
     display:inline-flex;
     align-items:center;
     gap:8px;
@@ -417,7 +412,7 @@
     font-family:inherit;
     font-weight:600;
     margin:0;
-    box-shadow:0 8px 16px rgba(15,23,42,0.08);
+    box-shadow:0 10px 20px rgba(15,23,42,0.05);
     transition:.15s ease transform,.15s ease box-shadow,.15s ease border-color;
   }
   #schicht-tool .legend-item:focus-visible{
@@ -700,7 +695,7 @@
     font-weight:600;
     border-radius:10px;
     border:1px solid rgba(15,23,42,0.12);
-    box-shadow:0 8px 16px rgba(15,23,42,0.1);
+    box-shadow:0 6px 12px rgba(15,23,42,0.08);
     color:#0f172a;
     background:rgba(37,99,235,0.12);
   }
@@ -715,12 +710,12 @@
     gap:12px;
     align-items:flex-start;
     padding:14px 16px;
-    border-radius:12px;
+    border-radius:14px;
     border:1px solid var(--line,#e2e8f0);
-    background:#f8fafc;
+    background:#fff;
     transition:.15s ease border-color,.15s ease box-shadow;
   }
-  #schicht-tool .model-option:hover{border-color:var(--accent,#2563eb);box-shadow:0 14px 28px rgba(37,99,235,0.12);}
+  #schicht-tool .model-option:hover{border-color:var(--accent,#2563eb);box-shadow:0 10px 20px rgba(15,23,42,0.06);}
   #schicht-tool .model-option input{margin-top:4px;}
   #schicht-tool .model-option strong{display:block;font-size:1rem;}
   #schicht-tool .model-option span{color:var(--muted,#64748b);font-size:.9rem;}
@@ -735,7 +730,7 @@
     #schicht-tool .time-label{padding-left:0;}
     #schicht-tool .schedule-legend{flex-direction:column;align-items:stretch;}
     #schicht-tool .legend-item{width:100%;}
-    #schicht-tool .schicht-hero h2{font-size:var(--font-size-h2,1.5rem);}
+    #schicht-tool .schicht-hero h2{font-size:1.25rem;}
     #schicht-tool{--slot-width:var(--slot-width-sm);}
     #schicht-tool .schedule-grid,
     #schicht-tool .time-scale,

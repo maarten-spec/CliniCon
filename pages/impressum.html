@@ -1,4 +1,4 @@
-<section class="card impressum-card">
+<section class="card impressum-card ppug-layout">
   <div class="section-header">
     <h2>Impressum &amp; Rechtliches</h2>
     <p class="section-lead">Impressum, AGB und Datenschutzerkl&auml;rung auf einen Blick.</p>
@@ -140,22 +140,20 @@
     background:#fff;
     color:var(--text,#0f172a);
     padding:10px 14px;
-    border-radius:999px;
-    font-weight:700;
+    border-radius:12px;
+    font-weight:600;
     cursor:pointer;
     transition:.16s ease all;
-    box-shadow:0 6px 14px rgba(15,23,42,.06);
+    box-shadow:0 10px 20px rgba(15,23,42,.05);
   }
   .legal-tab:hover{
-    border-color:#bfd7ff;
-    background:linear-gradient(180deg,#ffffff,#eef5ff);
-    transform:translateY(-1px);
+    border-color:var(--accent,#2563eb);
   }
   .legal-tab.active{
-    background:linear-gradient(180deg,var(--accent,#2563eb),var(--accent-strong,#1d4ed8));
+    background:var(--accent,#2563eb);
     color:#fff;
-    border-color:transparent;
-    box-shadow:0 10px 22px rgba(37,99,235,.24);
+    border-color:var(--accent,#2563eb);
+    box-shadow:0 10px 22px rgba(37,99,235,.2);
   }
   .legal-panels{
     display:grid;
@@ -182,10 +180,10 @@
   .info-panel,
   .legal-section{
     background:var(--panel,#fff);
-    border:1px solid var(--line,#d1d5db);
-    border-radius:14px;
+    border:1px solid var(--line,#e2e8f0);
+    border-radius:18px;
     padding:20px;
-    box-shadow:0 10px 25px rgba(15,23,42,.08);
+    box-shadow:0 18px 32px rgba(15,23,42,.06);
     color:var(--text,#0f172a);
   }
   .info-panel h3,

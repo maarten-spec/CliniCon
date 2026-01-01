@@ -46,7 +46,7 @@
     .brand img{width:180px; height:auto; object-fit:contain}
     .nav{display:flex; flex-direction:column; gap:6px; width:100%; margin-top:8px}
     .nav a{ display:flex; align-items:center; gap:12px; text-decoration:none; color:var(--text);
-      padding:10px 12px; border-radius:12px; border:1px solid transparent; transition:.15s ease all }
+      padding:10px 12px; border-radius:14px; border:1px solid transparent; transition:.15s ease all }
     .nav a:hover{ background:var(--accent-weak); border-color:#bfd7ff }
     .nav a.active{ background:var(--accent); color:white }
     .nav svg{ min-width:22px }
@@ -67,7 +67,7 @@
     .card{ background:var(--panel); border:1px solid var(--line); border-radius:16px; padding:24px; box-shadow:var(--shadow) }
     .hero{
       grid-column:1/-1; display:grid; gap:12px; text-align:center; justify-items:center; padding:28px;
-      background:linear-gradient(145deg, rgba(37,99,235,0.18), rgba(255,255,255,0.9)); border:1px solid rgba(37,99,235,0.2)
+      background:#fff; border:1px solid var(--line,#e2e8f0)
     }
     .hero h2{ margin:0; font-size:var(--font-size-h2); }
     .hero p{ margin:0; max-width:720px; color:#1f2937; }
@@ -144,7 +144,7 @@
   <div class="shell">
     <aside class="side">
       <a class="brand" href="#">
-        <img src="Bilder/Log.jpg" alt="GFO Logo" />
+        <img src="../../../../assets/Bilder/GFOLogo.jpg" alt="GFO Logo" />
       </a>
       <nav class="nav">
         <a href="1_Unterstartseite.html">
@@ -169,10 +169,10 @@
     <div>
       <header>
         <div class="topbar-left"></div>
-        <img class="product-logo" src="Bilder/CliniConLogo.png" alt="CliniCon Logo" />
+        <img class="product-logo" src="../../../../assets/Bilder/CliniConLogo.png" alt="CliniCon Logo" />
       </header>
 
-      <main class="fa-main">
+      <main class="fa-main ppug-layout">
         <section class="hero card">
           <h2>Fachabteilungen</h2>
           <p>Diese Plattform unterst&uuml;tzt Sie dabei, Patientinnen und Patienten schnell in die passende Fachabteilung innerhalb der GFO zu &uuml;berleiten.</p>

@@ -1,4 +1,4 @@
-<section class="card page-frame roadmap-frame">
+<section class="card page-frame ppug-layout roadmap-frame">
   <div class="page-frame__body roadmap-stack">
     <section class="card roadmap-section">
       <h2>Roadmap &amp; Priorit&auml;ten</h2>
@@ -49,28 +49,31 @@
 
     <section class="card roadmap-section">
       <h2>Neueste Updates</h2>
-      <p>Kurzfassung der Oktober/November-Releases.</p>
+      <p>Kurzfassung der aktuellen Releases.</p>
       <div class="updates-list">
         <article class="update-item">
           <div class="update-meta">
-            <strong>November 2025</strong>
+            <strong>Januar 2026</strong>
             <span class="status-badge status-active">verf&uuml;gbar</span>
           </div>
-          <p>Stabilit&auml;ts-Update f&uuml;r PPBV/PPUG mit schnellerem Export.</p>
+          <p>Gehaltsrechner und Produktseite erweitert.</p>
           <ul class="roadmap-points">
-            <li>Performance- und Export-Fixes.</li>
-            <li>Logging/Monitoring f&uuml;r Fehlertracing.</li>
+            <li>AVR-Caritas Gehaltsrechner mit Ost/West-Klassifikation nach Bundesland.</li>
+            <li>T&auml;tigkeitsmerkmale je Entgeltgruppe als Auszug aus Anlage 31.</li>
+            <li>Produktseite mit Demo-CTA und Flyer-Download.</li>
+            <li>Navigation um &bdquo;Gehaltsrechner&ldquo; und &bdquo;Produkt&ldquo; erg&auml;nzt.</li>
           </ul>
         </article>
         <article class="update-item">
           <div class="update-meta">
-            <strong>Oktober 2025</strong>
-            <span class="status-badge status-planned">rollout</span>
+            <strong>Dezember 2025</strong>
+            <span class="status-badge status-active">verf&uuml;gbar</span>
           </div>
-          <p>Shell-Navigation und Sticky-Header finalisiert, dazu kompaktere KPI-Kacheln.</p>
+          <p>Stabilisierung von UI-Elementen und Datenschutz-Flow.</p>
           <ul class="roadmap-points">
-            <li>Schnellere Navigation (Keyboard &amp; Sticky-Topbar).</li>
-            <li>Kompakte KPIs f&uuml;r Hilfskr&auml;fte/VZ&Auml;.</li>
+            <li>Cookie-Consent Banner mit Optionen f&uuml;r Notwendig/Statistik/Marketing.</li>
+            <li>Fixiertes Donate-Badge auf &bdquo;Kaffee spendieren&ldquo; umgestellt.</li>
+            <li>Asset-Pfade/Logos f&uuml;r dynamisch geladene Seiten stabilisiert.</li>
           </ul>
         </article>
       </div>
@@ -110,11 +113,11 @@
     gap:18px;
   }
   .roadmap-card{
-    border:1px solid var(--line);
+    border:1px solid var(--line,#e2e8f0);
     border-radius:14px;
     padding:18px;
     background:#fff;
-    box-shadow:0 8px 16px rgba(15,23,42,0.08);
+    box-shadow:0 10px 20px rgba(15,23,42,0.05);
     display:flex;
     flex-direction:column;
     gap:12px;
@@ -168,13 +171,14 @@
     gap:16px;
   }
   .update-item{
-    border:1px solid var(--line);
+    border:1px solid var(--line,#e2e8f0);
     border-radius:14px;
     padding:18px;
     background:#fff;
     display:flex;
     flex-direction:column;
     gap:10px;
+    box-shadow:0 10px 20px rgba(15,23,42,0.05);
   }
   .update-meta{
     display:flex;

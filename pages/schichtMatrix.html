@@ -13,7 +13,7 @@
     display:flex;
     flex-direction:column;
     gap:18px;
-    padding:16px;
+    padding:12px;
     width:100%;
   }
   .shift-page .pill{
@@ -21,9 +21,10 @@
     align-items:center;
     gap:8px;
     padding:7px 12px;
-    border-radius:12px;
-    background:rgba(37,99,235,0.1);
-    color:var(--text,#0f172a);
+    border-radius:999px;
+    background:#f8fafc;
+    border:1px solid var(--line,#e2e8f0);
+    color:#0f172a;
     font-weight:700;
     letter-spacing:.02em;
   }
@@ -37,9 +38,9 @@
     border:1px solid var(--line,#e2e8f0);
     border-radius:18px;
     background:var(--panel,#fff);
-    box-shadow:var(--shadow,0 18px 36px rgba(15,23,42,.08));
+    box-shadow:0 18px 32px rgba(15,23,42,.06);
   }
-  .shift-hero__copy h2{margin:6px 0 6px; font-size:1.6rem;}
+  .shift-hero__copy h2{margin:6px 0 6px; font-size:1.35rem;}
   .shift-hero__copy p{margin:0; max-width:720px; color:var(--muted,#64748b);}
   .shift-hero__actions{display:flex; gap:10px; flex-wrap:wrap; margin-top:12px;}
   .shift-hero__stats{
@@ -51,41 +52,30 @@
   .shift-hero__stats .stat{
     padding:12px 14px;
     border:1px solid var(--line,#e2e8f0);
-    border-radius:12px;
+    border-radius:14px;
     background:#fff;
-    box-shadow:0 10px 22px rgba(15,23,42,.08);
     display:grid;
     gap:4px;
+    box-shadow:0 10px 20px rgba(15,23,42,.05);
   }
   .shift-hero__stats .stat span{color:var(--muted,#64748b); font-size:.9rem;}
-  .shift-hero__stats .stat strong{font-size:1.3rem;}
+  .shift-hero__stats .stat strong{font-size:1.2rem;}
 
   .shift-app{
-    --shift-bg:#f7f9fd;
-    --shift-panel:#ffffff;
-    --shift-muted:#64748b;
-    --shift-text:#0f172a;
-    --shift-line:#e2e8f0;
-    --shift-accent:#2563eb;
-    --shift-accent-strong:#1d4ed8;
-    font-family:var(--font-base,"Roboto","Segoe UI",sans-serif);
-    font-size:var(--font-size-base,16px);
-    line-height:var(--line-height-base,1.6);
-    color:var(--shift-text);
     display:flex;
     flex-direction:column;
     gap:16px;
   }
 
   .shift-card{
-    background:#f8fafc;
-    border:1px solid var(--shift-line);
-    border-radius:16px;
-    padding:20px;
-    box-shadow:none;
+    background:var(--panel,#fff);
+    border:1px solid var(--line,#e2e8f0);
+    border-radius:18px;
+    padding:22px;
+    box-shadow:0 18px 32px rgba(15,23,42,.06);
   }
-  .shift-card-head h2{margin:0; font-size:1.4rem;}
-  .shift-card-head p{margin:6px 0 0; color:var(--shift-muted);}
+  .shift-card-head h2{margin:0; font-size:1.3rem;}
+  .shift-card-head p{margin:6px 0 0; color:var(--muted,#64748b);}
 
   .shift-settings-grid{
     display:grid;
@@ -94,7 +84,7 @@
     margin-top:14px;
   }
   .shift-settings-grid .shift-field{display:flex; flex-direction:column; gap:6px;}
-  .shift-settings-grid label{font-weight:700; color:var(--shift-text); font-size:.95rem;}
+  .shift-settings-grid label{font-weight:600; color:#475569; font-size:.9rem;}
 
   .shift-toolbar{
     display:flex;
@@ -103,40 +93,39 @@
     align-items:center;
     margin:14px 0 12px;
   }
-  .shift-toolbar-note{margin:0; color:var(--shift-muted); font-size:.95rem;}
+  .shift-toolbar-note{margin:0; color:var(--muted,#64748b); font-size:.95rem;}
 
   .shift-table-scroll{
     overflow:auto;
     border-radius:12px;
-    border:1px solid var(--shift-line);
+    border:1px solid var(--line,#e2e8f0);
+    background:#fff;
   }
   .shift-page table{
     width:100%;
-    border-collapse:separate;
-    border-spacing:0;
+    border-collapse:collapse;
   }
   .shift-page thead th{
     position:sticky;
     top:0;
-    background:linear-gradient(180deg,#f8fbff,#eef3ff);
+    background:#f8fafc;
     z-index:2;
     text-align:left;
-    padding:12px 10px;
+    padding:10px 10px;
     font-size:.85rem;
-    font-weight:700;
-    color:var(--shift-text);
-    border-bottom:1px solid var(--shift-line);
+    font-weight:600;
+    color:#0f172a;
+    border-bottom:1px solid var(--line,#e2e8f0);
   }
   .shift-page tbody td{
     background:#fff;
     padding:10px;
-    border-bottom:1px solid #eef2f6;
+    border-bottom:1px solid var(--line,#e2e8f0);
     vertical-align:middle;
   }
-  .shift-page tbody tr:nth-child(even) td{background:#f9fbff;}
   .shift-table-value{
-    font-weight:700;
-    color:var(--shift-text);
+    font-weight:600;
+    color:#0f172a;
     text-align:right;
     white-space:nowrap;
   }
@@ -146,25 +135,26 @@
     align-items:center;
     gap:8px;
     border-radius:12px;
-    border:1px solid var(--shift-line);
-    padding:12px 16px;
-    font-weight:700;
+    border:1px solid var(--line,#e2e8f0);
+    padding:10px 14px;
+    font-weight:600;
     cursor:pointer;
     background:#fff;
-    color:var(--shift-text);
+    color:#0f172a;
     transition:.18s ease all;
   }
-  .shift-button--primary{
-    background:linear-gradient(135deg,#0f172a,#111827);
-    border-color:#0f172a;
-    color:#fff;
-    box-shadow:0 12px 30px rgba(15,23,42,.25);
+  .shift-button:hover{
+    border-color:var(--accent,#2563eb);
   }
-  .shift-button--primary:hover{transform:translateY(-1px);}
+  .shift-button--primary{
+    background:var(--accent,#2563eb);
+    border-color:var(--accent,#2563eb);
+    color:#fff;
+    box-shadow:0 10px 22px rgba(37,99,235,.2);
+  }
+  .shift-button--primary:hover{filter:brightness(1.05);}
   .shift-button--ghost{
-    background:rgba(37,99,235,0.08);
-    border-color:rgba(37,99,235,0.18);
-    color:var(--shift-accent);
+    background:transparent;
   }
   .shift-button--danger{
     background:#fff5f5;
@@ -174,8 +164,8 @@
 
   .shift-input{
     width:100%;
-    padding:12px 14px;
-    border:1px solid var(--shift-line);
+    padding:10px 12px;
+    border:1px solid var(--line,#e2e8f0);
     border-radius:10px;
     background:#fff;
     font-size:.95rem;
@@ -185,7 +175,7 @@
   }
   .shift-input:focus{
     outline:none;
-    border-color:var(--shift-accent);
+    border-color:var(--accent,#2563eb);
     box-shadow:0 0 0 3px rgba(37,99,235,0.18);
   }
   .shift-input--code{max-width:80px; text-transform:uppercase;}
@@ -195,13 +185,13 @@
   .shift-duration-display{
     width:100%;
     min-width:110px;
-    padding:12px 14px;
-    border:1px solid var(--shift-line);
+    padding:10px 12px;
+    border:1px solid var(--line,#e2e8f0);
     border-radius:10px;
-    background:#f1f5f9;
+    background:#f8fafc;
     font-size:.95rem;
     text-align:center;
-    color:var(--shift-text);
+    color:#0f172a;
     cursor:default;
   }
 
@@ -212,18 +202,18 @@
     margin-top:10px;
   }
   .shift-availability .mini-card{
-    border:1px solid var(--shift-line);
-    border-radius:12px;
-    padding:12px;
-    background:linear-gradient(180deg,#ffffff,#f7f9ff);
+    border:1px solid var(--line,#e2e8f0);
+    border-radius:14px;
+    padding:14px;
+    background:#fff;
     display:flex;
     flex-direction:column;
     gap:4px;
-    box-shadow:0 10px 24px rgba(15,23,42,.08);
+    box-shadow:0 10px 20px rgba(15,23,42,.06);
   }
-  .shift-availability span{font-size:.9rem; color:var(--shift-muted);}
+  .shift-availability span{font-size:.9rem; color:var(--muted,#64748b);}
   .shift-availability strong{font-size:1.2rem;}
-  .shift-note{margin:12px 0 0; color:var(--shift-muted); font-size:.95rem;}
+  .shift-note{margin:12px 0 0; color:var(--muted,#64748b); font-size:.95rem;}
 
   @media (max-width:720px){
     .shift-hero{padding:16px;}
@@ -232,7 +222,7 @@
   }
 </style>
 
-<section class="card page-frame shift-page">
+<section class="card page-frame shift-page ppug-layout">
   <div class="shift-shell">
     <div class="shift-hero">
       <div class="shift-hero__copy">

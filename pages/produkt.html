@@ -1,0 +1,207 @@
+<!-- Produktseite -->
+<style>
+  #produkt{
+    width:100%;
+    display:block;
+    padding:0;
+  }
+  #produkt h2{
+    margin:0;
+    font-size:1.4rem;
+  }
+  #produkt h3{
+    margin:0;
+    font-size:1.1rem;
+  }
+  #produkt h4{
+    margin:0;
+    font-size:1rem;
+    color:#0f172a;
+  }
+  #produkt p{
+    margin:0;
+  }
+  #produkt .product-cta{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    margin-top:8px;
+  }
+  #produkt .product-panel{
+    border:1px solid var(--line,#e2e8f0);
+    border-radius:14px;
+    padding:16px;
+    background:#fff;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+  }
+  #produkt .product-panel ul,
+  #produkt ul{
+    margin:0;
+    padding-left:18px;
+    display:grid;
+    gap:6px;
+  }
+  #produkt .product-grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  }
+  #produkt .product-grid .kpi-tile{
+    min-height:120px;
+  }
+  #produkt .muted{color:var(--muted,#64748b);}
+  #produkt .note{margin:0; font-size:.9rem;}
+  #produkt .product-steps{
+    display:grid;
+    gap:10px;
+  }
+  #produkt .product-step{
+    border:1px solid var(--line,#e2e8f0);
+    border-radius:12px;
+    padding:12px 14px;
+    background:#f8fafc;
+  }
+  #produkt .product-step strong{
+    display:block;
+    margin-bottom:4px;
+    color:#0f172a;
+  }
+</style>
+
+<section class="card ppug-layout" id="produkt">
+  <div class="ppug-grid">
+    <div class="ppug-card">
+      <h2>CliniCon: Stellenplan &amp; Personalsteuerung ohne Excel-Chaos</h2>
+      <p class="muted">
+        CliniCon bringt Struktur in den Stellenplan: eine gemeinsame Datenbasis, klare Regeln und ein gemeinsamer Blick
+        f&uuml;r Pflege, Controlling und Leitung. Es geht nicht um mehr Zahlen, sondern um Zahlen, die Sie im Team erkl&auml;ren k&ouml;nnen.
+      </p>
+
+      <div class="row" style="margin-top:12px;">
+        <div class="span-6">
+          <div class="product-panel">
+            <h3>Typisch im Alltag</h3>
+            <ul>
+              <li>Mehrere Excel-Versionen mit unterschiedlichen St&auml;nden.</li>
+              <li>Formeln sind da, aber keiner kann sie wirklich erkl&auml;ren.</li>
+              <li>Wissen h&auml;ngt an Einzelnen.</li>
+              <li>Es wird &uuml;ber Zahlen diskutiert, statt Entscheidungen zu treffen.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="span-6">
+          <div class="product-panel">
+            <h3>So hilft CliniCon</h3>
+            <ul>
+              <li>Eine klare Quelle f&uuml;r Stellen, Besetzung und Regeln.</li>
+              <li>Rechenwege sind nachvollziehbar, ohne Excel-Tricks.</li>
+              <li>Rollen und Zust&auml;ndigkeiten sind klar hinterlegt.</li>
+              <li>Vergleiche zwischen Bereichen funktionieren ohne Kopieren.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-cta">
+        <a class="btn primary" href="mailto:info@clinicon.de?subject=CliniCon%20Demo%20anfragen">Demo anfragen</a>
+        <a class="btn" href="assets/flyer/Clinicon_Flyer.pdf" download>Flyer herunterladen (PDF)</a>
+      </div>
+      <p class="muted note">Kurz und ehrlich: Wir schauen zuerst gemeinsam, ob es f&uuml;r Sie passt. Kein Verkaufsdruck, kein Hype.</p>
+    </div>
+
+    <div class="ppug-card">
+      <h3>Was Sie bekommen</h3>
+      <div class="product-grid">
+        <div class="kpi-tile">
+          <span class="muted">Stellenplan als gemeinsame Grundlage</span>
+          <strong>Klare Basis f&uuml;r Entscheidungen</strong>
+          <span class="muted">Stellen, Rollen und Regeln sind sauber getrennt von Tagesereignissen.</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="muted">Struktur und Ausfall getrennt</span>
+          <strong>Weniger Vermischung</strong>
+          <span class="muted">Sie sehen, ob ein Problem strukturell oder operativ ist.</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="muted">Regeln, die jeder versteht</span>
+          <strong>Berechnung, die man erkl&auml;ren kann</strong>
+          <span class="muted">Keine versteckten Formeln, klare Regeln und Begr&uuml;ndungen.</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="muted">Wochen, Monate, Feiertage</span>
+          <strong>Kalenderlogik inklusive</strong>
+          <span class="muted">Feiertage, Wochenenden und Schichtsysteme sind sauber abbildbar.</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="muted">Szenarien</span>
+          <strong>Was-w&auml;re-wenn, ohne Risiko</strong>
+          <span class="muted">&Auml;nderungen testen, bevor Sie entscheiden.</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="muted">Rechte &amp; Protokoll</span>
+          <strong>Wer darf was, sichtbar</strong>
+          <span class="muted">Klare Rollen, Zugriff und Historie im Blick.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="ppug-card">
+      <h3>F&uuml;r wen</h3>
+      <div class="row">
+        <div class="span-6">
+          <h4>Pflegemanagement</h4>
+          <ul>
+            <li>Pflegedirektion und Bereichsleitungen.</li>
+            <li>Stationsleitungen, die Zahlen erkl&auml;ren m&uuml;ssen.</li>
+            <li>Mehr Ruhe in den Runden.</li>
+          </ul>
+        </div>
+        <div class="span-6">
+          <h4>Controlling &amp; Leitung</h4>
+          <ul>
+            <li>Einheitliche Zahlenbasis f&uuml;r Berichte.</li>
+            <li>Vergleichbarkeit zwischen Bereichen, ohne Kopien.</li>
+            <li>Nachvollziehbare Entscheidungen ohne Excel-Hin-und-her.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="ppug-card">
+      <h3>So starten wir</h3>
+      <p class="muted">Wir starten klein und schauen, ob es Ihnen wirklich hilft. Wenn es nicht passt, sagen wir das auch.</p>
+      <div class="row" style="margin-top:10px;">
+        <div class="span-6">
+          <div class="product-steps">
+            <div class="product-step">
+              <strong>1) Kennenlernen (15&ndash;30 Min.)</strong>
+              Wir h&ouml;ren zu und kl&auml;ren, ob wir wirklich helfen k&ouml;nnen.
+            </div>
+            <div class="product-step">
+              <strong>2) Pilot mit 1&ndash;2 Stationen</strong>
+              Ein kleiner Pilot, damit Sie schnell merken, ob es Sie entlastet.
+            </div>
+          </div>
+        </div>
+        <div class="span-6">
+          <div class="product-steps">
+            <div class="product-step">
+              <strong>3) Auswertung &amp; n&auml;chste Schritte</strong>
+              Wir werten gemeinsam aus, passen die Logik an und kl&auml;ren offene Punkte.
+            </div>
+            <div class="product-step">
+              <strong>4) Skalierung, wenn es passt</strong>
+              Weitere Bereiche und Standorte kommen erst dazu, wenn die Basis sitzt.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="product-cta">
+        <a class="btn primary" href="mailto:info@clinicon.de?subject=CliniCon%20Pilot%20anfragen">Pilot anfragen</a>
+        <a class="btn" href="assets/flyer/Clinicon_Flyer.pdf" download>Flyer herunterladen (PDF)</a>
+      </div>
+    </div>
+  </div>
+</section>

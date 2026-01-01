@@ -71,7 +71,7 @@
   .start-row-secondary{
     display:grid;
     grid-template-columns:2fr 1fr;
-    gap:18px;
+    gap:16px;
     align-items:stretch;
     margin-top:18px;
   }
@@ -85,6 +85,7 @@
     .start-intro img{ max-width:140px; }
   }
 </style>
+<div class="ppug-layout">
 <section class="card section-header start-intro">
   <img src="../assets/Bilder/CliniConLogo.png" alt="CliniCon Logo" />
   <div class="intro-copy">
@@ -100,7 +101,7 @@
     <ul class="highlight-list">
       <li><strong>PPBV/PPUG Kombi</strong> &ndash; Tagschicht nach PPBV, Nachtschicht nach PPUG in einem Rechner.</li>
       <li><strong>Schichtbesetzung</strong> &ndash; Drag &amp; Drop Timeline mit VK-Bedarf und Viertelstunden-Slots.</li>
-      <li><strong>GFO Interner Bereich</strong> &ndash; Fachabteilungen, Benchmark &amp; Stellenplan zentral durchsuchen.</li>
+      <li><strong>Interner Bereich</strong> &ndash; Fachabteilungen, Benchmark &amp; Stellenplan zentral durchsuchen.</li>
     </ul>
   </section>
 
@@ -111,8 +112,8 @@
       <div id="paypal-donate-button-container"></div>
     </div>
 
-    <script src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-    <script>
+    <script type="text/plain" data-consent="marketing" src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
+    <script type="text/plain" data-consent="marketing">
       (function renderDonate(){
         if(window.PayPal && PayPal.Donation && PayPal.Donation.Button){
           PayPal.Donation.Button({
@@ -128,6 +129,7 @@
       })();
     </script>
   </section>
+</div>
 </div>
 
 

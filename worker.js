@@ -4,12 +4,17 @@
 //  - GET  /api/audit?site=...&limit=...
 //  - POST /api/ai-command          (nur KI-Parsing)
 //  - POST /api/command             (KI-Parsing + DB-Aktion)
-//  - POST /api/rollover            (Stellenanteile in Jahres-Spalten vorwärts kopieren)
+//  - POST /api/rollover            (Stellenanteile in Jahres-Spalten vorwaerts kopieren)
+//  - POST /api/roster/save         (D1: Stellenplan speichern + Validierung)
+//  - POST /api/roster/history      (D1: Historie pro Mitarbeiter)
+//  - POST /api/roster/list         (D1: Stellenplan laden)
+//  - POST /api/roster/rollover     (D1: Folgejahr kopieren)
 //
 // Erwartete Secrets/Vars:
 //  - OPENAI_API_KEY (Secret)
 //  - SUPABASE_SERVICE_ROLE_KEY (Secret)
 //  - SUPABASE_URL (Plaintext)
+//  - DB (D1 Binding)
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -146,6 +151,285 @@ async function logAudit(env, payload) {
   } catch (e) {
     /* ignore */
   }
+}
+
+// ---------- D1 Roster Helpers ----------
+async function getEmployeeColumns(db) {
+  try {
+    const res = await db.prepare("PRAGMA table_info(employees)").all();
+    const cols = new Set((res.results || []).map((row) => row.name));
+    return {
+      hasQual: cols.has("qual"),
+      hasInclude: cols.has("include"),
+    };
+  } catch (err) {
+    return { hasQual: false, hasInclude: false };
+  }
+}
+
+async function saveRosterMonthly(payload, db) {
+  const siteId = must(payload.siteId, "siteId");
+  const departmentId = must(payload.departmentId, "departmentId");
+  const year = mustInt(payload.year, "year");
+  const updatedByUserId = payload.updatedByUserId || null;
+
+  const employees = Array.isArray(payload.employees) ? payload.employees : [];
+  const extras = Array.isArray(payload.extras) ? payload.extras : [];
+  const cols = await getEmployeeColumns(db);
+
+  const insertCols = ["id", "site_id", "personnel_no", "display_name", "is_active", "updated_at"];
+  const insertValues = ["?", "?", "?", "?", "1", "datetime('now')"];
+  const updateCols = ["site_id", "personnel_no", "display_name", "updated_at"];
+  if (cols.hasQual) {
+    insertCols.push("qual");
+    insertValues.push("?");
+    updateCols.push("qual");
+  }
+  if (cols.hasInclude) {
+    insertCols.push("include");
+    insertValues.push("?");
+    updateCols.push("include");
+  }
+  const employeeSql = `
+    INSERT INTO employees (${insertCols.join(", ")})
+    VALUES (${insertValues.join(", ")})
+    ON CONFLICT(id) DO UPDATE SET
+      ${updateCols.map((c) => `${c} = excluded.${c}`).join(", ")}
+  `;
+
+  const employeeUpserts = [];
+  const addEmployee = (row, isExtra) => {
+    const employeeId = row.employeeId || row.id;
+    if (!employeeId) return;
+    const personalRaw = String(row.personalNumber || "").trim();
+    const personalNo = isExtra
+      ? (personalRaw.startsWith("EX-") ? personalRaw : `EX-${personalRaw}`)
+      : personalRaw.replace(/^EX-/, "");
+    const displayName = isExtra ? String(row.category || row.name || "Zusatz") : String(row.name || "");
+    const params = [employeeId, siteId, personalNo, displayName];
+    if (cols.hasQual) params.push(String(row.qual || ""));
+    if (cols.hasInclude) params.push(row.include === false ? 0 : 1);
+    employeeUpserts.push(db.prepare(employeeSql).bind(...params));
+  };
+
+  employees.forEach((e) => addEmployee(e, false));
+  extras.forEach((e) => addEmployee(e, true));
+  if (employeeUpserts.length) {
+    await db.batch(employeeUpserts);
+  }
+
+  const rosterStmts = [];
+  const addRosterRows = (arr) => {
+    for (const row of arr) {
+      const employeeId = row.employeeId || row.id;
+      if (!employeeId) continue;
+      const values = Array.isArray(row.values) ? row.values : Array(12).fill(0);
+      const include = row.include !== false;
+      const v = include ? values : values;
+      for (let m = 1; m <= 12; m++) {
+        const fteRaw = Number(v[m - 1] || 0);
+        const fte = Number.isFinite(fteRaw) ? (fteRaw < 0 ? 0 : fteRaw) : 0;
+        const id = crypto.randomUUID();
+        rosterStmts.push(
+          db.prepare(`
+            INSERT INTO roster_monthly
+              (id, site_id, department_id, employee_id, year, month, fte, updated_at, updated_by_user_id)
+            VALUES
+              (?, ?, ?, ?, ?, ?, ?, datetime('now'), ?)
+            ON CONFLICT(employee_id, department_id, year, month)
+            DO UPDATE SET
+              site_id = excluded.site_id,
+              fte = excluded.fte,
+              updated_at = datetime('now'),
+              updated_by_user_id = excluded.updated_by_user_id
+          `).bind(
+            id,
+            siteId,
+            departmentId,
+            employeeId,
+            year,
+            m,
+            fte,
+            updatedByUserId
+          )
+        );
+      }
+    }
+  };
+
+  addRosterRows(employees);
+  addRosterRows(extras);
+  if (rosterStmts.length) {
+    await db.batch(rosterStmts);
+  }
+
+  const employeeIds = [...new Set([...employees, ...extras].map((r) => r.employeeId || r.id).filter(Boolean))];
+  const warnings = await getFteWarnings(db, siteId, year, employeeIds);
+  return { ok: true, warnings };
+}
+
+async function getFteWarnings(db, siteId, year, employeeIds) {
+  if (!employeeIds.length) return [];
+  const placeholders = employeeIds.map(() => "?").join(",");
+  const q = `
+    SELECT employee_id, year, month, ROUND(SUM(fte), 4) AS total_fte
+    FROM roster_monthly
+    WHERE site_id = ?
+      AND year = ?
+      AND employee_id IN (${placeholders})
+    GROUP BY employee_id, year, month
+    HAVING SUM(fte) > 1.0
+    ORDER BY employee_id, month
+  `;
+  const res = await db.prepare(q).bind(siteId, year, ...employeeIds).all();
+  const rows = res.results || [];
+  return rows.map((r) => ({
+    employeeId: r.employee_id,
+    year: r.year,
+    month: r.month,
+    totalFte: r.total_fte,
+    message: `Warnung: VK-Summe > 1,0 (ist ${r.total_fte})`,
+  }));
+}
+
+async function getRosterHistory(payload, db) {
+  const employeeId = must(payload.employeeId, "employeeId");
+  const year = payload.year ? Number(payload.year) : null;
+
+  let q = `
+    SELECT changed_at, action, changed_by_user_id,
+           department_id, year, month, old_fte, new_fte
+    FROM roster_monthly_audit
+    WHERE employee_id = ?
+  `;
+  const params = [employeeId];
+
+  if (year) {
+    q += " AND year = ? ";
+    params.push(year);
+  }
+  q += " ORDER BY changed_at DESC LIMIT 200";
+
+  const res = await db.prepare(q).bind(...params).all();
+  return { ok: true, history: res.results || [] };
+}
+
+async function getRosterList(payload, db) {
+  const siteId = must(payload.siteId, "siteId");
+  const year = mustInt(payload.year, "year");
+  const departmentId = payload.departmentId ? String(payload.departmentId) : null;
+  const cols = await getEmployeeColumns(db);
+
+  const selectExtra = [];
+  if (cols.hasQual) selectExtra.push("e.qual AS qual");
+  if (cols.hasInclude) selectExtra.push("e.include AS include");
+
+  let q = `
+    SELECT r.employee_id, r.department_id, r.year, r.month, r.fte,
+           e.personnel_no, e.display_name
+           ${selectExtra.length ? ", " + selectExtra.join(", ") : ""}
+    FROM roster_monthly r
+    JOIN employees e ON e.id = r.employee_id
+    WHERE r.site_id = ?
+      AND r.year = ?
+  `;
+  const params = [siteId, year];
+  if (departmentId) {
+    q += " AND r.department_id = ? ";
+    params.push(departmentId);
+  }
+  q += " ORDER BY e.display_name, r.department_id, r.month";
+
+  const res = await db.prepare(q).bind(...params).all();
+  const items = res.results || [];
+  const map = new Map();
+  items.forEach((row) => {
+    const key = `${row.employee_id}|${row.department_id}`;
+    if (!map.has(key)) {
+      map.set(key, {
+        employeeId: row.employee_id,
+        departmentId: row.department_id,
+        personalNumber: row.personnel_no || "",
+        name: row.display_name || "",
+        qual: row.qual || "",
+        include: row.include === 0 ? false : true,
+        months: Array(12).fill(0),
+      });
+    }
+    const entry = map.get(key);
+    const idx = Number(row.month) - 1;
+    if (idx >= 0 && idx < 12) {
+      entry.months[idx] += Number(row.fte) || 0;
+    }
+  });
+  return { ok: true, rows: Array.from(map.values()) };
+}
+
+async function rolloverRosterMonthly(payload, db) {
+  const siteId = must(payload.siteId, "siteId");
+  const departmentId = must(payload.departmentId, "departmentId");
+  const employeeId = must(payload.employeeId, "employeeId");
+  const fromYear = mustInt(payload.fromYear, "fromYear");
+  const toYear = mustInt(payload.toYear, "toYear");
+  const mode = payload.mode === "fill" ? "fill" : "overwrite";
+  const updatedByUserId = payload.updatedByUserId || null;
+
+  if (fromYear >= toYear) {
+    throw new Error("fromYear muss kleiner als toYear sein");
+  }
+
+  const src = await db.prepare(`
+    SELECT month, fte
+    FROM roster_monthly
+    WHERE site_id = ? AND department_id = ? AND employee_id = ? AND year = ?
+  `).bind(siteId, departmentId, employeeId, fromYear).all();
+  const srcRows = src.results || [];
+  if (!srcRows.length) {
+    return { ok: true, copiedMonths: 0, mode };
+  }
+  const srcMap = new Map();
+  srcRows.forEach((row) => srcMap.set(Number(row.month), Number(row.fte) || 0));
+
+  const tgt = await db.prepare(`
+    SELECT month
+    FROM roster_monthly
+    WHERE site_id = ? AND department_id = ? AND employee_id = ? AND year = ?
+  `).bind(siteId, departmentId, employeeId, toYear).all();
+  const existing = new Set((tgt.results || []).map((row) => Number(row.month)));
+
+  const stmts = [];
+  for (let m = 1; m <= 12; m++) {
+    if (!srcMap.has(m)) continue;
+    if (mode === "fill" && existing.has(m)) continue;
+    const id = crypto.randomUUID();
+    const fte = srcMap.get(m);
+    stmts.push(
+      db.prepare(`
+        INSERT INTO roster_monthly
+          (id, site_id, department_id, employee_id, year, month, fte, updated_at, updated_by_user_id)
+        VALUES
+          (?, ?, ?, ?, ?, ?, ?, datetime('now'), ?)
+        ON CONFLICT(employee_id, department_id, year, month)
+        DO UPDATE SET
+          fte = excluded.fte,
+          updated_at = datetime('now'),
+          updated_by_user_id = excluded.updated_by_user_id
+      `).bind(
+        id,
+        siteId,
+        departmentId,
+        employeeId,
+        toYear,
+        m,
+        fte,
+        updatedByUserId
+      )
+    );
+  }
+  if (stmts.length) {
+    await db.batch(stmts);
+  }
+  return { ok: true, copiedMonths: stmts.length, mode };
 }
 
 // ---------- Login ----------
@@ -447,6 +731,18 @@ async function handleRollover(body, env){
   }
 }
 
+function must(v, name) {
+  if (v === undefined || v === null || String(v).trim() === "") {
+    throw new Error(`Missing field: ${name}`);
+  }
+  return v;
+}
+function mustInt(v, name) {
+  const n = Number(v);
+  if (!Number.isInteger(n)) throw new Error(`Invalid integer: ${name}`);
+  return n;
+}
+
 // ---------- Router ----------
 export default {
   async fetch(request, env) {
@@ -462,6 +758,38 @@ export default {
     // Audit lesen
     if (url.pathname === "/api/audit" && request.method === "GET") {
       try { return await handleAuditFetch(env, url); } catch (err) { return json({ success:false, error: err.message },500); }
+    }
+
+    // D1: Stellenplan speichern
+    if (url.pathname === "/api/roster/save" && request.method === "POST") {
+      if (!env.DB) return json({ ok: false, error: "DB binding fehlt" }, 500);
+      let body; try { body = await request.json(); } catch { return json({ ok:false, error:"Invalid JSON" },400); }
+      try { return json(await saveRosterMonthly(body, env.DB), 200); }
+      catch (err) { return json({ ok:false, error: err.message }, 500); }
+    }
+
+    // D1: Stellenplan laden
+    if (url.pathname === "/api/roster/list" && request.method === "POST") {
+      if (!env.DB) return json({ ok: false, error: "DB binding fehlt" }, 500);
+      let body; try { body = await request.json(); } catch { return json({ ok:false, error:"Invalid JSON" },400); }
+      try { return json(await getRosterList(body, env.DB), 200); }
+      catch (err) { return json({ ok:false, error: err.message }, 500); }
+    }
+
+    // D1: Historie pro Mitarbeiter
+    if (url.pathname === "/api/roster/history" && request.method === "POST") {
+      if (!env.DB) return json({ ok: false, error: "DB binding fehlt" }, 500);
+      let body; try { body = await request.json(); } catch { return json({ ok:false, error:"Invalid JSON" },400); }
+      try { return json(await getRosterHistory(body, env.DB), 200); }
+      catch (err) { return json({ ok:false, error: err.message }, 500); }
+    }
+
+    // D1: Folgejahr kopieren
+    if (url.pathname === "/api/roster/rollover" && request.method === "POST") {
+      if (!env.DB) return json({ ok: false, error: "DB binding fehlt" }, 500);
+      let body; try { body = await request.json(); } catch { return json({ ok:false, error:"Invalid JSON" },400); }
+      try { return json(await rolloverRosterMonthly(body, env.DB), 200); }
+      catch (err) { return json({ ok:false, error: err.message }, 500); }
     }
 
     // KI-Parser nur (kein DB)

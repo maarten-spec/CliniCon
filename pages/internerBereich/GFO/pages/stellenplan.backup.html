@@ -45,7 +45,7 @@
       flex-direction:column;
       gap:6px;
     }
-    .pill{display:inline-flex; gap:8px; padding:8px 14px; border-radius:12px; background:linear-gradient(135deg, #1f4b82, #12355c); color:#fff; font-weight:700;}
+    .pill{display:inline-flex; gap:8px; padding:8px 14px; border-radius:14px; background:#f8fafc; border:1px solid var(--line); color:#0f172a; font-weight:700;}
     h1{margin:0;}
     .controls{
       display:flex;
@@ -59,7 +59,7 @@
     .controls input{
       padding:10px 12px;
       border:1px solid var(--line);
-      border-radius:12px;
+      border-radius:14px;
       font:inherit;
       background:#fff;
       box-shadow:0 8px 20px rgba(15,23,42,0.05);
@@ -68,7 +68,7 @@
       border:1px solid transparent;
       background:linear-gradient(135deg, #1f4b82, #12355c);
       padding:10px 14px;
-      border-radius:12px;
+      border-radius:14px;
       cursor:pointer;
       font-weight:700;
       color:#fff;
@@ -120,10 +120,10 @@
       margin:6px auto;
     }
     th.actions-col, td.actions-cell{text-align:center; min-width:120px;}
-    .totals-row td{font-weight:700; background:#f8fafc;}
+    .totals-row td{font-weight:700; background:#fff;}
     .spacer-row td{background:#f1f5f9;}
     .hint{color:var(--muted); margin:4px 0 0;}
-    tr:hover td{background:#f8fafc;}
+    tr:hover td{background:#fff;}
     .save-status{
       display:inline-block;
       padding:6px 10px;
@@ -151,7 +151,7 @@
       padding:6px 8px;
       border-radius:8px;
       border:1px solid var(--line);
-      background:#f8fafc;
+      background:#fff;
       cursor:pointer;
       font-size:0.85rem;
       width:100%;
@@ -163,7 +163,7 @@
       background:#fff;
       border:1px solid var(--line);
       box-shadow:0 12px 30px rgba(15,23,42,0.16);
-      border-radius:12px;
+      border-radius:14px;
       padding:10px;
       display:none;
       z-index:99;
@@ -185,7 +185,7 @@
   </style>
 </head>
 <body>
-  <main>
+  <main class="ppug-layout">
     <section class="card top">
       <div class="header-row">
         <div class="hero-title">

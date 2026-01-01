@@ -6,18 +6,15 @@
   <title>Stellenplan</title>
   <link rel="stylesheet" href="../../../../style.css" />
   <style>
-    :root{
-      --accent:#1f4b82; --accent-strong:#12355c; --line:#dbe3ec; --muted:#6b7280;
-      --header:#edf3f7; --row:#f9fbff; --hover:#f1f5f9; --card:#fff; --shadow:0 12px 30px rgba(15,23,42,.14);
-    }
-    body{margin:0; font-family:var(--font-base); font-size:15px; background:#eef3f7; color:#0f172a;}
+    :root{--accent:#2563eb; --accent-strong:#1d4ed8; --line:#e2e8f0; --muted:#94a3b8; --header:#f8fafc; --row:#ffffff; --hover:#f1f5f9; --card:#fff; --shadow:0 18px 32px rgba(15,23,42,.06);}
+    body{margin:0; font-family:var(--font-base); font-size:15px; background:var(--bg,#f5f7fb); color:#0f172a;}
     main{padding:20px; display:flex; flex-direction:column; gap:16px; width:100%; max-width:100%; margin:0 auto;}
-    .card{box-shadow:var(--shadow); border:1px solid rgba(15,23,42,.06); background:var(--card);}    .top{display:flex; flex-direction:column; gap:10px; padding:16px;}
-    .header-row{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; flex-wrap:wrap; padding-bottom:8px; border-bottom:1px solid var(--line);}    .hero-title{display:flex; flex-direction:column; gap:6px;}    .pill{display:inline-flex; gap:8px; padding:7px 12px; border-radius:12px; background:linear-gradient(135deg, #1f4b82, #12355c); color:#fff; font-weight:700;}    h1{margin:0;}    .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end; margin-top:6px; padding-top:6px;}    .controls label{display:flex; flex-direction:column; gap:4px; font-weight:700; color:#0f172a;}    .controls select,.controls input{padding:9px 11px; border:1px solid var(--line); border-radius:12px; font:inherit; background:#fff; box-shadow:0 7px 18px rgba(15,23,42,0.05);}    .controls button{border:1px solid transparent; background:linear-gradient(135deg, #16a34a, #0f9d58); padding:9px 12px; border-radius:12px; cursor:pointer; font-weight:700; color:#fff; transition:.15s ease all; box-shadow:0 9px 20px rgba(18,53,92,.16); margin-top:6px;}    .controls .btn-save{background:linear-gradient(135deg, #1fa2ff, #2563eb); box-shadow:0 9px 20px rgba(37,99,235,.2);}    .controls button:hover{box-shadow:0 12px 28px rgba(18,53,92,.2); transform:translateY(-1px);} .controls button:active{transform:translateY(0);}    .summary{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px;}    .tile{padding:14px 16px; border:1px solid rgba(148,163,184,.4); border-radius:14px; background:linear-gradient(145deg, rgba(255,255,255,0.9), rgba(241,245,249,0.95)); box-shadow:var(--shadow); display:grid; gap:6px;}    .tile span{color:var(--muted);} .tile strong{font-size:1.3rem;}    .table-wrap{overflow:auto; border:1px solid var(--line); border-radius:12px; background:#fff; box-shadow:var(--shadow); scrollbar-width:none;}    .table-wrap::-webkit-scrollbar{display:none;}    table{width:100%; border-collapse:collapse; font-size:0.94rem;}    th,td{padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle;}    th{background:var(--header); color:#0f172a; position:sticky; top:0; z-index:2; font-size:0.9rem; border-right:1px solid #d7e0eb; font-weight:800;}    th:last-child{border-right:none;} th:first-child, td:first-child{position:sticky; left:0; background:#fff; z-index:3; border-right:1px solid #d7e0eb;}    tr:nth-child(even) td{background:#f9fbff;} tr:hover td{background:var(--hover);} .sort-indicator{font-size:0.8rem; color:#6b7280; margin-left:6px;}    .name-input,.vk-input{width:100%; padding:8px 8px; border:1px solid var(--line); border-radius:8px; font:inherit; text-align:center; background:#fff; transition:.15s ease all;} .name-input{text-align:left;} .name-input:focus,.vk-input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(31,162,255,.18);} .vk-input::-webkit-outer-spin-button,.vk-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;} .vk-input{-moz-appearance:textfield;}    td.actions-cell, th.actions-col{vertical-align:middle; text-align:center; padding:6px 8px; min-width:140px;} .actions-cell .action-buttons{display:flex; gap:8px; justify-content:center; align-items:center;} .icon-btn{width:38px; height:38px; border-radius:8px; border:1px solid var(--line); background:#fff; cursor:pointer; box-shadow:0 4px 10px rgba(15,23,42,0.08); display:flex; align-items:center; justify-content:center;} .icon-btn:hover{background:#f1f5f9;} th.actions-col, td.actions-cell{text-align:center;}    .totals-row td{font-weight:700; background:#f8fafc;} .spacer-row td{background:#f1f5f9;}    .pnr-cell input{background:#eef2ff; border-color:#c7d2fe;}    .row-muted td{background:linear-gradient(90deg,#e2e8f0,#f8fafc); color:#334155; box-shadow:inset 4px 0 0 #cbd5e1;}    .row-muted td:first-child{background:linear-gradient(90deg,#cbd5e1,#e2e8f0); box-shadow:inset 6px 0 0 #0ea5e9; position:sticky; left:0;}    .row-muted td:first-child::before{content:'Ausgeblendet'; position:absolute; top:6px; right:8px; background:#0ea5e9; color:#fff; padding:2px 10px; border-radius:10px; font-size:0.75rem; font-weight:800;}    .row-muted input{background:#e2e8f0; border-color:#cbd5e1; color:#334155;}    .action-menu{position:absolute; background:#fff; border:1px solid var(--line); box-shadow:0 12px 30px rgba(15,23,42,0.18); border-radius:10px; padding:6px 0; display:none; z-index:200; min-width:220px;}    .action-menu button{display:block; width:100%; padding:9px 14px; background:none; border:none; text-align:left; cursor:pointer; font:inherit; font-weight:700;}    .action-menu button:hover{background:#f1f5f9;}    th.month-col, td.month-col{min-width:68px; width:68px;}    .save-status{display:inline-block; padding:6px 10px; border-radius:10px; background:#ecfeff; color:#0f172a; border:1px solid #bae6fd; font-weight:600;} .save-status.error{background:#fef2f2; border-color:#fecdd3; color:#991b1b;}    .qual-badge{width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:10px; background:#f8fafc; cursor:pointer; text-align:left; font-size:0.88rem; display:flex; justify-content:space-between; align-items:center;}    .qual-popover{position:absolute; background:#fff; border:1px solid var(--line); box-shadow:0 12px 30px rgba(15,23,42,0.16); border-radius:12px; padding:10px; display:none; z-index:190; width:240px; max-height:260px; overflow:auto;}    .qual-popover label{display:flex; align-items:center; gap:8px; font-size:0.88rem; padding:4px 2px;}    @media (max-width: 900px){th:nth-child(2), td:nth-child(2){left:100px;} th:first-child, td:first-child{min-width:100px;}}
+    .card{box-shadow:var(--shadow); border:1px solid var(--line); background:var(--card); border-radius:18px;}    .top{display:flex; flex-direction:column; gap:10px; padding:16px;}
+    .header-row{display:flex; align-items:flex-start; justify-content:space-between; gap:10px; flex-wrap:wrap; padding-bottom:8px; border-bottom:1px solid var(--line);}    .hero-title{display:flex; flex-direction:column; gap:6px;}    .pill{display:inline-flex; gap:8px; padding:7px 12px; border-radius:14px; background:#f8fafc; border:1px solid var(--line); color:#0f172a; font-weight:700;}    h1{margin:0;}    .controls{display:flex; flex-wrap:wrap; gap:10px; align-items:flex-end; margin-top:6px; padding-top:6px;}    .controls label{display:flex; flex-direction:column; gap:4px; font-weight:700; color:#0f172a;}    .controls select,.controls input{padding:9px 11px; border:1px solid var(--line); border-radius:14px; font:inherit; background:#fff; box-shadow:0 7px 18px rgba(15,23,42,0.05);}    .controls button{border:1px solid var(--line); background:#fff; padding:9px 12px; border-radius:14px; cursor:pointer; font-weight:600; color:#0f172a; transition:.15s ease all; box-shadow:0 9px 20px rgba(18,53,92,.16); margin-top:6px;}    .controls .btn-save{background:var(--accent); box-shadow:0 9px 20px rgba(37,99,235,.2);}    .controls button:hover{box-shadow:0 12px 28px rgba(18,53,92,.2); transform:translateY(-1px);} .controls button:active{transform:translateY(0);}    .summary{display:grid; grid-template-columns:repeat(auto-fit,minmax(200px,1fr)); gap:10px;}    .tile{padding:14px 16px; border:1px solid rgba(148,163,184,.4); border-radius:14px; background:#fff; box-shadow:var(--shadow); display:grid; gap:6px;}    .tile span{color:var(--muted);} .tile strong{font-size:1.3rem;}    .table-wrap{overflow:auto; border:1px solid var(--line); border-radius:14px; background:#fff; box-shadow:var(--shadow); scrollbar-width:none;}    .table-wrap::-webkit-scrollbar{display:none;}    table{width:100%; border-collapse:collapse; font-size:0.94rem;}    th,td{padding:10px 8px; border-bottom:1px solid var(--line); text-align:left; vertical-align:middle;}    th{background:var(--header); color:#0f172a; position:sticky; top:0; z-index:2; font-size:0.9rem; border-right:1px solid #d7e0eb; font-weight:800;}    th:last-child{border-right:none;} th:first-child, td:first-child{position:sticky; left:0; background:#fff; z-index:3; border-right:1px solid #d7e0eb;}    tr:nth-child(even) td{background:#f9fbff;} tr:hover td{background:var(--hover);} .sort-indicator{font-size:0.8rem; color:#6b7280; margin-left:6px;}    .name-input,.vk-input{width:100%; padding:8px 8px; border:1px solid var(--line); border-radius:8px; font:inherit; text-align:center; background:#fff; transition:.15s ease all;} .name-input{text-align:left;} .name-input:focus,.vk-input:focus{outline:none; border-color:var(--accent); box-shadow:0 0 0 3px rgba(31,162,255,.18);} .vk-input::-webkit-outer-spin-button,.vk-input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0;} .vk-input{-moz-appearance:textfield;}    td.actions-cell, th.actions-col{vertical-align:middle; text-align:center; padding:6px 8px; min-width:140px;} .actions-cell .action-buttons{display:flex; gap:8px; justify-content:center; align-items:center;} .icon-btn{width:38px; height:38px; border-radius:8px; border:1px solid var(--line); background:#fff; cursor:pointer; box-shadow:0 4px 10px rgba(15,23,42,0.08); display:flex; align-items:center; justify-content:center;} .icon-btn:hover{background:#f1f5f9;} th.actions-col, td.actions-cell{text-align:center;}    .totals-row td{font-weight:700; background:#fff;} .spacer-row td{background:#f1f5f9;}    .pnr-cell input{background:#eef2ff; border-color:#c7d2fe;}    .row-muted td{background:linear-gradient(90deg,#e2e8f0,#f8fafc); color:#334155; box-shadow:inset 4px 0 0 #cbd5e1;}    .row-muted td:first-child{background:linear-gradient(90deg,#cbd5e1,#e2e8f0); box-shadow:inset 6px 0 0 #0ea5e9; position:sticky; left:0;}    .row-muted td:first-child::before{content:'Ausgeblendet'; position:absolute; top:6px; right:8px; background:#0ea5e9; color:#fff; padding:2px 10px; border-radius:10px; font-size:0.75rem; font-weight:800;}    .row-muted input{background:#e2e8f0; border-color:#cbd5e1; color:#334155;}    .action-menu{position:absolute; background:#fff; border:1px solid var(--line); box-shadow:0 12px 30px rgba(15,23,42,0.18); border-radius:10px; padding:6px 0; display:none; z-index:200; min-width:220px;}    .action-menu button{display:block; width:100%; padding:9px 14px; background:none; border:none; text-align:left; cursor:pointer; font:inherit; font-weight:700;}    .action-menu button:hover{background:#f1f5f9;}    th.month-col, td.month-col{min-width:68px; width:68px;}    .save-status{display:inline-block; padding:6px 10px; border-radius:10px; background:#ecfeff; color:#0f172a; border:1px solid #bae6fd; font-weight:600;} .save-status.error{background:#fef2f2; border-color:#fecdd3; color:#991b1b;}    .warning-list{display:none; margin-top:8px; padding:10px 12px; border-radius:12px; border:1px solid #fecaca; background:#fef2f2; color:#991b1b; font-size:0.9rem;}    .warning-item{margin:3px 0;}    .warn-row td:first-child{box-shadow:inset 6px 0 0 #f59e0b;}    .warn-cell{background:#fef9c3;}    .warn-input{border-color:#f59e0b; box-shadow:0 0 0 2px rgba(245,158,11,.15);}    .history-modal{position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(15,23,42,.45); z-index:9999; padding:16px;}    .history-card{background:#fff; border:1px solid var(--line); border-radius:14px; width:min(720px, 92vw); max-height:80vh; overflow:hidden; box-shadow:0 18px 32px rgba(15,23,42,.18); display:flex; flex-direction:column;}    .history-head{display:flex; align-items:center; justify-content:space-between; padding:12px 14px; border-bottom:1px solid var(--line);}    .history-body{padding:12px 14px; overflow:auto;}    .history-row{display:grid; grid-template-columns:160px 1fr; gap:10px; padding:8px 0; border-bottom:1px solid var(--line);}    .history-row:last-child{border-bottom:none;}    .history-label{color:#64748b; font-size:0.85rem;}    .qual-badge{width:100%; padding:8px 10px; border:1px solid var(--line); border-radius:10px; background:#fff; cursor:pointer; text-align:left; font-size:0.88rem; display:flex; justify-content:space-between; align-items:center;}    .qual-popover{position:absolute; background:#fff; border:1px solid var(--line); box-shadow:0 12px 30px rgba(15,23,42,0.16); border-radius:14px; padding:10px; display:none; z-index:190; width:240px; max-height:260px; overflow:auto;}    .qual-popover label{display:flex; align-items:center; gap:8px; font-size:0.88rem; padding:4px 2px;}    @media (max-width: 900px){th:nth-child(2), td:nth-child(2){left:100px;} th:first-child, td:first-child{min-width:100px;}}
   </style>
 </head>
 <body>
-  <main>
+  <main class="ppug-layout">
     <section class="card top">
       <div class="header-row">
         <div class="hero-title">
@@ -38,6 +35,7 @@
         <button id="btnAddExtra" type="button">+ Zusatzzeile</button>
         <button id="btnSaveDb" class="btn-save" type="button">Speichern (DB)</button>
       </div>
+      <div id="warningList" class="warning-list" role="status" aria-live="polite"></div>
       <div class="summary">
         <div class="tile"><span>Summe (Jahr)</span><strong id="sumYear">0,0</strong></div>
         <div class="tile"><span>Durchschnitt / Monat</span><strong id="avgMonth">0,0</strong></div>
@@ -125,12 +123,18 @@
 
   <div id="qualPopover" class="qual-popover"></div>
   <div id="actionMenu" class="action-menu"></div>
+  <div id="historyModal" class="history-modal" aria-hidden="true">
+    <div class="history-card" role="dialog" aria-modal="true" aria-labelledby="historyTitle">
+      <div class="history-head">
+        <strong id="historyTitle">Historie</strong>
+        <button id="historyClose" class="icon-btn" type="button" aria-label="Schliessen">x</button>
+      </div>
+      <div id="historyBody" class="history-body"></div>
+    </div>
+  </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>
     const STORAGE_KEY='clinicon_stellenplan_v5';
-    const SUPABASE_URL_STORAGE='clinicon_supabase_url';
-    const SUPABASE_KEY_STORAGE='clinicon_supabase_key';
     const MONTHS=['Jan','Feb','Mrz','Apr','Mai','Jun','Jul','Aug','Sep','Okt','Nov','Dez'];
     const MONTH_KEYS=['jan','feb','mrz','apr','mai','jun','jul','aug','sep','okt','nov','dez'];
     const YEAR_MIN=2026, YEAR_MAX=2099;
@@ -139,21 +143,12 @@
       'Pflegefachkraft','Pflegefachassistenz','Notfallpflege','Anaesthesie/Intensiv','Hygiene','Praxisanleitung','OP','Endoskopie','Onkologie','Palliativ','Wundmanagement','Diabetes','Dialyse','Stroke Unit','Kardiologie','Geriatrie','Neonatologie','Psychiatrie','Schmerzmanagement','Pflegepaedagogik','Stationsleitung','Fachkraft Praev./Reha'
     ];
 
-    const DEFAULT_SUPABASE_URL='https://fqilehnixnsujefyrdcy.supabase.co';
-    const DEFAULT_SUPABASE_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZxaWxlaG5peG5zdWplZnlyZGN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjM5MjIyNzUsImV4cCI6MjA3OTQ5ODI3NX0.Ml1J-YsID7_CXX7LbLZM4ayhWpV08FBSZc3rgVuwqt4';
-    const SUPABASE_URL=(window.SUPABASE_URL||localStorage.getItem(SUPABASE_URL_STORAGE)||DEFAULT_SUPABASE_URL).trim();
-    const SUPABASE_ANON_KEY=(window.SUPABASE_ANON_KEY||localStorage.getItem(SUPABASE_KEY_STORAGE)||DEFAULT_SUPABASE_KEY).trim();
-    const supabaseClient=(typeof window.supabase!=='undefined'&&SUPABASE_URL&&SUPABASE_ANON_KEY)?window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY):null;
-    if(!localStorage.getItem(SUPABASE_URL_STORAGE)&&SUPABASE_URL){try{localStorage.setItem(SUPABASE_URL_STORAGE,SUPABASE_URL);}catch(e){}}
-    if(!localStorage.getItem(SUPABASE_KEY_STORAGE)&&SUPABASE_ANON_KEY){try{localStorage.setItem(SUPABASE_KEY_STORAGE,SUPABASE_ANON_KEY);}catch(e){}}
-
     const SITE_LABEL=(sessionStorage.getItem('cliniconSite')||'').trim();
     const SITE_CODE=SITE_LABEL.toLowerCase().replace(/[^a-z0-9_]/g,'');
     const HAS_SITE=Boolean(SITE_CODE);
-    const TABLE_EMP_BASE='stellenplan_employees';
     const workerDefault='https://divine-disk-6cb5.maarten-koomen.workers.dev';
     const API_BASE=(window.CLINICON_API_BASE||localStorage.getItem('clinicon_api_base')||workerDefault).trim();
-    const PARAM_TABLE=SITE_CODE?`parameter_${SITE_CODE}`:null;
+    const PLAN_KEY='stellenplan_gesamt_plan_v1';
 
     const ICON_TRASH='<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h18"/><path d="M8 6v-1a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v1"/><path d="M10 11v6"/><path d="M14 11v6"/><path d="M5 6l1 14a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2l1-14"/></svg>';
     const ICON_MENU='&#8942;';
@@ -171,7 +166,11 @@
       planRowNote:document.getElementById('planRowNote'),
       actionMenu:document.getElementById('actionMenu'),
       qualPopover:document.getElementById('qualPopover'),
+      warningList:document.getElementById('warningList'),
       saveStatus:document.getElementById('saveStatus'),
+      historyModal:document.getElementById('historyModal'),
+      historyBody:document.getElementById('historyBody'),
+      historyClose:document.getElementById('historyClose')
     };
 
     const state={dept:DEPARTMENTS[0],year:Math.max(YEAR_MIN,Math.min(YEAR_MAX,new Date().getFullYear())),data:{},sortKey:null,sortDir:'asc'};
@@ -179,13 +178,121 @@
     let combinedAvg=0;
     let lastFocused=null;
     let actionTarget=null;
+    let lastWarnings=[];
 
     const dbMonthCols=(year)=>MONTH_KEYS.map(k=>`${k}_${year}`);
-    const tableName=(base)=>SITE_CODE?`${base}_${SITE_CODE}`:base;
     const fmt=(n)=>Number(n||0).toFixed(2).replace('.',',');
+
+    function loadPlanStore(){
+      try{
+        return JSON.parse(localStorage.getItem(PLAN_KEY) || '{}');
+      }catch(e){
+        return {};
+      }
+    }
+    const planStore = loadPlanStore();
+    function planBucketKey(){
+      const site = SITE_CODE || 'default';
+      const year = state.year || new Date().getFullYear();
+      return `${site}-${year}`;
+    }
+    function getPlanValue(dept){
+      const bucket = planStore[planBucketKey()] || {};
+      return Number(bucket[dept]) || 0;
+    }
 
     function setSaveStatus(msg,err=false){ if(!els.saveStatus) return; els.saveStatus.style.display=msg?'inline-block':'none'; els.saveStatus.textContent=msg||''; els.saveStatus.classList.toggle('error',Boolean(err)); }
     function setLoadStatus(msg){ setSaveStatus(msg||'',true); }
+
+    function clearWarnings(resetList=true){
+      if(resetList) lastWarnings=[];
+      if(els.warningList){
+        els.warningList.style.display='none';
+        els.warningList.innerHTML='';
+      }
+      document.querySelectorAll('.warn-row').forEach(row=>row.classList.remove('warn-row'));
+      document.querySelectorAll('.warn-cell').forEach(cell=>cell.classList.remove('warn-cell'));
+      document.querySelectorAll('.warn-input').forEach(inp=>inp.classList.remove('warn-input'));
+    }
+    function getItemLabelById(id){
+      const plan=getCurrentPlan();
+      const emp=plan.employees.find(x=>x.id===id);
+      if(emp) return emp.name||displayPersonalNumber(emp.personalNumber)||id;
+      const ex=plan.extras.find(x=>x.id===id);
+      if(ex) return ex.category||ex.name||displayPersonalNumber(ex.personalNumber)||id;
+      return id;
+    }
+    function applyWarnings(list, preserveList){
+      if(!preserveList) lastWarnings=Array.isArray(list)?list:[];
+      clearWarnings(false);
+      if(!Array.isArray(list)||!list.length) return;
+      const items=[];
+      list.forEach(w=>{
+        const empId=w.employeeId||w.employee_id;
+        if(!empId) return;
+        const idx=Number(w.month)-1;
+        if(!Number.isFinite(idx) || idx < 0 || idx > 11) return;
+        const safeId=(typeof CSS!=='undefined'&&CSS.escape)?CSS.escape(empId):empId.replace(/\"/g,'\\\"');
+        const row=document.querySelector(`tr[data-id="${safeId}"]`);
+        if(row){
+          row.classList.add('warn-row');
+          const input=row.querySelector(`.vk-input[data-month="${idx}"]`);
+          if(input){
+            input.classList.add('warn-input');
+            const cell=input.closest('td');
+            if(cell) cell.classList.add('warn-cell');
+          }
+        }
+        const name=getItemLabelById(empId);
+        const monthLabel=MONTHS[idx]||`M${idx+1}`;
+        const total=Number(w.totalFte||0);
+        const msg=w.message||'';
+        const suffix=total?`${fmt(total)} VK`:'';
+        const msgText=msg?`(${msg})`:'';
+        items.push(`<div class="warning-item"><strong>${name}</strong> ${monthLabel}: ${suffix} ${msgText}</div>`);
+      });
+      if(els.warningList){
+        els.warningList.innerHTML=items.join('')||'Warnungen vorhanden.';
+        els.warningList.style.display='block';
+      }
+    }
+
+    function openHistoryModal(title, entries){
+      if(!els.historyModal||!els.historyBody) return;
+      const header=document.getElementById('historyTitle');
+      if(header) header.textContent=title?`Historie: ${title}`:'Historie';
+      if(!Array.isArray(entries)||!entries.length){
+        els.historyBody.innerHTML='<div class="hint">Keine Historie gefunden.</div>';
+      }else{
+        els.historyBody.innerHTML=entries.map(item=>{
+          const ts=(item.changed_at||'').toString().replace('T',' ').replace('Z','');
+          const monthIdx=Number(item.month)-1;
+          const monthLabel=MONTHS[monthIdx]||`M${monthIdx+1}`;
+          const dept=item.department_id||'-';
+          const oldVal=Number(item.old_fte||0);
+          const newVal=Number(item.new_fte||0);
+          const action=item.action||'update';
+          const who=item.changed_by_user_id||'';
+          return `<div class="history-row">
+            <div>
+              <div class="history-label">${ts}</div>
+              <div class="history-label">${dept}</div>
+            </div>
+            <div>
+              <strong>${monthLabel}</strong> ${action}<br/>
+              ${fmt(oldVal)} VK &rarr; ${fmt(newVal)} VK ${who?`&middot; ${who}`:''}
+            </div>
+          </div>`;
+        }).join('');
+      }
+      els.historyModal.style.display='flex';
+      els.historyModal.setAttribute('aria-hidden','false');
+    }
+    function closeHistoryModal(){
+      if(!els.historyModal) return;
+      els.historyModal.style.display='none';
+      els.historyModal.setAttribute('aria-hidden','true');
+    }
 
     function ensureDefaults(plan){
       plan.employees.forEach(emp=>{
@@ -231,13 +338,8 @@
     function displayPersonalNumber(pn){ return (pn||'').toString().replace(/^EX-/,''); }
     function isExtraRow(row){ const pn=(row.personal_number||row.personalNumber||'').toString(); return pn.startsWith('EX-'); }
 
-    async function loadPlanValue(){
-      if(!supabaseClient||!PARAM_TABLE){ planVK=0; updatePlanRow(); return; }
-      try{
-        const { data, error } = await supabaseClient.from(PARAM_TABLE).select('wirtschaftsplan_vk').eq('dept', state.dept).eq('year', state.year).maybeSingle();
-        if(error) throw error;
-        planVK=Number(data?.wirtschaftsplan_vk)||0;
-      }catch(err){ planVK=0; }
+    function loadPlanValue(){
+      planVK = getPlanValue(state.dept);
       updatePlanRow();
     }
     function updatePlanRow(){
@@ -247,17 +349,28 @@
     }
 
     async function fetchRemotePlan(){
-      if(!supabaseClient||!HAS_SITE) return null;
-      const cols=dbMonthCols(state.year);
-      const selectCols=['id','dept','personal_number','name','qual','include',...cols].join(',');
+      if(!API_BASE||!HAS_SITE) return null;
+      const payload={ siteId:SITE_CODE||SITE_LABEL, departmentId:state.dept, year:state.year };
       try{
-        const { data, error } = await supabaseClient.from(tableName(TABLE_EMP_BASE)).select(selectCols).eq('dept', state.dept);
-        if(error) throw error;
+        const res=await fetch(`${API_BASE}/api/roster/list`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+        const data=await res.json();
+        if(!res.ok||data.ok===false) throw new Error(data.error||'Laden fehlgeschlagen');
         const employees=[], extras=[];
-        (data||[]).forEach(emp=>{
-          const vals=cols.map(c=>Number(emp[c]||0));
-          const item={id:emp.id,personalNumber:persistPersonalNumber(emp.personal_number||'',isExtraRow(emp)),name:emp.name,qual:emp.qual||'',include:emp.include!==false,hiddenRow:emp.include===false,values:vals};
-          if(isExtraRow(emp)) extras.push({...item,category:emp.name||item.personalNumber||'Zusatz'});
+        (data.rows||[]).forEach(row=>{
+          const pn=(row.personalNumber||'').toString();
+          const isExtra=pn.startsWith('EX-');
+          const values=Array.isArray(row.months)?row.months.map(v=>Number(v)||0):Array(12).fill(0);
+          const include=!(row.include===false||row.include===0);
+          const item={
+            id:row.employeeId||row.id,
+            personalNumber:persistPersonalNumber(pn,isExtra),
+            name:row.name||'',
+            qual:row.qual||'',
+            include,
+            hiddenRow:include?false:true,
+            values
+          };
+          if(isExtra) extras.push({...item,category:row.name||item.personalNumber||'Zusatz'});
           else employees.push(item);
         });
         return {employees,extras};
@@ -267,23 +380,37 @@
       }
     }
 
-    async function syncRemotePlan(){
-      if(!supabaseClient||!HAS_SITE) return;
-      const cols=dbMonthCols(state.year);
+    async function syncRemotePlan(opts){
+      if(!API_BASE||!HAS_SITE) return;
       const plan=getCurrentPlan();
-      const rows=[];
-      plan.employees.forEach(emp=>{
-        const row={id:emp.id,dept:state.dept,personal_number:persistPersonalNumber(emp.personalNumber||'',false),name:emp.name,qual:emp.qual||'',include:emp.include!==false};
-        cols.forEach((c,idx)=>row[c]=Number(emp.values[idx])||0);
-        rows.push(row);
-      });
-      plan.extras.forEach(ex=>{
-        const row={id:ex.id,dept:state.dept,personal_number:persistPersonalNumber(ex.personalNumber||'',true),name:ex.category||ex.name||persistPersonalNumber(ex.personalNumber||'',true),qual:ex.qual||'',include:ex.include!==false};
-        cols.forEach((c,idx)=>row[c]=Number(ex.values[idx])||0);
-        rows.push(row);
-      });
-      const up=await supabaseClient.from(tableName(TABLE_EMP_BASE)).upsert(rows,{onConflict:'id'});
-      if(up.error) throw new Error(up.error.message);
+      const userId=(sessionStorage.getItem('cliniconUser')||'').trim()||null;
+      const payload={
+        siteId:SITE_CODE||SITE_LABEL,
+        departmentId:state.dept,
+        year:state.year,
+        updatedByUserId:userId,
+        employees:plan.employees.map(emp=>({
+          employeeId:emp.id,
+          personalNumber:persistPersonalNumber(emp.personalNumber||'',false),
+          name:emp.name||'',
+          qual:emp.qual||'',
+          include:emp.include!==false,
+          values:emp.values.map(v=>Number(v)||0)
+        })),
+        extras:plan.extras.map(ex=>({
+          employeeId:ex.id,
+          personalNumber:persistPersonalNumber(ex.personalNumber||'',true),
+          category:ex.category||ex.name||persistPersonalNumber(ex.personalNumber||'',true),
+          qual:ex.qual||'',
+          include:ex.include!==false,
+          values:ex.values.map(v=>Number(v)||0)
+        }))
+      };
+      const res=await fetch(`${API_BASE}/api/roster/save`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const data=await res.json();
+      if(!res.ok||data.ok===false) throw new Error(data.error||'Speichern fehlgeschlagen');
+      if(opts && opts.showWarnings) applyWarnings(data.warnings||[]);
+      return data;
     }
 
     function saveStorage(){ try{ localStorage.setItem(STORAGE_KEY, JSON.stringify(state.data)); }catch(e){} }
@@ -364,6 +491,7 @@
       });
       calcTotals(plan);
       updateSortIndicators();
+      if(lastWarnings.length) applyWarnings(lastWarnings, true);
     }
 
     function renderExtras(){
@@ -388,6 +516,7 @@
       });
       calcTotals(plan);
       updateSortIndicators();
+      if(lastWarnings.length) applyWarnings(lastWarnings, true);
     }
 
     function recalcRow(tr,item){
@@ -445,6 +574,7 @@
       const hideLabel=item.hiddenRow?'Zeile einblenden':'Zeile ausblenden';
       els.actionMenu.innerHTML=[
         `<button data-act="toggle-hide">${hideLabel}</button>`,
+        `<button data-act="history">Historie anzeigen</button>`,
         `<button data-act="copy-forward">Ab Monat fortfuehren</button>`,
         `<button data-act="copy-next-year">Ins Folgejahr uebernehmen (DB)</button>`
       ].join('');
@@ -455,22 +585,24 @@
     function closeActionMenu(){ els.actionMenu.style.display='none'; actionTarget=null; }
 
     function syncRemoteDebounced(){
-      if(!supabaseClient||!HAS_SITE) return;
+      if(!API_BASE||!HAS_SITE) return;
       clearTimeout(syncRemoteDebounced.t);
-      syncRemoteDebounced.t=setTimeout(()=>{ syncRemotePlan().catch(err=>console.warn('Sync failed',err)); },700);
+      syncRemoteDebounced.t=setTimeout(()=>{ syncRemotePlan({showWarnings:false}).catch(err=>console.warn('Sync failed',err)); },700);
     }
     function bindEvents(){
       els.deptSelect.addEventListener('change',()=>{
         state.dept=els.deptSelect.value;
+        clearWarnings();
         renderTable(); renderExtras(); saveStorage();
-        fetchRemotePlan().then(remote=>{ if(remote){ const key=`${state.dept}-${state.year}`; state.data[key]=remote; ensureDefaults(state.data[key]); saveStorage(); renderTable(); renderExtras(); calcTotals(getCurrentPlan()); loadPlanValue(); }});
+        fetchRemotePlan().then(remote=>{ if(remote){ const key=`${state.dept}-${state.year}`; state.data[key]=remote; ensureDefaults(state.data[key]); saveStorage(); clearWarnings(); renderTable(); renderExtras(); calcTotals(getCurrentPlan()); loadPlanValue(); }});
         loadPlanValue();
       });
       els.yearInput.addEventListener('change',()=>{
         state.year=Math.max(YEAR_MIN,Math.min(YEAR_MAX,Number(els.yearInput.value)||YEAR_MIN));
         els.yearInput.value=state.year;
+        clearWarnings();
         renderTable(); renderExtras(); saveStorage();
-        fetchRemotePlan().then(remote=>{ if(remote){ const key=`${state.dept}-${state.year}`; state.data[key]=remote; ensureDefaults(state.data[key]); saveStorage(); renderTable(); renderExtras(); calcTotals(getCurrentPlan()); loadPlanValue(); }});
+        fetchRemotePlan().then(remote=>{ if(remote){ const key=`${state.dept}-${state.year}`; state.data[key]=remote; ensureDefaults(state.data[key]); saveStorage(); clearWarnings(); renderTable(); renderExtras(); calcTotals(getCurrentPlan()); loadPlanValue(); }});
         loadPlanValue();
       });
 
@@ -488,16 +620,24 @@
       document.getElementById('btnAddRow').addEventListener('click',()=>{
         const p=getCurrentPlan();
         p.employees.push({id:crypto.randomUUID(),personalNumber:'',name:'Neu',include:true,qual:'',values:Array(12).fill(0)});
+        clearWarnings();
         renderTable(); calcTotals(p); saveStorage(); syncRemoteDebounced();
       });
       document.getElementById('btnAddExtra').addEventListener('click',()=>{
         const p=getCurrentPlan();
         p.extras.push({id:crypto.randomUUID(),personalNumber:'',category:'Neu',include:true,qual:'',values:Array(12).fill(0)});
+        clearWarnings();
         renderExtras(); calcTotals(p); saveStorage(); syncRemoteDebounced();
       });
       const btnSave=document.getElementById('btnSaveDb');
       if(btnSave) btnSave.addEventListener('click', async()=>{
-        try{ setSaveStatus('Speichere ...'); await syncRemotePlan(); setSaveStatus('Gespeichert.'); }
+        try{
+          clearWarnings();
+          setSaveStatus('Speichere ...');
+          const res=await syncRemotePlan({showWarnings:true});
+          const warnCount=(res&&Array.isArray(res.warnings))?res.warnings.length:0;
+          setSaveStatus(warnCount?`Gespeichert mit ${warnCount} Warnung(en).`:'Gespeichert.');
+        }
         catch(err){ setSaveStatus(err.message||'Speichern fehlgeschlagen',true); }
       });
 
@@ -515,6 +655,7 @@
           recalcRow(tr,emp);
           lastFocused={type:'emp',id,month:Number(e.target.dataset.month)};
         }
+        clearWarnings();
         calcTotals(plan); saveStorage(); syncRemoteDebounced();
       });
       els.tbody.addEventListener('click',e=>{
@@ -532,6 +673,7 @@
         } else if(btn.dataset.action==='delete'){
           if(!confirm('Eintrag loeschen?')) return;
           plan.employees=plan.employees.filter(x=>x.id!==id);
+          clearWarnings();
           renderTable(); calcTotals(plan); saveStorage(); syncRemoteDebounced();
         }
       });
@@ -550,6 +692,7 @@
           recalcRow(tr,ex);
           lastFocused={type:'extra',id,month:Number(e.target.dataset.month)};
         }
+        clearWarnings();
         calcTotals(plan); saveStorage(); syncRemoteDebounced();
       });
       els.extrasTbody.addEventListener('click',e=>{
@@ -567,6 +710,7 @@
         } else if(btn.dataset.action==='delete-extra'){
           if(!confirm('Zusatzzeile loeschen?')) return;
           plan.extras=plan.extras.filter(x=>x.id!==id);
+          clearWarnings();
           renderExtras(); calcTotals(plan); saveStorage(); syncRemoteDebounced();
         }
       });
@@ -584,6 +728,14 @@
         }
       });
       els.qualPopover.addEventListener('click',e=>{ if(e.target.tagName==='INPUT') e.stopPropagation(); });
+      if(els.historyClose){
+        els.historyClose.addEventListener('click', closeHistoryModal);
+      }
+      if(els.historyModal){
+        els.historyModal.addEventListener('click', (ev)=>{
+          if(ev.target===els.historyModal) closeHistoryModal();
+        });
+      }
       els.actionMenu.addEventListener('click', async e=>{
         const act=e.target.dataset.act;
         if(!act||!actionTarget) return;
@@ -594,12 +746,25 @@
         if(act==='toggle-hide'){
           item.hiddenRow=!item.hiddenRow;
           item.include=item.hiddenRow?false:true;
+          clearWarnings();
           saveStorage(); renderTable(); renderExtras(); calcTotals(plan); syncRemoteDebounced(); closeActionMenu(); return;
+        }
+        if(act==='history'){
+          if(!API_BASE){ alert('API-Basis fehlt (clinicon_api_base / CLINICON_API_BASE).'); closeActionMenu(); return; }
+          try{
+            const payload={ employeeId:item.id, year: state.year };
+            const res=await fetch(`${API_BASE}/api/roster/history`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+            const data=await res.json(); if(!res.ok||data.ok===false) throw new Error(data.error||res.statusText);
+            const label=item.name||item.category||displayPersonalNumber(item.personalNumber)||'Mitarbeiter';
+            openHistoryModal(label, data.history||[]);
+          }catch(err){ alert('Historie nicht verfuegbar: '+(err.message||err)); }
+          closeActionMenu(); return;
         }
         if(act==='copy-forward'){
           const start=(lastFocused && lastFocused.id===actionTarget.id && lastFocused.type===actionTarget.type)?Number(lastFocused.month):0;
           const src=Number(item.values[start])||0;
           for(let i=start;i<12;i++) item.values[i]=src;
+          clearWarnings();
           saveStorage(); renderTable(); renderExtras(); calcTotals(plan); syncRemoteDebounced(); closeActionMenu(); return;
         }
         if(act==='copy-next-year'){
@@ -607,9 +772,18 @@
           if(nextYear>YEAR_MAX){ alert('Jahr ausserhalb Range.'); closeActionMenu(); return; }
           if(!API_BASE){ alert('API-Basis fehlt (clinicon_api_base / CLINICON_API_BASE).'); closeActionMenu(); return; }
           try{
-            const payload={ table: tableName(TABLE_EMP_BASE), fromYear: state.year, toYear: nextYear, ids:[item.id], mode:'overwrite' };
-            const res=await fetch(API_BASE+'/api/rollover',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
-            const data=await res.json(); if(!res.ok||data.success===false) throw new Error(data.error||res.statusText);
+            const userId=(sessionStorage.getItem('cliniconUser')||'').trim()||null;
+            const payload={
+              siteId:SITE_CODE||SITE_LABEL,
+              departmentId:state.dept,
+              employeeId:item.id,
+              fromYear:state.year,
+              toYear:nextYear,
+              mode:'overwrite',
+              updatedByUserId:userId
+            };
+            const res=await fetch(`${API_BASE}/api/roster/rollover`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+            const data=await res.json(); if(!res.ok||data.ok===false) throw new Error(data.error||res.statusText);
             alert('Rollover abgeschlossen.');
           }catch(err){ alert('Fehler beim Rollover: '+(err.message||err)); }
           closeActionMenu(); return;
@@ -628,13 +802,14 @@
       setDefaults();
       renderTable();
       renderExtras();
-      if(HAS_SITE && supabaseClient){
+      if(HAS_SITE && API_BASE){
         fetchRemotePlan().then(remote=>{
           if(remote){
             const key=`${state.dept}-${state.year}`;
             state.data[key]=remote;
             ensureDefaults(state.data[key]);
             saveStorage();
+            clearWarnings();
             renderTable();
             renderExtras();
             calcTotals(getCurrentPlan());
@@ -643,7 +818,7 @@
       }
       loadPlanValue();
       bindEvents();
-      if(!SUPABASE_URL||!SUPABASE_ANON_KEY||!HAS_SITE) setSaveStatus('Supabase/Standort nicht gesetzt.',true);
+      if(!API_BASE||!HAS_SITE) setSaveStatus('API/Standort nicht gesetzt.',true);
     })();
   </script>
 </body>
