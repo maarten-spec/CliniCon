@@ -8,25 +8,14 @@
     background:transparent;
     border:none;
     box-shadow:none;
+    grid-column:1/-1;
   }
   .shift-shell{
     display:flex;
     flex-direction:column;
     gap:18px;
-    padding:12px;
+    padding:0;
     width:100%;
-  }
-  .shift-page .pill{
-    display:inline-flex;
-    align-items:center;
-    gap:8px;
-    padding:7px 12px;
-    border-radius:999px;
-    background:#f8fafc;
-    border:1px solid var(--line,#e2e8f0);
-    color:#0f172a;
-    font-weight:700;
-    letter-spacing:.02em;
   }
   .shift-hero{
     display:flex;
@@ -168,9 +157,9 @@
     border:1px solid var(--line,#e2e8f0);
     border-radius:10px;
     background:#fff;
-    font-size:.95rem;
-    font-family:inherit;
-    color:inherit;
+    font-family:var(--font-base);
+    font-size:.9rem;
+    color:#475569;
     transition:.16s ease border,.16s ease box-shadow;
   }
   .shift-input:focus{
@@ -189,7 +178,8 @@
     border:1px solid var(--line,#e2e8f0);
     border-radius:10px;
     background:#f8fafc;
-    font-size:.95rem;
+    font-family:var(--font-base);
+    font-size:.9rem;
     text-align:center;
     color:#0f172a;
     cursor:default;
@@ -222,24 +212,25 @@
   }
 </style>
 
-<section class="card page-frame shift-page ppug-layout">
-  <div class="shift-shell">
-    <div class="shift-hero">
-      <div class="shift-hero__copy">
-        <div class="pill">Schichtmatrix</div>
-        <h2>Dienste planen &amp; Vollzeitkr&auml;fte-Bedarf ermitteln</h2>
-        <p>Plane Dienste, ber&uuml;cksichtige Ausf&auml;lle und lass dir Stunden- sowie VK-Bedarf automatisch berechnen.</p>
-        <div class="shift-hero__actions">
-          <button type="button" class="shift-button shift-button--ghost" id="bp-addPreset">Beispieldienste laden</button>
-          <button type="button" class="shift-button shift-button--primary" id="bp-addRow">+ Dienst hinzuf&uuml;gen</button>
+<section class="card page-frame ppug-layout" id="schichtmatrix-frame">
+  <div class="ppug-grid">
+    <div class="shift-page">
+      <div class="shift-shell">
+        <div class="shift-hero">
+          <div class="shift-hero__copy">
+            <h2>Dienste planen &amp; Vollzeitkr&auml;fte-Bedarf ermitteln</h2>
+            <p>Plane Dienste, ber&uuml;cksichtige Ausf&auml;lle und lass dir Stunden- sowie VK-Bedarf automatisch berechnen.</p>
+            <div class="shift-hero__actions">
+              <button type="button" class="shift-button shift-button--ghost" id="bp-addPreset">Beispieldienste laden</button>
+              <button type="button" class="shift-button shift-button--primary" id="bp-addRow">+ Dienst hinzuf&uuml;gen</button>
+            </div>
+          </div>
+          <div class="shift-hero__stats">
+            <div class="stat"><span>Wochen pro Jahr</span><strong id="bp-weeksPill">52,14</strong></div>
+            <div class="stat"><span>Stundenbedarf / Jahr</span><strong id="bp-sumH">0,0</strong></div>
+            <div class="stat"><span>VK-Bedarf</span><strong id="bp-fte">0,00</strong></div>
+          </div>
         </div>
-      </div>
-      <div class="shift-hero__stats">
-        <div class="stat"><span>Wochen pro Jahr</span><strong id="bp-weeksPill">52,14</strong></div>
-        <div class="stat"><span>Stundenbedarf / Jahr</span><strong id="bp-sumH">0,0</strong></div>
-        <div class="stat"><span>VK-Bedarf</span><strong id="bp-fte">0,00</strong></div>
-      </div>
-    </div>
 
     <div class="shift-app">
       <section class="shift-card shift-card--settings">
@@ -340,6 +331,7 @@
         </div>
         <p class="shift-note">Der berechnete Vollzeitkr&auml;fte-Bedarf nutzt dein Arbeitszeitangebot und alle eingetragenen Dienste.</p>
       </section>
+    </div>
     </div>
   </div>
 </section>

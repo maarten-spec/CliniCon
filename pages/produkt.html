@@ -7,27 +7,48 @@
   }
   #produkt h2{
     margin:0;
-    font-size:1.4rem;
+    font-size:1.5rem;
   }
   #produkt h3{
     margin:0;
-    font-size:1.1rem;
+    font-size:1.2rem;
   }
   #produkt h4{
     margin:0;
-    font-size:1rem;
+    font-size:1.05rem;
     color:#0f172a;
   }
   #produkt p{
     margin:0;
   }
+  #produkt .product-hero{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
+  }
+  #produkt .product-eyebrow{
+    font-size:.82rem;
+    font-weight:700;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--accent,#2563eb);
+  }
+  #produkt .product-tagline{
+    font-size:.98rem;
+    color:var(--muted,#64748b);
+  }
   #produkt .product-cta{
     display:flex;
     flex-wrap:wrap;
     gap:12px;
-    margin-top:8px;
+    margin-top:4px;
   }
-  #produkt .product-panel{
+  #produkt .product-grid{
+    display:grid;
+    gap:12px;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  }
+  #produkt .module-card{
     border:1px solid var(--line,#e2e8f0);
     border-radius:14px;
     padding:16px;
@@ -36,171 +57,91 @@
     flex-direction:column;
     gap:8px;
   }
-  #produkt .product-panel ul,
+  #produkt .muted{color:var(--muted,#64748b);}
+  #produkt .note{margin:0; font-size:.92rem;}
   #produkt ul{
     margin:0;
     padding-left:18px;
     display:grid;
     gap:6px;
   }
-  #produkt .product-grid{
-    display:grid;
-    gap:12px;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  }
-  #produkt .product-grid .kpi-tile{
-    min-height:120px;
-  }
-  #produkt .muted{color:var(--muted,#64748b);}
-  #produkt .note{margin:0; font-size:.9rem;}
-  #produkt .product-steps{
-    display:grid;
-    gap:10px;
-  }
-  #produkt .product-step{
-    border:1px solid var(--line,#e2e8f0);
-    border-radius:12px;
-    padding:12px 14px;
-    background:#f8fafc;
-  }
-  #produkt .product-step strong{
-    display:block;
-    margin-bottom:4px;
-    color:#0f172a;
-  }
 </style>
 
 <section class="card ppug-layout" id="produkt">
   <div class="ppug-grid">
     <div class="ppug-card">
-      <h2>CliniCon: Stellenplan &amp; Personalsteuerung ohne Excel-Chaos</h2>
+      <div class="product-hero">
+        <span class="product-eyebrow">CliniCon Suite</span>
+        <p class="product-tagline">Die integrierte Suite f&uuml;r strukturierte Stellenplanung, Analyse und Abgleich im Krankenhaus.</p>
+        <h2>Strukturierte Stellenplanung f&uuml;r komplexe Versorgungsrealit&auml;ten</h2>
+        <p class="muted">
+          In vielen Krankenh&auml;usern erfolgt die Stellenplanung weiterhin auf Basis einzelner Tabellen, historisch gewachsener Strukturen und individueller Logiken.
+        </p>
+        <p class="muted">
+          CliniCon schafft eine gemeinsame, nachvollziehbare und auswertbare Grundlage f&uuml;r die Planung von Personalressourcen &ndash; &uuml;ber Stationen, Bereiche und Qualifikationen hinweg.
+        </p>
+        <div class="product-cta">
+          <a class="btn primary" href="mailto:kontakt@clinicon.de?subject=CliniCon%20Demo%20anfragen">Demo anfragen</a>
+          <a class="btn" href="assets/flyer/Clinicon_Flyer.pdf" download>Flyer herunterladen (PDF)</a>
+        </div>
+        <p class="muted note">Kein Verkaufsdruck. Wir kl&auml;ren zuerst, ob die Suite fachlich passt.</p>
+      </div>
+    </div>
+
+    <div class="ppug-card">
+      <h3>Warum tabellenbasierte Planung an Grenzen st&ouml;&szlig;t</h3>
+      <ul>
+        <li>Mehrere Tabellenversionen mit unterschiedlichen St&auml;nden.</li>
+        <li>Zellbez&uuml;ge, Verkn&uuml;pfungen und Berechnungslogiken sind anf&auml;llig f&uuml;r unbeabsichtigte &Auml;nderungen.</li>
+        <li>Formeln sind vorhanden, aber nicht gesch&uuml;tzt &ndash; &Auml;nderungen bleiben oft unbemerkt.</li>
+        <li>Wissen h&auml;ngt an Einzelpersonen; Logiken und Annahmen sind selten dokumentiert.</li>
+        <li>Nachvollziehbarkeit &uuml;ber Zeitr&auml;ume fehlt; historische Planungsst&auml;nde sind kaum rekonstruierbar.</li>
+      </ul>
+    </div>
+
+    <div class="ppug-card">
+      <h3>CliniCon Suite &ndash; strukturiert planen, vergleichen und analysieren</h3>
+      <p class="muted">Die CliniCon Suite ersetzt keine Tabellen &ndash; sie ordnet sie ein.</p>
       <p class="muted">
-        CliniCon bringt Struktur in den Stellenplan: eine gemeinsame Datenbasis, klare Regeln und ein gemeinsamer Blick
-        f&uuml;r Pflege, Controlling und Leitung. Es geht nicht um mehr Zahlen, sondern um Zahlen, die Sie im Team erkl&auml;ren k&ouml;nnen.
+        Stellenpl&auml;ne werden strukturiert erfasst, versioniert und miteinander verkn&uuml;pft. Unterschiedliche Planungsst&auml;nde lassen sich vergleichen, analysieren und gezielt weiterentwickeln.
       </p>
-
-      <div class="row" style="margin-top:12px;">
-        <div class="span-6">
-          <div class="product-panel">
-            <h3>Typisch im Alltag</h3>
-            <ul>
-              <li>Mehrere Excel-Versionen mit unterschiedlichen St&auml;nden.</li>
-              <li>Formeln sind da, aber keiner kann sie wirklich erkl&auml;ren.</li>
-              <li>Wissen h&auml;ngt an Einzelnen.</li>
-              <li>Es wird &uuml;ber Zahlen diskutiert, statt Entscheidungen zu treffen.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="span-6">
-          <div class="product-panel">
-            <h3>So hilft CliniCon</h3>
-            <ul>
-              <li>Eine klare Quelle f&uuml;r Stellen, Besetzung und Regeln.</li>
-              <li>Rechenwege sind nachvollziehbar, ohne Excel-Tricks.</li>
-              <li>Rollen und Zust&auml;ndigkeiten sind klar hinterlegt.</li>
-              <li>Vergleiche zwischen Bereichen funktionieren ohne Kopieren.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="product-cta">
-        <a class="btn primary" href="mailto:info@clinicon.de?subject=CliniCon%20Demo%20anfragen">Demo anfragen</a>
-        <a class="btn" href="assets/flyer/Clinicon_Flyer.pdf" download>Flyer herunterladen (PDF)</a>
-      </div>
-      <p class="muted note">Kurz und ehrlich: Wir schauen zuerst gemeinsam, ob es f&uuml;r Sie passt. Kein Verkaufsdruck, kein Hype.</p>
     </div>
 
     <div class="ppug-card">
-      <h3>Was Sie bekommen</h3>
+      <h3>Module der CliniCon Suite</h3>
       <div class="product-grid">
-        <div class="kpi-tile">
-          <span class="muted">Stellenplan als gemeinsame Grundlage</span>
-          <strong>Klare Basis f&uuml;r Entscheidungen</strong>
-          <span class="muted">Stellen, Rollen und Regeln sind sauber getrennt von Tagesereignissen.</span>
-        </div>
-        <div class="kpi-tile">
-          <span class="muted">Struktur und Ausfall getrennt</span>
-          <strong>Weniger Vermischung</strong>
-          <span class="muted">Sie sehen, ob ein Problem strukturell oder operativ ist.</span>
-        </div>
-        <div class="kpi-tile">
-          <span class="muted">Regeln, die jeder versteht</span>
-          <strong>Berechnung, die man erkl&auml;ren kann</strong>
-          <span class="muted">Keine versteckten Formeln, klare Regeln und Begr&uuml;ndungen.</span>
-        </div>
-        <div class="kpi-tile">
-          <span class="muted">Wochen, Monate, Feiertage</span>
-          <strong>Kalenderlogik inklusive</strong>
-          <span class="muted">Feiertage, Wochenenden und Schichtsysteme sind sauber abbildbar.</span>
-        </div>
-        <div class="kpi-tile">
-          <span class="muted">Szenarien</span>
-          <strong>Was-w&auml;re-wenn, ohne Risiko</strong>
-          <span class="muted">&Auml;nderungen testen, bevor Sie entscheiden.</span>
-        </div>
-        <div class="kpi-tile">
-          <span class="muted">Rechte &amp; Protokoll</span>
-          <strong>Wer darf was, sichtbar</strong>
-          <span class="muted">Klare Rollen, Zugriff und Historie im Blick.</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="ppug-card">
-      <h3>F&uuml;r wen</h3>
-      <div class="row">
-        <div class="span-6">
-          <h4>Pflegemanagement</h4>
+        <div class="module-card">
+          <h4>Stellenplan Core</h4>
           <ul>
-            <li>Pflegedirektion und Bereichsleitungen.</li>
-            <li>Stationsleitungen, die Zahlen erkl&auml;ren m&uuml;ssen.</li>
-            <li>Mehr Ruhe in den Runden.</li>
+            <li>Erfassung unterschiedlicher Stellenpl&auml;ne (z. B. Station, Bereich, Jahr).</li>
+            <li>Klare Versionierung und Vergleichbarkeit.</li>
+            <li>Einheitliche Struktur statt individueller Tabellenlogiken.</li>
           </ul>
         </div>
-        <div class="span-6">
-          <h4>Controlling &amp; Leitung</h4>
+        <div class="module-card">
+          <h4>Stellenplan Mapping</h4>
           <ul>
-            <li>Einheitliche Zahlenbasis f&uuml;r Berichte.</li>
-            <li>Vergleichbarkeit zwischen Bereichen, ohne Kopien.</li>
-            <li>Nachvollziehbare Entscheidungen ohne Excel-Hin-und-her.</li>
+            <li>Abgleich mehrerer Stellenpl&auml;ne untereinander.</li>
+            <li>Zuordnung zu Wirtschaftsplanzahlen.</li>
+            <li>Transparente Gegen&uuml;berstellung von Planung und Zielgr&ouml;&szlig;en.</li>
           </ul>
         </div>
-      </div>
-    </div>
-
-    <div class="ppug-card">
-      <h3>So starten wir</h3>
-      <p class="muted">Wir starten klein und schauen, ob es Ihnen wirklich hilft. Wenn es nicht passt, sagen wir das auch.</p>
-      <div class="row" style="margin-top:10px;">
-        <div class="span-6">
-          <div class="product-steps">
-            <div class="product-step">
-              <strong>1) Kennenlernen (15&ndash;30 Min.)</strong>
-              Wir h&ouml;ren zu und kl&auml;ren, ob wir wirklich helfen k&ouml;nnen.
-            </div>
-            <div class="product-step">
-              <strong>2) Pilot mit 1&ndash;2 Stationen</strong>
-              Ein kleiner Pilot, damit Sie schnell merken, ob es Sie entlastet.
-            </div>
-          </div>
+        <div class="module-card">
+          <h4>Qualifikationslogik</h4>
+          <ul>
+            <li>Hinterlegung von Qualifikationen.</li>
+            <li>Zuordnung zu Stellen und Bereichen.</li>
+            <li>Filterbarkeit nach Qualifikationsanforderungen.</li>
+          </ul>
         </div>
-        <div class="span-6">
-          <div class="product-steps">
-            <div class="product-step">
-              <strong>3) Auswertung &amp; n&auml;chste Schritte</strong>
-              Wir werten gemeinsam aus, passen die Logik an und kl&auml;ren offene Punkte.
-            </div>
-            <div class="product-step">
-              <strong>4) Skalierung, wenn es passt</strong>
-              Weitere Bereiche und Standorte kommen erst dazu, wenn die Basis sitzt.
-            </div>
-          </div>
+        <div class="module-card">
+          <h4>Stellenplan Insights</h4>
+          <ul>
+            <li>Auswertung von Fachkraftquoten.</li>
+            <li>Analyse nach Qualifikationen, Bereichen, Zeitr&auml;umen.</li>
+            <li>Grundlage f&uuml;r interne Steuerung und externe Nachweise.</li>
+          </ul>
         </div>
-      </div>
-      <div class="product-cta">
-        <a class="btn primary" href="mailto:info@clinicon.de?subject=CliniCon%20Pilot%20anfragen">Pilot anfragen</a>
-        <a class="btn" href="assets/flyer/Clinicon_Flyer.pdf" download>Flyer herunterladen (PDF)</a>
       </div>
     </div>
   </div>

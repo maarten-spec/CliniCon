@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>CliniCon - Portal</title>
-  <link rel="icon" href="assets/Bilder/CliniConLogo.png" />
+  <link rel="icon" href="assets/Bilder/CliniConFavi.png" />
   <link rel="stylesheet" href="style.css" />
   <script src="config.js"></script>
 </head>
@@ -280,7 +280,7 @@
 
   <button id="cc-open-link" class="cc-link-btn" type="button">Cookie-Einstellungen</button>
 
-  <a class="donate-badge" id="donateBadge" href="#" target="_blank" rel="noopener" aria-label="Kaffee spendieren (PayPal)" title="Kaffee spendieren">
+  <a class="donate-badge" id="donateBadge" href="https://www.paypal.com/donate/?hosted_button_id=R596JLUVNM69L&sdkMeta=eyJ1cmwiOiJodHRwczovL3d3dy5wYXlwYWxvYmplY3RzLmNvbS9kb25hdGUvc2RrL2RvbmF0ZS1zZGsuanMiLCJhdHRycyI6eyJkYXRhLXVpZCI6InVpZF9wb2t1aW9tbmJnc293cGhpc2F1Z2VianVpb21iamsifX0&targetMeta=eyJ6b2lkVmVyc2lvbiI6IjlfMF81OCIsInRhcmdldCI6IkRPTkFURSIsInNka1ZlcnNpb24iOiIwLjkuMCJ9" target="_blank" rel="noopener" aria-label="Kaffee spendieren (PayPal)" title="Kaffee spendieren">
     <span class="donate-icon" aria-hidden="true">
       <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
         <path d="M18 8h1a4 4 0 1 1 0 8h-1" />
@@ -295,6 +295,7 @@
       <span class="donate-sub">spendieren</span>
     </span>
   </a>
+
 
   <script>
     const navLinks = () => Array.from(document.querySelectorAll('#mainNav a'));
@@ -479,16 +480,6 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      const donateUrl = (window.PAYPAL_DONATE_URL || '').trim();
-      const donateBadge = document.getElementById('donateBadge');
-      if(donateBadge){
-        if(donateUrl){
-          donateBadge.href = donateUrl;
-        }else{
-          donateBadge.removeAttribute('href');
-          donateBadge.setAttribute('aria-disabled','true');
-        }
-      }
       const select = mobileNav();
       if(select){
         select.innerHTML = '';

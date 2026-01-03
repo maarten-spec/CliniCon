@@ -1,135 +1,360 @@
 <!-- Startseite Inhalt -->
 <style>
-  .start-intro{
+  #start-frame{
+    --brand:#2563eb;
+    --navy:#0f172a;
+    --muted:#64748b;
+    --light:#f8fafc;
+    --topbar-h:84px;
+    padding:0;
+  }
+
+  #start-frame #tools{
+    scroll-margin-top: calc(var(--topbar-h) + 20px);
+  }
+
+  .start-landing{
+    grid-column:1/-1;
     display:flex;
     flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    gap:14px;
-    text-align:center;
-    flex-wrap:wrap;
-    padding:8px 6px;
+    gap:32px;
   }
-  .start-intro img{
-    max-width:160px;
-    height:auto;
-    margin-bottom:4px;
+
+  .hero-pro{
+    position:relative;
+    min-height:420px;
+    border-radius:24px;
+    overflow:hidden;
+    background:var(--navy);
+    box-shadow:0 24px 46px rgba(15,23,42,.28);
   }
-  .start-intro h2{
-    margin:0;
+
+  .hero-media{
+    position:absolute;
+    inset:0;
+    z-index:1;
+    overflow:hidden;
   }
-  .start-intro .intro-copy{
-    display:grid;
-    gap:8px;
-    justify-items:center;
-    max-width:720px;
-  }
-  .start-intro .section-lead{
-    max-width:640px;
-  }
-  .highlight-card{
-    display:grid;
-    gap:10px;
+
+  .hero-video{
+    width:100%;
     height:100%;
-    align-content:flex-start;
+    object-fit:cover;
+    filter:saturate(.88) contrast(1.05) brightness(.95) blur(.6px);
   }
-  .highlight-list{
-    list-style:none;
-    padding:0;
-    margin:0;
-    display:grid;
-    gap:8px;
+
+  .hero-gradient{
+    position:absolute;
+    inset:-20%;
+    background:
+      radial-gradient(600px 420px at 18% 20%, rgba(37,99,235,.32), transparent 60%),
+      radial-gradient(520px 360px at 80% 75%, rgba(16,185,129,.18), transparent 60%),
+      linear-gradient(130deg, rgba(15,23,42,.9), rgba(15,23,42,.65));
   }
-  .highlight-list li{
-    padding:10px 12px;
-    border:1px solid var(--line,#e2e8f0);
-    border-radius:12px;
-    background:#f8fafc;
+
+  .hero-grid{
+    position:absolute;
+    inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
+    background-size:48px 48px;
+    opacity:.25;
+    mix-blend-mode:screen;
   }
-  .donate-section{
-    text-align:center;
+
+  .hero-pulse{
+    position:absolute;
+    width:140px;
+    height:140px;
+    border-radius:999px;
+    border:1px solid rgba(148,163,184,.35);
+    box-shadow:0 0 0 0 rgba(37,99,235,.15);
+    opacity:.35;
+    animation:heroPulse 14s ease-in-out infinite;
+  }
+  .hero-pulse.p1{ top:18%; left:58%; animation-delay:0s; }
+  .hero-pulse.p2{ top:62%; left:70%; width:110px; height:110px; animation-delay:3s; }
+  .hero-pulse.p3{ top:48%; left:38%; width:160px; height:160px; animation-delay:6s; }
+
+  .hero-panels{
+    position:absolute;
+    right:6%;
+    top:20%;
     display:grid;
     gap:12px;
-    margin-top:0;
-    justify-items:center;
-    align-content:flex-start;
-    height:100%;
+    opacity:.45;
   }
-  .donate-section h3{
-    margin:0;
-    font-size:var(--font-size-h2,1.5rem);
+  .hero-panel{
+    width:220px;
+    height:64px;
+    border-radius:16px;
+    border:1px solid rgba(148,163,184,.25);
+    background:rgba(15,23,42,.55);
+    box-shadow:0 12px 24px rgba(15,23,42,.25);
   }
-  .donate-section p{
-    margin:0;
-    color:var(--muted);
-    font-size:var(--font-size-base);
+  .hero-panel.small{ width:180px; height:52px; margin-left:28px; }
+
+  .hero-grain{
+    position:absolute;
+    inset:0;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 2px),
+      repeating-linear-gradient(90deg, rgba(0,0,0,.03) 0 1px, transparent 1px 2px);
+    opacity:.18;
+    mix-blend-mode:soft-light;
   }
-  .donate-section .paypal-wrap{
+
+  .hero-overlay{
+    position:absolute;
+    inset:0;
+    z-index:2;
+    background:linear-gradient(
+      90deg,
+      rgba(15,23,42,.9) 0%,
+      rgba(15,23,42,.65) 45%,
+      rgba(15,23,42,.35) 100%
+    );
+  }
+
+  .hero-content{
+    position:relative;
+    z-index:3;
+    max-width:720px;
+    padding:58px;
+    color:#ffffff;
+  }
+
+  .hero-content h1{
+    font-size:clamp(2rem, 3.2vw, 2.8rem);
+    line-height:1.12;
+    margin:0 0 16px;
+    font-weight:600;
+    letter-spacing:.01em;
+  }
+
+  .hero-lead{
+    font-size:1.1rem;
+    color:#cbd5f5;
+    max-width:640px;
+    margin:0 0 28px;
+  }
+
+  .hero-actions{
     display:flex;
-    justify-content:center;
-  }
-  .start-row-secondary{
-    display:grid;
-    grid-template-columns:2fr 1fr;
     gap:16px;
-    align-items:stretch;
-    margin-top:18px;
+    flex-wrap:wrap;
   }
-  .start-row-secondary .card{
-    height:100%;
+
+  .hero-note{
+    margin:14px 0 0;
+    font-size:.92rem;
+    color:rgba(203,213,245,.85);
   }
-  @media(max-width: 960px){
-    .start-row-secondary{
-      grid-template-columns:1fr;
+
+  .btn-primary,
+  .btn-ghost{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:12px 22px;
+    border-radius:12px;
+    text-decoration:none;
+    font-weight:600;
+    transition:.18s ease all;
+  }
+  .btn-primary{
+    background:var(--brand);
+    color:#ffffff;
+    border:1px solid var(--brand);
+    box-shadow:0 12px 24px rgba(37,99,235,.25);
+  }
+  .btn-primary:hover{
+    transform:translateY(-1px);
+    filter:brightness(1.05);
+  }
+  .btn-ghost{
+    border:1px solid rgba(255,255,255,.35);
+    color:#ffffff;
+    background:transparent;
+  }
+  .btn-ghost:hover{
+    border-color:rgba(255,255,255,.65);
+    transform:translateY(-1px);
+  }
+
+  .tool-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+    gap:24px;
+    margin-top:6px;
+  }
+
+  .tool-card{
+    position:relative;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:26px;
+    background:#ffffff;
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+    box-shadow:0 14px 26px rgba(15,23,42,.08);
+    transition:.18s ease all;
+  }
+  .tool-card::before{
+    content:"";
+    position:absolute;
+    top:0;
+    left:0;
+    right:0;
+    height:3px;
+    background:linear-gradient(90deg, #2563eb, #38bdf8);
+  }
+  .tool-card:hover{
+    transform:translateY(-2px);
+    box-shadow:0 18px 32px rgba(15,23,42,.12);
+  }
+  .tool-card h3{
+    margin:0;
+  }
+  .tool-card p{
+    color:var(--muted);
+    margin:0;
+  }
+  .tool-card a{
+    color:var(--brand);
+    text-decoration:none;
+    font-weight:600;
+    margin-top:auto;
+  }
+
+  .system-hint{
+    border-radius:20px;
+    padding:28px;
+    background:linear-gradient(140deg, #f8fafc, #ffffff);
+    border:1px solid #e5e7eb;
+    box-shadow:0 16px 30px rgba(15,23,42,.08);
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .system-hint h2{
+    margin:0;
+  }
+  .system-hint p{
+    color:var(--muted);
+    max-width:720px;
+    margin:0 0 8px;
+  }
+
+  @keyframes heroPulse{
+    0%{ transform:scale(.9); opacity:.2; box-shadow:0 0 0 0 rgba(37,99,235,.1); }
+    55%{ transform:scale(1.05); opacity:.5; box-shadow:0 0 0 26px rgba(37,99,235,.06); }
+    100%{ transform:scale(.9); opacity:.2; box-shadow:0 0 0 0 rgba(37,99,235,.08); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .hero-pulse{ animation:none; }
+  }
+
+  @media (max-width: 980px){
+    .hero-panels{ display:none; }
+  }
+
+  @media (max-width: 900px){
+    .hero-content{ padding:40px; }
+    .hero-actions{
+      flex-direction:column;
+      align-items:flex-start;
     }
-    .start-intro img{ max-width:140px; }
+  }
+
+  @media (max-width: 720px){
+    .hero-content{ padding:28px; }
+    .hero-pro{ min-height:340px; }
   }
 </style>
-<div class="ppug-layout">
-<section class="card section-header start-intro">
-  <img src="../assets/Bilder/CliniConLogo.png" alt="CliniCon Logo" />
-  <div class="intro-copy">
-    <h2>Willkommen bei CliniCon</h2>
-    <p class="section-lead">Werkzeuge f&uuml;r Personal- und Schichtplanung, Berechnung von Personalbedarfen sowie praktische Helfer f&uuml;r den klinischen Alltag.</p>
+
+<section class="card page-frame ppug-layout" id="start-frame">
+  <div class="ppug-grid">
+    <div class="start-landing">
+      <section class="hero-pro" aria-label="CliniCon Einstieg">
+        <div class="hero-media" aria-hidden="true">
+          <video class="hero-video" autoplay muted loop playsinline>
+            <source src="assets/videos/clinicon-hero.webm" type="video/webm" />
+            <source src="assets/videos/clinicon-hero.mp4" type="video/mp4" />
+          </video>
+          <div class="hero-gradient"></div>
+          <div class="hero-grid"></div>
+          <div class="hero-pulse p1"></div>
+          <div class="hero-pulse p2"></div>
+          <div class="hero-pulse p3"></div>
+          <div class="hero-panels">
+            <div class="hero-panel"></div>
+            <div class="hero-panel small"></div>
+            <div class="hero-panel"></div>
+          </div>
+          <div class="hero-grain"></div>
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+          <h1>
+            Personal steuern<br>
+            statt Tabellenpflege
+          </h1>
+          <p class="hero-lead">
+            CliniCon verbindet Personalbedarf, Schichtlogik und Kosten
+            zu einer belastbaren Entscheidungsgrundlage f&uuml;r Krankenh&auml;user.
+          </p>
+          <div class="hero-actions">
+            <a href="#tools" class="btn-primary" onclick="const t=document.getElementById('tools'); if(t){t.scrollIntoView({behavior:'smooth'});} return false;">CliniCon Tools</a>
+            <a href="#" class="btn-ghost" onclick="const nav=document.querySelector('#mainNav a[data-key=&quot;produkt&quot;]'); if(nav){navigate(nav);} return false;">CliniCon Suite</a>
+          </div>
+          <p class="hero-note">
+            Tools: Einzelberechnungen &amp; Planung &middot; Suite: integrierte Steuerung &amp; Vergleichbarkeit
+          </p>
+        </div>
+      </section>
+
+      <section id="tools" class="tool-grid">
+        <div class="tool-card">
+          <h3>Personalbedarf &amp; Regulierung</h3>
+          <p>
+            PPUG-, PPBV- und Besetzungsbedarfe strukturiert berechnen &ndash;
+            als Grundlage f&uuml;r Planung, Argumentation und Steuerung.
+          </p>
+          <a href="#" onclick="const nav=document.querySelector('#mainNav a[data-key=&quot;ppug&quot;]'); if(nav){navigate(nav);} return false;">Zu den Rechnern &rarr;</a>
+        </div>
+
+        <div class="tool-card">
+          <h3>Schicht- &amp; Einsatzplanung</h3>
+          <p>
+            Schichtmatrix und Besetzungslogiken zur realistischen Planung
+            von Personal, VK-Bedarfen und Szenarien.
+          </p>
+          <a href="#" onclick="const nav=document.querySelector('#mainNav a[data-key=&quot;schichtmatrix&quot;]'); if(nav){navigate(nav);} return false;">Zur Planung &rarr;</a>
+        </div>
+
+        <div class="tool-card">
+          <h3>Gehaltsrechner AVR Anlage 31</h3>
+          <p>
+            Pflegekr&auml;fte im Pflegedienst (AVR Caritas Anlage 31) k&ouml;nnen ihr Gehalt
+            anhand der P-Entgeltgruppen schnell berechnen &ndash; ohne Tabellenarbeit.
+          </p>
+          <a href="#" onclick="const nav=document.querySelector('#mainNav a[data-key=&quot;gehaltsrechner&quot;]'); if(nav){navigate(nav);} return false;">Zum Gehaltsrechner &rarr;</a>
+        </div>
+      </section>
+
+      <section class="system-hint">
+        <h2>Wenn aus Tools Steuerung wird</h2>
+        <p>
+          Viele Einrichtungen starten mit einzelnen Berechnungstools.
+          Ab einer gewissen Komplexit&auml;t braucht es jedoch
+          eine integrierte, vergleichbare Systemlogik.
+        </p>
+        <a href="#" class="btn-primary" onclick="const nav=document.querySelector('#mainNav a[data-key=&quot;produkt&quot;]'); if(nav){navigate(nav);} return false;">Mehr zur CliniCon Suite</a>
+      </section>
+    </div>
   </div>
 </section>
-
-<div class="start-row-secondary">
-  <section class="card highlight-card">
-    <h3>Neu im Portal</h3>
-    <p class="section-lead">Aktuelle Features f&uuml;r den Alltag.</p>
-    <ul class="highlight-list">
-      <li><strong>PPBV/PPUG Kombi</strong> &ndash; Tagschicht nach PPBV, Nachtschicht nach PPUG in einem Rechner.</li>
-      <li><strong>Schichtbesetzung</strong> &ndash; Drag &amp; Drop Timeline mit VK-Bedarf und Viertelstunden-Slots.</li>
-      <li><strong>Interner Bereich</strong> &ndash; Fachabteilungen, Benchmark &amp; Stellenplan zentral durchsuchen.</li>
-    </ul>
-  </section>
-
-  <section class="card donate-section">
-    <h3>CliniCon unterst&uuml;tzen</h3>
-    <p>Wenn dir CliniCon hilft oder du das Community-Projekt unterst&uuml;tzen m&ouml;chtest, kannst du mich gerne auf einen Kaffee einladen. Vielen Dank!</p>
-    <div class="paypal-wrap">
-      <div id="paypal-donate-button-container"></div>
-    </div>
-
-    <script type="text/plain" data-consent="marketing" src="https://www.paypalobjects.com/donate/sdk/donate-sdk.js" charset="UTF-8"></script>
-    <script type="text/plain" data-consent="marketing">
-      (function renderDonate(){
-        if(window.PayPal && PayPal.Donation && PayPal.Donation.Button){
-          PayPal.Donation.Button({
-            env: 'production',
-            hosted_button_id: '',
-            business: 'maartenstuyvesant@gmail.com',
-            onComplete: function(){},
-            onError: function(){}
-          }).render('#paypal-donate-button-container');
-        }else{
-          setTimeout(renderDonate, 200);
-        }
-      })();
-    </script>
-  </section>
-</div>
-</div>
-
-
