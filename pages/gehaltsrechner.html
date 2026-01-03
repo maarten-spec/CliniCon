@@ -73,6 +73,55 @@
   #gehaltsrechner .calc-btn:active{
     transform:translateY(0);
   }
+  .tip {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    cursor: help;
+    outline: none;
+  }
+  .tip .i {
+    width: 20px;
+    height: 20px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+    border: 1px solid #0f172a;
+    background: #0f172a;
+    color: #ffffff;
+    font-weight: 700;
+    opacity: 1;
+  }
+  .tip::after {
+    content: attr(data-tip);
+    position: absolute;
+    left: 0;
+    top: 100%;
+    margin-top: 10px;
+    width: min(420px, 80vw);
+    padding: 10px 12px;
+    border-radius: 12px;
+    background: rgba(15, 23, 42, .98);
+    color: #fff;
+    font-size: 12.5px;
+    line-height: 1.35;
+    box-shadow: 0 12px 30px rgba(0,0,0,.35);
+    opacity: 0;
+    transform: translateY(-4px);
+    pointer-events: none;
+    transition: opacity .15s ease, transform .15s ease;
+    z-index: 50;
+  }
+  .tip:hover::after,
+  .tip:focus::after,
+  .tip:focus-within::after {
+    opacity: 1;
+    transform: translateY(0);
+  }
 </style>
 
 <section class="card ppug-layout" id="gehaltsrechner">
@@ -120,9 +169,58 @@
           Entgeltgruppe
           <select id="avr-group"></select>
         </label>
-        <div class="field span-8" style="justify-content:flex-end;">
-          <button class="btn primary calc-btn" id="avr-calc" type="button">Berechnen</button>
+      </div>
+
+      <div class="task-card" style="margin-top:12px;">
+        <h4>Zulagen (AVR Anlage 31) &ndash; optional</h4>
+
+        <div class="row" style="gap:12px;">
+
+          <label class="check span-6">
+            <input type="radio" name="shiftType" class="avr-allow" data-key="shift" />
+            <span class="tip" tabindex="0"
+              data-tip="Gilt, wenn du dauerhaft im Schichtdienst eingesetzt bist (dienstplanm&auml;&szlig;iger Wechsel von Fr&uuml;h/Sp&auml;t &uuml;ber einen l&auml;ngeren Zeitraum).">
+              Schichtzulage (st&auml;ndig) <span class="i" aria-hidden="true">?</span>
+            </span>
+            <input type="number" class="avr-allow-amt" data-key="shift" step="0.01" min="0" value="100.00" />
+            <span class="muted">&euro;/Monat</span>
+          </label>
+
+          <label class="check span-6">
+            <input type="radio" name="shiftType" class="avr-allow" data-key="ws" />
+            <span class="tip" tabindex="0"
+              data-tip="Gilt, wenn du st&auml;ndig in Wechselschicht arbeitest (dienstplanm&auml;&szlig;iger Wechsel zwischen Tag- und Nachtschichten).">
+              Wechselschichtzulage (st&auml;ndige Wechselschicht) <span class="i" aria-hidden="true">?</span>
+            </span>
+            <input type="number" class="avr-allow-amt" data-key="ws" step="0.01" min="0" value="250.00" />
+            <span class="muted">&euro;/Monat</span>
+          </label>
+
+          <label class="check span-6">
+            <input type="checkbox" class="avr-allow" data-key="care" />
+            <span class="tip" tabindex="0"
+              data-tip="Gilt f&uuml;r Mitarbeitende in den Pflege-Entgeltgruppen (z. B. P 4 bis P 16), wenn die Zulage f&uuml;r die jeweilige Eingruppierung vorgesehen ist.">
+              Pflegezulage <span class="i" aria-hidden="true">?</span>
+            </span>
+            <input type="number" class="avr-allow-amt" data-key="care" step="0.01" min="0" value="141.82" />
+            <span class="muted">&euro;/Monat</span>
+          </label>
+
+          <label class="check span-6">
+            <input type="checkbox" class="avr-allow" data-key="nonDyn" />
+            <span class="tip" tabindex="0"
+              data-tip="Gilt nur, wenn deine Eingruppierung oder regionale Regelung diese Zulage ausdr&uuml;cklich vorsieht.">
+              Nicht dynamische Zulage <span class="i" aria-hidden="true">?</span>
+            </span>
+            <input type="number" class="avr-allow-amt" data-key="nonDyn" step="0.01" min="0" value="25.00" />
+            <span class="muted">&euro;/Monat</span>
+          </label>
+
         </div>
+
+        <p class="muted note" style="margin:8px 0 0 0;">
+          Hinweis: Manche Zulagen gelten nur f&uuml;r bestimmte T&auml;tigkeiten/Entgeltgruppen/Regionen. Betr&auml;ge sind editierbar.
+        </p>
       </div>
     </div>
 
@@ -145,13 +243,23 @@
           <span class="muted">Grundentgelt / Monat</span>
         </div>
         <div class="kpi-tile">
+          <span class="muted">Zulagen (Summe)</span>
+          <strong id="avr-result-allowances">-</strong>
+          <span class="muted">&euro;/Monat</span>
+        </div>
+        <div class="kpi-tile">
+          <span class="muted">Gesamt (mit Zulagen)</span>
+          <strong id="avr-result-total">-</strong>
+          <span class="muted">Brutto / Monat</span>
+        </div>
+        <div class="kpi-tile">
           <span class="muted">Tarifgebiet</span>
           <strong id="avr-result-region">-</strong>
           <span class="muted">01.01.2025 &ndash; 31.12.2025</span>
         </div>
       </div>
       <p class="result-meta">Bundesland: <strong id="avr-result-state">-</strong></p>
-      <p class="muted note" id="avr-source-note">Quelle: schiering.org &ndash; Anhang B Anlage 31, Tabellenwerte 2025.</p>
+      <p class="muted note" id="avr-source-note">Quelle: AVR Caritas Anlage 31 (Tabellenwerte).</p>
       <div class="task-card">
         <h4>T&auml;tigkeitsmerkmale (Auszug)</h4>
         <div class="task-text" id="avr-role-text">-</div>
@@ -228,10 +336,14 @@
     const resultStep = document.getElementById('avr-result-step');
     const resultExp = document.getElementById('avr-result-exp');
     const resultPay = document.getElementById('avr-result-pay');
+    const resultAllowances = document.getElementById('avr-result-allowances');
+    const resultTotal = document.getElementById('avr-result-total');
     const resultState = document.getElementById('avr-result-state');
     const resultRegion = document.getElementById('avr-result-region');
     const sourceNote = document.getElementById('avr-source-note');
     const roleText = document.getElementById('avr-role-text');
+    const allowChecks = Array.from(document.querySelectorAll('.avr-allow'));
+    const allowAmounts = Array.from(document.querySelectorAll('.avr-allow-amt'));
 
     function buildThresholds(){
       const thresholds = [0];
@@ -378,25 +490,36 @@
         resultStep.textContent = '-';
         resultExp.textContent = '-';
         resultPay.textContent = '-';
+        if(resultAllowances) resultAllowances.textContent = '-';
+        if(resultTotal) resultTotal.textContent = '-';
         if(roleText) roleText.textContent = '-';
         return;
       }
       let stufe = getStufe(years);
       stufe = normalizeStufe(values, stufe);
+      const baseMonthly = values[stufe - 1];
 
       resultGroup.textContent = group.replace('P', 'P ');
       resultStep.textContent = 'Stufe ' + stufe;
       resultExp.textContent = years.toFixed(0) + ' Jahre Erfahrung';
-      resultPay.textContent = formatCurrency(values[stufe - 1]);
+      resultPay.textContent = formatCurrency(baseMonthly);
       if(resultState){
         resultState.textContent = (stateSelect && stateSelect.value)
           ? stateSelect.options[stateSelect.selectedIndex].textContent
           : '-';
       }
       resultRegion.textContent = region.label;
-      if(sourceNote){
-        sourceNote.textContent = 'Quelle: ' + region.source.title;
+      let allowancesSum = 0;
+      for (const cb of allowChecks) {
+        if (!cb.checked) continue;
+        const key = cb.dataset.key;
+        const amtEl = allowAmounts.find(x => x.dataset.key === key);
+        const amt = amtEl ? Math.max(0, parseFloat(amtEl.value || '0')) : 0;
+        allowancesSum += amt;
       }
+      if (resultAllowances) resultAllowances.textContent = formatCurrency(allowancesSum);
+      const total = (baseMonthly || 0) + allowancesSum;
+      if (resultTotal) resultTotal.textContent = formatCurrency(total);
       renderRole(group);
     }
 
@@ -428,6 +551,10 @@
     }
     [expInput, stateSelect, groupSelect].forEach(el => {
       if(!el) return;
+      el.addEventListener('input', update);
+      el.addEventListener('change', update);
+    });
+    [...allowChecks, ...allowAmounts].forEach(el => {
       el.addEventListener('input', update);
       el.addEventListener('change', update);
     });
