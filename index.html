@@ -3,8 +3,12 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CliniCon: Tools und Suite fuer Personal- und Versorgungsplanung im Krankenhaus." />
+  <meta name="theme-color" content="#2563eb" />
+  <meta name="robots" content="index,follow" />
   <title>CliniCon - Portal</title>
   <link rel="icon" href="assets/Bilder/CliniConFavi.png" />
+  <link rel="canonical" href="https://www.clinicon.de/" />
   <link rel="stylesheet" href="style.css" />
   <script src="config.js"></script>
 </head>
@@ -384,16 +388,22 @@
 
     function resolveRelativeImages(root, basePath){
       const baseUrl = new URL(basePath, window.location.href);
-      const images = root.querySelectorAll('img[src]');
-      images.forEach(img => {
-        const src = (img.getAttribute('src') || '').trim();
-        if(!src) return;
-        if(src.startsWith('#') || src.startsWith('data:') || src.startsWith('http://') || src.startsWith('https://') || src.startsWith('//')){
+      const nodes = [
+        ...root.querySelectorAll('img[src]'),
+        ...root.querySelectorAll('source[src]'),
+        ...root.querySelectorAll('audio[src]'),
+        ...root.querySelectorAll('video[poster]')
+      ];
+      nodes.forEach(node => {
+        const attr = node.tagName.toLowerCase() === 'video' ? 'poster' : 'src';
+        const value = (node.getAttribute(attr) || '').trim();
+        if(!value) return;
+        if(value.startsWith('#') || value.startsWith('data:') || value.startsWith('http://') || value.startsWith('https://') || value.startsWith('//')){
           return;
         }
         try{
-          const resolved = new URL(src, baseUrl);
-          img.setAttribute('src', resolved.href);
+          const resolved = new URL(value, baseUrl);
+          node.setAttribute(attr, resolved.href);
         }catch(_){}
       });
     }
@@ -416,7 +426,7 @@
       const content = document.getElementById('mainContent');
       content.innerHTML = '<section class="card" style="text-align:center; padding:40px;">Inhalte werden geladen ...</section>';
       try{
-        const res = await fetch(path);
+        const res = await fetch(path, { cache: "no-store" });
         if(!res.ok) throw new Error('Seite nicht gefunden.');
         const html = await res.text();
         content.innerHTML = html;
