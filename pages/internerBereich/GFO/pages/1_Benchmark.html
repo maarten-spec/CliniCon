@@ -1,4 +1,4 @@
-ï»¿<!doctype html>
+<!doctype html>
 
 <html lang="de">
 
@@ -33,13 +33,13 @@
       --success:#16a34a;
 
       --danger:#b91c1c;
-      --font-base:"Roboto","Go","Segoe UI","Helvetica",Arial,sans-serif;
-      --font-size-base:16px;
-      --line-height-base:1.6;
-      --font-size-h1:1.9rem;
-      --font-size-h2:1.5rem;
-      --font-size-h3:1.2rem;
-      --font-size-h4:1.05rem;
+      
+      
+      
+      
+      
+      
+      
 
     }
 
@@ -50,8 +50,6 @@
     body{
       margin:0;
       font-family:var(--font-base);
-      font-size:var(--font-size-base);
-      line-height:var(--line-height-base);
       color:var(--text); background:var(--bg);
     }
     h1,h2,h3,h4{
@@ -60,10 +58,10 @@
       line-height:1.3;
       color:var(--text);
     }
-    h1{ font-size:var(--font-size-h1); }
-    h2{ font-size:var(--font-size-h2); }
-    h3{ font-size:var(--font-size-h3); }
-    h4{ font-size:var(--font-size-h4); }
+    h1{  }
+    h2{  }
+    h3{  }
+    h4{  }
 
 
 
@@ -130,11 +128,9 @@
       gap:16px; padding:20px 24px; border-bottom:1px solid var(--line); background:#fff; position:sticky; top:0; z-index:2
 
     }
-    .topbar-left h1{ font-size:var(--font-size-h1); }
+    .topbar-left h1{  }
 
-    .topbar-left p{ margin:6px 0 0; color:var(--muted); font-size:1rem }
-
-    .product-logo{ height:56px; width:auto; object-fit:contain }
+    .topbar-left p{ margin:6px 0 0; color:var(--muted); }
 
 
 
@@ -155,7 +151,7 @@
 
       background:#fff; border:1px solid var(--line,#e2e8f0) }
 
-    .hero h2{ margin:0; font-size:var(--font-size-h2); color:#0f172a }
+    .hero h2{ margin:0;  color:#0f172a }
 
     .hero p{ margin:0; max-width:640px; color:#1f2937 }
 
@@ -169,7 +165,7 @@
 
     .controls{ display:flex; flex-wrap:wrap; gap:12px; align-items:center }
 
-    .controls label{ display:flex; flex-direction:column; font-size:.9rem; color:#475569; gap:6px }
+    .controls label{ display:flex; flex-direction:column;  color:#475569; gap:6px }
 
     .controls select{
 
@@ -181,9 +177,7 @@
 
     .chart-wrap{ position:relative; width:100%; min-height:300px }
 
-    .legend{ display:flex; flex-wrap:wrap; gap:12px; color:#475569; font-size:.95rem }
-
-    .legend span{ display:inline-flex; align-items:center; gap:8px }
+    .legend{ display:flex; flex-wrap:wrap; gap:12px; color:#475569;  align-items:center; gap:8px }
 
     .legend .dot{ width:12px; height:12px; border-radius:999px; display:inline-block }
 
@@ -317,7 +311,7 @@
 
         <section class="hero card">
           <h2>Klinikverbund Benchmark</h2>
-          <p>Alle Werte sind fiktiv und zeigen typische Spannweiten: Planstellen SOLL ~150 VK, kleinere Defizite im Bereich 1â€“5 VK, boolesche Angaben als Ja/Nein.</p>
+          <p>Alle Werte sind fiktiv und zeigen typische Spannweiten: Planstellen SOLL ~150 VK, kleinere Defizite im Bereich 1–5 VK, boolesche Angaben als Ja/Nein.</p>
         </section>
 
 
@@ -478,7 +472,7 @@
 
       <footer>
 
-        CliniCon â€“ GFO Kliniken Verbund
+        CliniCon – GFO Kliniken Verbund
 
       </footer>
 
@@ -498,7 +492,7 @@
 
       { key: "ist", label: "Mitarbeitende IST in VK" },
 
-      { key: "raeume", label: "RÃ¤ume/SÃ¤le" },
+      { key: "raeume", label: "Räume/Säle" },
 
       { key: "sono", label: "Sono Raum" },
 
@@ -506,9 +500,9 @@
 
       { key: "ruf", label: "Rufbereitschaft", bool: true },
 
-      { key: "ex3", label: "3-jÃ¤hrig Examinierte" },
+      { key: "ex3", label: "3-jährig Examinierte" },
 
-      { key: "ex1", label: "1-jÃ¤hrig Examinierte" },
+      { key: "ex1", label: "1-jährig Examinierte" },
 
       { key: "mfa", label: "MFA/ATA/OTA im Einsatz" },
 
@@ -524,15 +518,15 @@
 
       "OP-Dienst (zentraler oder dezentraler OP)",
 
-      "AnÃ¤sthesiedienst",
+      "Anästhesiedienst",
 
       "Endoskopie",
 
       "Herzkatheterlabor",
 
-      "Notaufnahme (ZNA, interdisziplinÃ¤r)",
+      "Notaufnahme (ZNA, interdisziplinär)",
 
-      "InterdisziplinÃ¤re Aufnahmeeinheit (IAE / AUE)",
+      "Interdisziplinäre Aufnahmeeinheit (IAE / AUE)",
 
       "Ambulantes OP-Zentrum (AOZ)",
 
@@ -548,11 +542,11 @@
 
       "Schmerzambulanz / Schmerztherapie",
 
-      "InterdisziplinÃ¤re Tagesklinik",
+      "Interdisziplinäre Tagesklinik",
 
       "Zentrale Patientenlogistik (pflegerisch organisiert)",
 
-      "Funktionsdienst GynÃ¤kologie (z. B. KreiÃŸsaalhilfe)"
+      "Funktionsdienst Gynäkologie (z. B. Kreißsaalhilfe)"
 
     ];
 
@@ -561,9 +555,9 @@
     // Cluster definitionen
     const CLUSTERS = [
 
-      { code: "BRU", name: "[BRU] GFO Klinik BrÃ¼hl", sites: [
+      { code: "BRU", name: "[BRU] GFO Klinik Brühl", sites: [
 
-        { code: "BRU", name: "GFO Klinik BrÃ¼hl" }
+        { code: "BRU", name: "GFO Klinik Brühl" }
 
       ]},
 
@@ -583,9 +577,9 @@
 
       ]},
 
-      { code: "GKM", name: "[GKM] GFO Kliniken Mettmann-SÃ¼d", sites: [
+      { code: "GKM", name: "[GKM] GFO Kliniken Mettmann-Süd", sites: [
 
-        { code: "GKM", name: "GFO Kliniken Mettmann-SÃ¼d" },
+        { code: "GKM", name: "GFO Kliniken Mettmann-Süd" },
 
         { code: "HIL", name: "St. Josef Krankenhaus Hilden" },
 
@@ -615,9 +609,9 @@
 
       ]},
 
-      { code: "GKS", name: "[GKS] GFO Kliniken SÃ¼dwestfalen", sites: [
+      { code: "GKS", name: "[GKS] GFO Kliniken Südwestfalen", sites: [
 
-        { code: "GKS", name: "GFO Kliniken SÃ¼dwestfalen" },
+        { code: "GKS", name: "GFO Kliniken Südwestfalen" },
 
         { code: "LEN", name: "St. Josef Hospital Lennestadt" },
 
@@ -945,7 +939,7 @@
 
       allOption.value = "ALL";
 
-      allOption.textContent = "Alle KlinikverbÃ¼nde";
+      allOption.textContent = "Alle Klinikverbünde";
 
       clusterSelect.appendChild(allOption);
 
@@ -1556,6 +1550,11 @@
 </body>
 
 </html>
+
+
+
+
+
 
 
 

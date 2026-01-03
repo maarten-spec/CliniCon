@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -14,7 +14,7 @@
 </head>
 <body>
   <div class="shell">
-    <aside class="side" aria-label="Hauptnavigation">
+    <aside class="side" aria-label="Hauptnavigation" id="mainSidebar">
       <a class="brand" href="#" onclick="handleBrandClick(event); return false;">
         <img src="assets/Bilder/CliniConLogo.png" alt="CliniCon Logo" />
       </a>
@@ -176,15 +176,15 @@
         </a>
       </nav>
     </aside>
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
     <div>
       <header class="topbar">
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Menue oeffnen" aria-controls="mainSidebar" aria-expanded="false">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
         <div class="topbar-left">
           <h1 id="pageHeading">CliniCon - Portal</h1>
           <p id="pageSubheading">W&auml;hlen Sie links eine Anwendung aus.</p>
-        </div>
-        <div class="mobile-nav">
-          <select id="mobileNav" aria-label="Navigation">
-          </select>
         </div>
         <img class="product-logo" src="assets/Bilder/CliniConLogo.png" alt="CliniCon Logo" />
       </header>
@@ -209,7 +209,8 @@
         <h2 id="cc-title">Cookies &amp; Datenschutz</h2>
         <p>
           Wir verwenden technisch notwendige Cookies, um die Website sicher bereitzustellen.
-          Mit Ihrer Einwilligung setzen wir zus&auml;tzlich Cookies f&uuml;r Statistik und Marketing, um unser Angebot zu verbessern.
+          Statistik- und Marketing-Cookies setzen wir nur mit Ihrer Einwilligung.
+          Ihre Auswahl wird gespeichert und kann jederzeit unter &quot;Cookie-Einstellungen&quot; ge&auml;ndert werden.
           Details finden Sie in der <a id="cc-privacy-link" href="pages/impressum.html">Datenschutzerkl&auml;rung</a>.
         </p>
       </div>
@@ -232,6 +233,7 @@
       <div class="cc-modal-body">
         <p class="cc-muted">
           Technisch notwendige Cookies sind immer aktiv. Statistik- und Marketing-Cookies werden nur mit Einwilligung gesetzt.
+          Ihre Auswahl wird gespeichert.
         </p>
 
         <div class="cc-toggle">
@@ -303,7 +305,13 @@
 
   <script>
     const navLinks = () => Array.from(document.querySelectorAll('#mainNav a'));
-    const mobileNav = () => document.getElementById('mobileNav');
+    const navToggle = document.getElementById('navToggle');
+    const navBackdrop = document.getElementById('navBackdrop');
+    const topbar = document.querySelector('.topbar');
+    const updateTopbarHeight = () => {
+      if(!topbar) return;
+      document.documentElement.style.setProperty('--topbar-h', `${topbar.offsetHeight}px`);
+    };
     const scrollToTop = () => {
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       const main = document.getElementById('mainContent');
@@ -312,49 +320,48 @@
       }
     };
     const TEXT_FIXES = [
-      ['zun?chst','zunächst'],
-      ['Arbeitspl?tze','Arbeitsplätze'],
-      ['Krei?saal','Kreißsaal'],
-      ['R?ntgen','Röntgen'],
-      ['hinzuf?gen','hinzufügen'],
-      ['durchf?hren','durchführen'],
-      ['Ausf?llen','Ausfüllen'],
-      ['Ausf?lle','Ausfälle'],
-      ['Ben?tigte','Benötigte'],
-      ['Gesamtberechnung durchf?hren','Gesamtberechnung durchführen'],
-      ['weiteren Arbeitsplatz hinzuf?gen','weiteren Arbeitsplatz hinzufügen'],
-      ['Fehlzeiten ?','Fehlzeiten ÷'],
-      ['Einsatzbedarf ?','Einsatzbedarf ×'],
-      ['Bruttobedarf ?','Bruttobedarf ×'],
-      ['Feiertage ?','Feiertage –'],
-      ['l?nder','länder'],
-      ['f?r','für'],
-      ['n?chsten','nächsten'],
-      ['Menge ? Zeit','Menge × Zeit'],
-      ['Baden-W?rttemberg','Baden-Württemberg'],
-      ['Sachsen-Anhalt','Sachsen-Anhalt'],
-      ['Th?ringen','Thüringen'],
-      ['L?nderspezifische','Länderspezifische'],
-      ['K?nige','Könige'],
-      ['Ost-L?ndern','Ost-Ländern'],
-      ['Bu?-','Buß-'],
-      ['Mari?','Mariä'],
-      ['vollst?ndig','vollständig'],
+      ['zun?chst','zun\u00e4chst'],
+      ['Arbeitspl?tze','Arbeitspl\u00e4tze'],
+      ['Krei?saal','Krei\u00dfsaal'],
+      ['R?ntgen','R\u00f6ntgen'],
+      ['hinzuf?gen','hinzuf\u00fcgen'],
+      ['durchf?hren','durchf\u00fchren'],
+      ['Ausf?llen','Ausf\u00fcllen'],
+      ['Ausf?lle','Ausf\u00e4lle'],
+      ['Ben?tigte','Ben\u00f6tigte'],
+      ['Gesamtberechnung durchf?hren','Gesamtberechnung durchf\u00fchren'],
+      ['weiteren Arbeitsplatz hinzuf?gen','weiteren Arbeitsplatz hinzuf\u00fcgen'],
+      ['Fehlzeiten ?','Fehlzeiten \u2013'],
+      ['Einsatzbedarf ?','Einsatzbedarf \u2013'],
+      ['Bruttobedarf ?','Bruttobedarf \u2013'],
+      ['Feiertage ?','Feiertage \u2013'],
+      ['l?nder','l\u00e4nder'],
+      ['f?r','f\u00fcr'],
+      ['n?chsten','n\u00e4chsten'],
+      ['Menge ? Zeit','Menge \u00d7 Zeit'],
+      ['Baden-W?rttemberg','Baden-W\u00fcrttemberg'],
+      ['Th?ringen','Th\u00fcringen'],
+      ['L?nderspezifische','L\u00e4nderspezifische'],
+      ['K?nige','K\u00f6nige'],
+      ['Ost-L?ndern','Ost-L\u00e4ndern'],
+      ['Bu?-','Bu\u00df-'],
+      ['Mari?','Mari\u00e4'],
+      ['vollst?ndig','vollst\u00e4ndig'],
       ['Mo?Fr','Mo-Fr'],
-      ['zus?tzlich','zusätzlich'],
-      ['verf?gbare','verfügbare'],
-      ['verf?gba','verfügba'],
-      ['Abz?ge','Abzüge'],
-      ['Hilfskr?fte','Hilfskräfte'],
-      ['Pflegekr?fte','Pflegekräfte'],
-      ['Verh?ltnis','Verhältnis'],
-      ['zul?ssig','zulässig'],
-      ['k?nnen','können'],
-      ['VZ?','VZÄ'],
-      ['Gr??e','Größe'],
-      ['K?rper','Körper'],
-      ['k?rper','körper'],
-      ['Bezugsgr??e','Bezugsgröße']
+      ['zus?tzlich','zus\u00e4tzlich'],
+      ['verf?gbare','verf\u00fcgbare'],
+      ['verf?gba','verf\u00fcgba'],
+      ['Abz?ge','Abz\u00fcge'],
+      ['Hilfskr?fte','Hilfskr\u00e4fte'],
+      ['Pflegekr?fte','Pflegekr\u00e4fte'],
+      ['Verh?ltnis','Verh\u00e4ltnis'],
+      ['zul?ssig','zul\u00e4ssig'],
+      ['k?nnen','k\u00f6nnen'],
+      ['VZ?','VZ\u00c4'],
+      ['Gr??e','Gr\u00f6\u00dfe'],
+      ['K?rper','K\u00f6rper'],
+      ['k?rper','k\u00f6rper'],
+      ['Bezugsgr??e','Bezugsgr\u00f6\u00dfe']
     ];
 
     function normalizeTextContent(root){
@@ -408,10 +415,11 @@
       });
     }
 
-    function syncMobileSelect(link){
-      const select = mobileNav();
-      if(select && link && link.dataset.key){
-        select.value = link.dataset.key;
+    function setNavOpen(isOpen){
+      document.body.classList.toggle('nav-open', isOpen);
+      if(navToggle){
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', isOpen ? 'Menue schliessen' : 'Menue oeffnen');
       }
     }
 
@@ -419,7 +427,6 @@
     function setActive(el){
       navLinks().forEach(a => a.classList.remove('active'));
       el.classList.add('active');
-      syncMobileSelect(el);
     }
 
     async function loadPage(path, title, subtitle){
@@ -456,6 +463,7 @@
       const subtitle = link.dataset.subtitle || '';
       if(!path) return;
       setActive(link);
+      setNavOpen(false);
       scrollToTop();
       loadPage(path, title, subtitle);
       if(push){
@@ -490,24 +498,21 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      const select = mobileNav();
-      if(select){
-        select.innerHTML = '';
-        navLinks().forEach(link => {
-          if(!link.dataset.key) return;
-          const opt = document.createElement('option');
-          opt.value = link.dataset.key;
-          opt.textContent = link.textContent.trim();
-          select.appendChild(opt);
-        });
-        select.addEventListener('change', () => {
-          const key = select.value;
-          const target = document.querySelector('#mainNav a[data-key="'+key+'"]');
-          if(target){
-            navigate(target);
-          }
+      if(navToggle){
+        navToggle.addEventListener('click', () => {
+          setNavOpen(!document.body.classList.contains('nav-open'));
         });
       }
+      if(navBackdrop){
+        navBackdrop.addEventListener('click', () => {
+          setNavOpen(false);
+        });
+      }
+      document.addEventListener('keydown', (event) => {
+        if(event.key === 'Escape'){
+          setNavOpen(false);
+        }
+      });
       const map = navLinks().reduce((acc, link) => {
         if(link.dataset.key){
           acc[link.dataset.key] = link;
@@ -519,13 +524,17 @@
       const link = map[normalizedKey] || map.start;
       if(link){
         navigate(link, false);
-        syncMobileSelect(link);
       }
+      updateTopbarHeight();
       window.addEventListener('resize', () => {
+        updateTopbarHeight();
         if(window.innerWidth <= 960){
           document.body.classList.add('is-mobile');
         }else{
           document.body.classList.remove('is-mobile');
+        }
+        if(window.innerWidth >= 960){
+          setNavOpen(false);
         }
       });
       if(window.innerWidth <= 960){
@@ -727,3 +736,4 @@
   </script>
 </body>
 </html>
+

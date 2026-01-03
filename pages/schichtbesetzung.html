@@ -329,22 +329,25 @@
     max-width:none;
     margin:0 auto;
     overflow:hidden;
-    --slot-width:12px;
-    --slot-width-md:11px;
-    --slot-width-sm:10px;
+    --slot-width:clamp(0.55rem, 0.9vw, 0.8rem);
+    --slot-width-md:clamp(0.5rem, 0.85vw, 0.75rem);
+    --slot-width-sm:clamp(0.45rem, 0.8vw, 0.7rem);
+    --time-col:clamp(6rem, 12vw, 9rem);
+    --time-col-md:clamp(5.5rem, 14vw, 8rem);
+    --time-col-sm:clamp(5rem, 16vw, 7rem);
   }
   #schicht-tool .schicht-grid{
     display:grid;
     grid-template-columns:repeat(12,1fr);
     gap:16px;
-    padding:12px;
+    padding:clamp(0.7rem, 2vw, 0.9rem);
     box-sizing:border-box;
   }
   #schicht-tool .card{
     background:var(--panel,#fff);
     border:1px solid var(--line,#e2e8f0);
     border-radius:18px;
-    padding:22px;
+    padding:clamp(1rem, 2.6vw, 1.4rem);
     box-shadow:0 18px 32px rgba(15,23,42,.06);
   }
   #schicht-tool .schicht-hero{
@@ -353,7 +356,7 @@
   }
   #schicht-tool .schicht-hero h2{
     margin:0;
-    font-size:1.35rem;
+    
   }
   #schicht-tool .schedule-card,
   #schicht-tool .summary-card,
@@ -371,12 +374,12 @@
   }
   #schicht-tool .schedule-header h3{
     margin:0;
-    font-size:1.2rem;
+    
   }
   #schicht-tool .schedule-header p{
     margin:6px 0 0;
     color:var(--muted,#64748b);
-    max-width:520px;
+    max-width:32rem;
   }
   #schicht-tool .schedule-legend{
     display:flex;
@@ -385,17 +388,17 @@
     flex-wrap:wrap;
   }
   #schicht-tool .legend-hint{
-    font-size:.85rem;
+    
     color:var(--muted,#64748b);
     margin-left:6px;
   }
   #schicht-tool .totals-card{grid-column:1/-1;display:grid;gap:14px;}
-  #schicht-tool .totals-head h3{margin:0;font-size:var(--font-size-h3,1.2rem);}
+  #schicht-tool .totals-head h3{margin:0;}
   #schicht-tool .totals-head p{margin:4px 0 0;color:var(--muted,#64748b);}
-  #schicht-tool .totals-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;}
-  #schicht-tool .totals-item{padding:14px 16px;border:1px solid var(--line,#e2e8f0);border-radius:14px;background:#fff;display:grid;gap:6px;box-shadow:0 10px 20px rgba(15,23,42,.05);}
-  #schicht-tool .totals-label{color:var(--muted,#64748b);font-size:.9rem;}
-  #schicht-tool .totals-item strong{font-size:1.35rem;}
+  #schicht-tool .totals-grid{display:grid;grid-template-columns:repeat(auto-fit, minmax(clamp(10rem, 20vw, 12rem), 1fr));gap:clamp(0.6rem, 1.6vw, 0.9rem);}
+  #schicht-tool .totals-item{padding:clamp(0.7rem, 1.8vw, 0.95rem) clamp(0.8rem, 2vw, 1rem);border:1px solid var(--line,#e2e8f0);border-radius:14px;background:#fff;display:grid;gap:6px;box-shadow:0 10px 20px rgba(15,23,42,.05);}
+  #schicht-tool .totals-label{color:var(--muted,#64748b);}
+  #schicht-tool .totals-item strong{}
   #schicht-tool .legend-item{
     appearance:none;
     border:1px solid var(--line,#e2e8f0);
@@ -403,10 +406,10 @@
     display:inline-flex;
     align-items:center;
     gap:8px;
-    font-size:.9rem;
+    
     color:#0f172a;
     border-radius:12px;
-    padding:8px 14px;
+    padding:clamp(0.45rem, 1.2vw, 0.6rem) clamp(0.8rem, 2vw, 1rem);
     cursor:grab;
     user-select:none;
     font-family:inherit;
@@ -427,8 +430,8 @@
   body.is-shift-dragging #schicht-tool .legend-item{cursor:grabbing;}
   body.is-shift-dragging #schicht-tool .day-track{cursor:copy;}
   #schicht-tool .legend-swatch{
-    width:32px;
-    height:14px;
+    width:clamp(1.6rem, 3vw, 2rem);
+    height:clamp(0.6rem, 1.6vw, 0.9rem);
     border-radius:8px;
     border:1px solid rgba(15,23,42,0.2);
     background:#334155;
@@ -444,20 +447,20 @@
   #schicht-tool .time-scale{
     position:relative;
     display:grid;
-    grid-template-columns:140px repeat(96,minmax(var(--slot-width),1fr));
+    grid-template-columns:var(--time-col) repeat(96,minmax(var(--slot-width),1fr));
     align-items:end;
     gap:0;
-    min-height:54px;
+    min-height:clamp(2.6rem, 6vw, 3.4rem);
     color:#1f2937;
-    font-size:.78rem;
+    
     letter-spacing:.02em;
-    padding:0 0 12px;
-    min-width:calc(140px + 96 * var(--slot-width));
+    padding:0 0 clamp(0.6rem, 1.8vw, 0.8rem);
+    min-width:calc(var(--time-col) + 96 * var(--slot-width));
   }
   #schicht-tool .time-scale::after{
     content:"";
     position:absolute;
-    left:140px;
+    left:var(--time-col);
     right:0;
     top:20px;
     bottom:0;
@@ -472,7 +475,7 @@
     font-weight:700;
     text-transform:uppercase;
     color:var(--muted,#64748b);
-    padding:0 0 8px 18px;
+    padding:0 0 clamp(0.4rem, 1.2vw, 0.6rem) clamp(0.6rem, 1.8vw, 1.1rem);
     position:relative;
     z-index:1;
   }
@@ -482,9 +485,9 @@
     align-items:flex-end;
     justify-content:flex-start;
     font-weight:600;
-    font-size:.82rem;
-    padding-left:8px;
-    padding-bottom:4px;
+    
+    padding-left:clamp(0.4rem, 1vw, 0.6rem);
+    padding-bottom:clamp(0.2rem, 0.6vw, 0.3rem);
     grid-row:1;
     grid-column:var(--start,2)/span var(--span,4);
     z-index:1;
@@ -494,8 +497,8 @@
     position:absolute;
     left:0;
     bottom:-8px;
-    width:1px;
-    height:20px;
+    width:0.0625rem;
+    height:1.25rem;
     background:#475569;
   }
   #schicht-tool .time-hour.end{
@@ -503,7 +506,7 @@
     right:0;
     bottom:4px;
     padding-left:0;
-    padding-right:6px;
+    padding-right:clamp(0.35rem, 1vw, 0.5rem);
     justify-content:flex-end;
     font-weight:600;
     z-index:1;
@@ -513,8 +516,8 @@
     position:absolute;
     right:0;
     bottom:-8px;
-    width:1px;
-    height:22px;
+    width:0.0625rem;
+    height:1.4rem;
     background:#1f2937;
   }
   #schicht-tool .schedule-grid{
@@ -525,17 +528,17 @@
     border:1px solid var(--line,#e2e8f0);
     background:#fff;
     box-shadow:inset 0 1px 0 rgba(148,163,184,0.25);
-    min-width:calc(140px + 96 * var(--slot-width));
+    min-width:calc(var(--time-col) + 96 * var(--slot-width));
     width:100%;
   }
   #schicht-tool .day-row{
     display:grid;
-    grid-template-columns:140px repeat(96,minmax(var(--slot-width),1fr));
+    grid-template-columns:var(--time-col) repeat(96,minmax(var(--slot-width),1fr));
     align-items:center;
     border-bottom:1px solid rgba(148,163,184,0.25);
-    min-height:64px;
+    min-height:clamp(3rem, 8vw, 4rem);
     background-image:linear-gradient(90deg,rgba(148,163,184,0.18) 1px,transparent 1px);
-    background-size:calc((100% - 140px)/96) 100%;
+    background-size:calc((100% - var(--time-col))/96) 100%;
   }
   #schicht-tool .day-row:last-child{
     border-bottom:none;
@@ -544,9 +547,9 @@
     grid-column:1;
     display:flex;
     align-items:center;
-    padding:0 18px;
+    padding:0 clamp(0.6rem, 1.8vw, 1.1rem);
     font-weight:700;
-    font-size:1rem;
+    
     color:#0f172a;
     background:linear-gradient(90deg,rgba(226,232,240,0.85),rgba(248,250,252,0.45));
     border-right:1px solid rgba(148,163,184,0.45);
@@ -559,18 +562,18 @@
     right:0;
     top:12px;
     bottom:12px;
-    width:1px;
+    width:0.0625rem;
     background:rgba(148,163,184,0.35);
   }
   #schicht-tool .day-track{
     grid-column:2/-1;
     display:grid;
     grid-template-columns:repeat(96,minmax(var(--slot-width),1fr));
-    grid-auto-rows:48px;
+    grid-auto-rows:clamp(2.2rem, 5vw, 3rem);
     grid-auto-flow:row dense;
-    row-gap:12px;
+    row-gap:clamp(0.5rem, 1.6vw, 0.8rem);
     position:relative;
-    padding:14px 10px;
+    padding:clamp(0.6rem, 1.6vw, 0.9rem) clamp(0.5rem, 1.4vw, 0.8rem);
   }
   #schicht-tool .day-track.drop-target::before{
     content:"";
@@ -586,10 +589,10 @@
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    gap:6px;
+    gap:clamp(0.3rem, 0.8vw, 0.5rem);
     color:#0f172a;
     border-radius:12px;
-    padding:12px 28px;
+    padding:clamp(0.6rem, 1.6vw, 0.9rem) clamp(1.1rem, 2.8vw, 1.8rem);
     box-shadow:0 12px 22px rgba(15,23,42,0.14);
     border:1px solid rgba(15,23,42,0.12);
     cursor:grab;
@@ -606,13 +609,13 @@
     cursor:grabbing;
   }
   #schicht-tool .shift .shift-label{font-weight:600;letter-spacing:.01em;white-space:nowrap;}
-  #schicht-tool .shift .shift-time{font-size:.8rem;color:rgba(15,23,42,.7);letter-spacing:.02em;}
+  #schicht-tool .shift .shift-time{color:rgba(15,23,42,.7);letter-spacing:.02em;}
   #schicht-tool .shift-handle{
     position:absolute;
     top:50%;
-    width:16px;
-    height:32px;
-    margin-top:-16px;
+    width:1rem;
+    height:2rem;
+    margin-top:-1rem;
     background:transparent;
     display:flex;
     align-items:center;
@@ -622,8 +625,8 @@
   }
   #schicht-tool .shift-handle::after{
     content:"";
-    width:6px;
-    height:26px;
+    width:0.4rem;
+    height:1.6rem;
     border-radius:3px;
     background:rgba(15,23,42,0.28);
     box-shadow:0 2px 6px rgba(15,23,42,0.12);
@@ -634,11 +637,11 @@
   #schicht-tool .shift[data-type="spaet"]{background:linear-gradient(180deg,#d7f4ea 0%,#a9e2cb 100%);}
   #schicht-tool .shift[data-type="nacht"]{background:linear-gradient(180deg,#fde2e0 0%,#f7b8b2 100%);}
   #schicht-tool .shift[data-type="flex"]{background:linear-gradient(180deg,#e9dcff 0%,#cebaf6 100%);}
-  #schicht-tool .summary-header h3{margin:0;font-size:var(--font-size-h3,1.2rem);}
-  #schicht-tool .summary-header p{margin:4px 0 0;color:var(--muted,#64748b);max-width:520px;}
+  #schicht-tool .summary-header h3{margin:0;}
+  #schicht-tool .summary-header p{margin:4px 0 0;color:var(--muted,#64748b);max-width:32rem;}
   #schicht-tool .summary-scale{
     display:grid;
-    grid-template-columns:140px repeat(96,minmax(var(--slot-width),1fr));
+    grid-template-columns:var(--time-col) repeat(96,minmax(var(--slot-width),1fr));
     align-items:end;
     gap:0;
     padding:0 0 8px;
@@ -651,7 +654,7 @@
     padding-left:0;
   }
   #schicht-tool .summary-scale .time-hour{
-    font-size:.78rem;
+    
     font-weight:600;
     text-align:left;
     padding-left:6px;
@@ -662,8 +665,8 @@
     position:absolute;
     left:0;
     bottom:-6px;
-    width:1px;
-    height:12px;
+    width:0.0625rem;
+    height:0.75rem;
     background:rgba(148,163,184,0.6);
   }
   #schicht-tool .summary-scale .time-hour.end{
@@ -673,13 +676,13 @@
     right:auto;
     bottom:auto;
   }
-  #schicht-tool .summary-track{display:grid;grid-template-columns:140px 1fr;align-items:center;gap:18px;}
+  #schicht-tool .summary-track{display:grid;grid-template-columns:var(--time-col) 1fr;align-items:center;gap:clamp(0.8rem, 2vw, 1.2rem);}
   #schicht-tool .summary-label{font-weight:600;color:#1f2937;}
   #schicht-tool .summary-grid{
     position:relative;
     display:grid;
     grid-template-columns:repeat(96,minmax(var(--slot-width),1fr));
-    height:34px;
+    height:clamp(1.6rem, 4vw, 2.1rem);
     border-radius:12px;
     border:1px solid var(--line,#e2e8f0);
     overflow:hidden;
@@ -691,7 +694,7 @@
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:.75rem;
+    
     font-weight:600;
     border-radius:10px;
     border:1px solid rgba(15,23,42,0.12);
@@ -702,14 +705,14 @@
   #schicht-tool .summary-grid[data-type="spaet"] .summary-bar{background:rgba(12,148,136,0.18);}
   #schicht-tool .summary-grid[data-type="nacht"] .summary-bar{background:rgba(220,38,38,0.18);}
   #schicht-tool .summary-grid[data-type="flex"] .summary-bar{background:rgba(124,58,237,0.18);}
-  #schicht-tool .model-card h3{margin:0;font-size:var(--font-size-h3,1.2rem);}
+  #schicht-tool .model-card h3{margin:0;}
   #schicht-tool .model-card p{margin:0;color:var(--muted,#64748b);}
-  #schicht-tool .model-options{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));}
+  #schicht-tool .model-options{display:grid;gap:clamp(0.6rem, 1.6vw, 0.9rem);grid-template-columns:repeat(auto-fit, minmax(clamp(12rem, 24vw, 15rem), 1fr));}
   #schicht-tool .model-option{
     display:flex;
-    gap:12px;
+    gap:clamp(0.6rem, 1.6vw, 0.9rem);
     align-items:flex-start;
-    padding:14px 16px;
+    padding:clamp(0.7rem, 1.8vw, 0.95rem) clamp(0.8rem, 2vw, 1rem);
     border-radius:14px;
     border:1px solid var(--line,#e2e8f0);
     background:#fff;
@@ -717,20 +720,20 @@
   }
   #schicht-tool .model-option:hover{border-color:var(--accent,#2563eb);box-shadow:0 10px 20px rgba(15,23,42,0.06);}
   #schicht-tool .model-option input{margin-top:4px;}
-  #schicht-tool .model-option strong{display:block;font-size:1rem;}
-  #schicht-tool .model-option span{color:var(--muted,#64748b);font-size:.9rem;}
+  #schicht-tool .model-option strong{display:block;}
+  #schicht-tool .model-option span{color:var(--muted,#64748b);}
   @media (max-width:1024px){
     #schicht-tool .schicht-grid{grid-template-columns:repeat(6,1fr);}
-    #schicht-tool .summary-track{grid-template-columns:120px 1fr;}
-    #schicht-tool{--slot-width:var(--slot-width-md);}
+    #schicht-tool .summary-track{grid-template-columns:var(--time-col) 1fr;}
+    #schicht-tool{--slot-width:var(--slot-width-md); --time-col:var(--time-col-md);}
   }
   @media (max-width:720px){
-    #schicht-tool{padding:12px;}
-    #schicht-tool .card{padding:22px;}
+    #schicht-tool{padding:clamp(0.6rem, 2vw, 0.9rem); --time-col:var(--time-col-sm);}
+    #schicht-tool .card{padding:clamp(1rem, 3vw, 1.4rem);}
     #schicht-tool .time-label{padding-left:0;}
     #schicht-tool .schedule-legend{flex-direction:column;align-items:stretch;}
     #schicht-tool .legend-item{width:100%;}
-    #schicht-tool .schicht-hero h2{font-size:1.25rem;}
+    #schicht-tool .schicht-hero h2{}
     #schicht-tool{--slot-width:var(--slot-width-sm);}
     #schicht-tool .schedule-grid,
     #schicht-tool .time-scale,
@@ -743,7 +746,7 @@
     #schicht-tool .schedule-grid,
     #schicht-tool .summary-grid,
     #schicht-tool .day-track{
-      min-width:720px;
+      min-width:45rem;
     }
   }
 </style>
@@ -1410,4 +1413,5 @@
   }
 })();
 </script>
+
 

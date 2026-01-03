@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -7,10 +7,10 @@
   <link rel="stylesheet" href="../../../../style.css" />
   <style>
     :root{--accent:#2563eb; --accent-strong:#1d4ed8; --line:#e2e8f0; --muted:#94a3b8; --header:#f8fafc; --row:#ffffff; --hover:#f1f5f9; --card:#fff; --shadow:0 18px 32px rgba(15,23,42,.06);}
-    body{margin:0; font-family:var(--font-base); font-size:15px; background:var(--bg,#f5f7fb); color:#0f172a;}
+    body{margin:0; font-family:var(--font-base); color:#0f172a;}
     main{padding:20px; display:flex; flex-direction:column; gap:16px; width:100%; max-width:100%; margin:0 auto;}
     .card{box-shadow:var(--shadow); border:1px solid var(--line); background:var(--card); border-radius:18px;}    .top{display:flex; flex-direction:column; gap:10px; padding:16px;}
-    .controls select{font-family:var(--font-base);font-size:.9rem;color:#475569;}
+    .controls select{font-family:var(--font-base);}
   </style>
 </head>
 <body>
@@ -110,7 +110,7 @@
             <tr class="totals-row">
               <td></td>
               <td>Wirtschaftsplan (VK)</td>
-              <td colspan="12" id="planRowNote" style="text-align:right; font-size:0.9rem; color:#475569;">-</td>
+              <td colspan="12" id="planRowNote" style="text-align:right;  color:#475569;">-</td>
               <td data-plan-total>0,0</td>
               <td data-plan-delta>0,0</td>
               <td></td>
@@ -459,7 +459,7 @@
     function updateSortIndicators(){
       document.querySelectorAll('[data-sort-ind]').forEach(span=>{
         const key=span.dataset.sortInd;
-        if(state.sortKey===key) span.textContent=state.sortDir==='asc'?'▲':'▼';
+        if(state.sortKey===key) span.textContent=state.sortDir==='asc'?'?':'?';
         else span.textContent='';
       });
     }
@@ -823,3 +823,6 @@
   </script>
 </body>
 </html>
+
+
+

@@ -10,12 +10,12 @@
   .besetzungsbedarf-app{
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:clamp(1rem, 2.5vw, 1.4rem);
   }
   .besetzungsbedarf-app .besetzungsbedarf-container{
     display:flex;
     flex-direction:column;
-    gap:18px;
+    gap:clamp(1rem, 2.5vw, 1.4rem);
     width:100%;
   }
   .besetzungsbedarf-app .formula-block{
@@ -28,43 +28,56 @@
     overflow:hidden;
     width:100%;
   }
-  .besetzungsbedarf-app .formula-block.rose,
-  .besetzungsbedarf-app .formula-block.indigo,
-  .besetzungsbedarf-app .formula-block.amber,
-  .besetzungsbedarf-app .formula-block.mint,
-  .besetzungsbedarf-app .formula-block.slate{
-    background:#f8fafc;
-    color:var(--text);
+  .besetzungsbedarf-app #einsatzBlock{
+    background:linear-gradient(180deg, #f8fafc 0%, #f1f5ff 100%);
+    border-color:#dbeafe;
+  }
+  .besetzungsbedarf-app #verteilBlock{
+    background:linear-gradient(180deg, #f8fafc 0%, #f0f9ff 100%);
+    border-color:#bae6fd;
+  }
+  .besetzungsbedarf-app #reserveBlock{
+    background:linear-gradient(180deg, #f8fafc 0%, #f0fdf4 100%);
+    border-color:#bbf7d0;
+  }
+  .besetzungsbedarf-app #bruttoBlock{
+    background:linear-gradient(180deg, #f8fafc 0%, #fff7ed 100%);
+    border-color:#fed7aa;
+  }
+  .besetzungsbedarf-app #nettoBlock{
+    background:linear-gradient(180deg, #f8fafc 0%, #fefce8 100%);
+    border-color:#fde68a;
   }
   .besetzungsbedarf-app .subtle-card{
-    background:#f8fafc;
+    background:linear-gradient(180deg, #f8fafc 0%, #f1f5ff 100%);
+    border-color:#dbeafe;
   }
   .besetzungsbedarf-app .formula-header{
     display:flex;
     align-items:flex-start;
     justify-content:space-between;
     gap:12px;
-    padding:22px 22px 0;
+    padding:clamp(1rem, 2.8vw, 1.4rem) clamp(1rem, 2.8vw, 1.4rem) 0;
   }
   .besetzungsbedarf-app .formula-header h2{
     margin:0;
-    font-size:1.35rem;
+    
     color:#0f172a;
   }
   .besetzungsbedarf-app .formula-header p{
     margin:6px 0 0;
-    font-size:.95rem;
+    
     color:var(--muted,#64748b);
   }
   .besetzungsbedarf-app .formula-meta{
     display:block;
     margin-top:6px;
-    font-size:.85rem;
+    
     font-weight:600;
     color:var(--muted,#64748b);
   }
   .besetzungsbedarf-app .formula-value{
-    font-size:1rem;
+    
     font-weight:600;
     text-align:right;
     line-height:1.35;
@@ -73,7 +86,7 @@
   .besetzungsbedarf-app .formula-value span{font-weight:700; color:#0f172a;}
   .besetzungsbedarf-app .formula-value .meta{
     display:block;
-    font-size:.85rem;
+    
     font-weight:600;
     color:var(--muted,#64748b);
     margin-bottom:4px;
@@ -81,12 +94,12 @@
   .besetzungsbedarf-app .formula-panel{
     background:#fff;
     color:var(--text);
-    margin:16px 22px 22px;
-    padding:16px;
+    margin:clamp(0.9rem, 2.5vw, 1.4rem) clamp(1rem, 2.8vw, 1.4rem) clamp(1rem, 2.8vw, 1.4rem);
+    padding:clamp(0.9rem, 2.2vw, 1.2rem);
     border-radius:14px;
     border:1px solid var(--line,#e2e8f0);
   }
-  .besetzungsbedarf-app .formula-panel h2{margin:0 0 12px; font-size:1.2rem;}
+  .besetzungsbedarf-app .formula-panel h2{margin:0 0 12px; }
   .besetzungsbedarf-app .formula-panel + .formula-panel{margin-top:0;}
   .besetzungsbedarf-app .grid{
     display:grid;
@@ -107,7 +120,7 @@
     margin-bottom:6px;
     display:block;
     color:#475569;
-    font-size:.9rem;
+    
   }
   .besetzungsbedarf-app select,
   .besetzungsbedarf-app input{
@@ -117,8 +130,6 @@
     border-radius:10px;
     background:#fff;
     font-family:var(--font-base);
-    font-size:.9rem;
-    color:#475569;
   }
   .besetzungsbedarf-app .muted{color:var(--muted,#64748b);}
   .besetzungsbedarf-app .table{
@@ -146,8 +157,8 @@
   }
   .besetzungsbedarf-app .kpi{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:10px;
+    grid-template-columns:repeat(auto-fit, minmax(clamp(9rem, 18vw, 11rem), 1fr));
+    gap:clamp(0.6rem, 1.6vw, 0.9rem);
   }
   .besetzungsbedarf-app .kpi .item{
     background:#fff;
@@ -158,7 +169,7 @@
   }
   .besetzungsbedarf-app .kpi .item b{
     display:block;
-    font-size:1.1rem;
+    
   }
   .besetzungsbedarf-app details.holidays{
     border:1px solid var(--line,#e2e8f0);
@@ -268,7 +279,7 @@
                 <div class="formula-value" id="metricEinsatz">Berechne zun&auml;chst die Arbeitspl&auml;tze.</div>
               </div>
               <div class="formula-panel">
-                <h2>Abteilungs-Berechnung (Arbeitsplätze)</h2>
+                <h2>Abteilungs-Berechnung (Arbeitspl&auml;tze)</h2>
                 <div id="rooms-container">
                   <div class="room-entry">
                     <div class="room-header">
@@ -278,8 +289,8 @@
                     <select class="room">
                       <option value="OP-Saal">OP-Saal</option>
                       <option value="Endoskopie-Raum">Endoskopie-Raum</option>
-                      <option value="Kreißsaal">Krei&szlig;saal</option>
-                      <option value="Röntgen">R&ouml;ntgen</option>
+                      <option value="Krei&szlig;saal">Krei&szlig;saal</option>
+                      <option value="R&ouml;ntgen">R&ouml;ntgen</option>
                       <option value="Herzkatheter-Labor">Herzkatheter-Labor</option>
                       <option value="EEG / EKG / Funktionsdiagnostik">EEG / EKG / Funktionsdiagnostik</option>
                       <option value="Aufwachraum">Aufwachraum</option>
@@ -290,7 +301,7 @@
                       <option value="Sonstiges">Sonstiges</option>
                     </select>
                     <input type="text" class="room-custom" placeholder="Sonstiges beschreiben" aria-label="Sonstiges beschreiben">
-                    <label style="margin-top:8px">Benötigte Personen</label>
+                    <label style="margin-top:8px">Ben&ouml;tigte Personen</label>
                     <input type="number" class="staff" placeholder="z. B. 2" min="1">
                     <div style="margin-top:10px">
                       <label>Betriebstage & Stunden pro Tag</label>
@@ -315,7 +326,7 @@
                     </div>
                   </div>
                 </div>
-                <button type="button" class="btn ghost" style="margin-top:8px;" onclick="addRoom()">+ weiteren Arbeitsplatz hinzufügen</button>
+                <button type="button" class="btn ghost" style="margin-top:8px;" onclick="addRoom()">+ weiteren Arbeitsplatz hinzuf&uuml;gen</button>
               </div>
             </section>
   
@@ -323,7 +334,7 @@
               <div class="formula-header">
                 <div>
                   <h2>Verteilzeitfaktor</h2>
-                  <p>Fehlzeiten ÷ reale Arbeitszeiten</p>
+                  <p>Fehlzeiten &divide; reale Arbeitszeiten</p>
                   <span class="formula-meta" id="stateYearLabel"></span>
                 </div>
                 <div class="formula-value" id="metricVerteil">Nutzt Urlaub + Fortbildung + Krankheit.</div>
@@ -341,7 +352,7 @@
                   </div>
                 </div>
                 <div style="margin-top:16px">
-                  <button class="btn primary" style="width:100%" onclick="calculateAll()">Gesamtberechnung durchführen</button>
+                  <button class="btn primary" style="width:100%" onclick="calculateAll()">Gesamtberechnung durchf&uuml;hren</button>
                 </div>
                 <div class="grid grid-4" style="margin-top:10px">
                   <div>
@@ -376,7 +387,7 @@
               <div class="formula-header">
                 <div>
                   <h2>Reservebedarf</h2>
-                  <p>Einsatzbedarf × Verteilzeitfaktor</p>
+                  <p>Einsatzbedarf &times; Verteilzeitfaktor</p>
                 </div>
                 <div class="formula-value" id="metricReserve">Wird automatisch ermittelt.</div>
               </div>
@@ -394,7 +405,7 @@
                 <div class="formula-value" id="metricBrutto">Summe in VK.</div>
               </div>
               <div class="formula-panel" id="result">
-                <p class="muted">Bitte zuerst Arbeitsplätze und Parameter ausfüllen und „Gesamtberechnung“ starten.</p>
+                <p class="muted">Bitte zuerst Arbeitspl&auml;tze und Parameter ausf&uuml;llen und &bdquo;Gesamtberechnung&ldquo; starten.</p>
               </div>
             </section>
   
@@ -402,7 +413,7 @@
               <div class="formula-header">
                 <div>
                   <h2>Brutto-Personalbedarf inkl. Abwesenheit</h2>
-                  <p>Bruttobedarf × (1 + Abwesenheitsquote)</p>
+                  <p>Bruttobedarf &times; (1 + Abwesenheitsquote)</p>
                 </div>
                 <div class="formula-value" id="metricBruttoAbsence">Nutzt deine Abwesenheitsquote unten.</div>
               </div>
@@ -1038,4 +1049,9 @@
       runSelfTests();
     })();
 </script>
+
+
+
+
+
 

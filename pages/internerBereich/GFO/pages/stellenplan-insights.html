@@ -1,4 +1,4 @@
-ï»¿<!doctype html>
+<!doctype html>
 <html lang="de">
 <head>
   <meta charset="utf-8" />
@@ -7,29 +7,29 @@
   <link rel="stylesheet" href="../../../../style.css" />
   <style>
     :root{--accent:#2563eb; --accent-strong:#1d4ed8; --line:#e2e8f0; --muted:#94a3b8; --header:#f8fafc; --row:#ffffff; --hover:#f1f5f9; --card:#fff; --shadow:0 18px 32px rgba(15,23,42,.06);}
-    body{margin:0;font-family:var(--font-base);font-size:var(--font-size-base);line-height:var(--line-height-base);background:linear-gradient(180deg,#f7faff 0%,#eef3f9 100%);color:var(--text);}
+    body{margin:0;font-family:var(--font-base);background:linear-gradient(180deg,#f7faff 0%,#eef3f9 100%);color:var(--text);}
     main{padding:24px;display:flex;flex-direction:column;gap:20px;width:100%;max-width:none;margin:0 auto;}
     .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:20px 22px;box-shadow:var(--shadow);width:100%;}
     .hero{display:flex;flex-direction:column;gap:16px;padding:26px;background:linear-gradient(120deg,#f3f7ff 0%,#e8f1ff 40%,#f3f7ff 100%);border:1px solid #d9e4ff;width:100%;max-width:none;margin:0;box-sizing:border-box;border-radius:20px;box-shadow:0 18px 45px rgba(15,23,42,0.18);}
     .hero-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-start;}
     .pill{display:inline-flex;gap:8px;padding:9px 14px;border-radius:14px;background:linear-gradient(135deg,#1f4b82,#12355c);color:#fff;font-weight:800;box-shadow:0 12px 24px rgba(18,53,92,.25);}
-    h1{margin:0;font-size:1.9rem;}
+    h1{margin:0;}
     .badge-bar{display:flex;gap:10px;flex-wrap:wrap;justify-content:flex-end;}
     .badge-rect{padding:10px 14px;border:1px solid #d8e3f5;border-radius:14px;background:#fff;font-weight:800;color:#0f172a;box-shadow:0 6px 16px rgba(15,23,42,0.08);}
     .kpi-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));}
     .kpi{border:1px solid var(--line);border-radius:14px;padding:16px;background:#fff;box-shadow:0 10px 24px rgba(15,23,42,0.1);display:grid;gap:6px;align-items:center;text-align:center;}
-    .kpi span{color:var(--muted);font-size:0.9rem;}.kpi strong{font-size:1.35rem;}
+    .kpi span{color:var(--muted);}.kpi strong{}
     .tabbar{display:flex;gap:10px;padding:10px 12px;border-radius:14px;background:#f9fbff;border:1px solid var(--line);box-shadow:var(--shadow);}
     .tabbar button{border:1px solid var(--line);background:#fff;color:#0f172a;padding:10px 14px;border-radius:10px;font-weight:800;cursor:pointer;}
     .tabbar button.active{background:linear-gradient(135deg,#1fa2ff,#2563eb);color:#fff;border-color:transparent;}
     .controls{display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;margin-top:10px;margin-bottom:6px;}
     .controls label{display:flex;flex-direction:column;gap:4px;font-weight:700;color:var(--text);}
     .controls select,.controls input{padding:10px 12px;border:1px solid var(--line);border-radius:10px;font:inherit;background:#fff;min-width:140px;}
-    .controls select{font-family:var(--font-base);font-size:.9rem;color:#475569;}
+    .controls select{font-family:var(--font-base);}
     .controls button{padding:10px 14px;border-radius:10px;border:1px solid transparent;background:linear-gradient(135deg,#1f4b82,#12355c);color:#fff;font-weight:700;cursor:pointer;}
     .grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));align-items:stretch;}
     .tile{border:1px solid var(--line);border-radius:14px;padding:14px;background:#fff;box-shadow:0 8px 18px rgba(15,23,42,0.06);display:grid;gap:6px;align-items:center;justify-items:center;text-align:center;}
-    .tile span{color:var(--muted);} .tile strong{font-size:1.28rem;}
+    .tile span{color:var(--muted);} .tile strong{}
     .chart-grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
     .chart{display:grid;gap:10px;background:linear-gradient(180deg,#f8fafc,#eef2f7);border:1px solid var(--line);border-radius:14px;padding:12px;}
     .chart-meta{display:flex;gap:8px;align-items:center;color:var(--muted);font-weight:700;}
@@ -37,44 +37,44 @@
     .chart-bar{flex:1;background:linear-gradient(180deg,#1f4b82,#12355c);border-radius:6px 6px 3px 3px;min-width:10px;}
     .chart-bar.secondary{background:linear-gradient(180deg,#f9be00,#d99b00);} .chart-bar.tertiary{background:linear-gradient(180deg,#0ea5e9,#0284c7);}
     .line-wide{width:100%;height:320px;}
-    .chart-axis{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;font-size:0.78rem;color:var(--muted);text-align:center;margin-top:6px;}
-    .line-legend{display:flex;gap:12px;flex-wrap:wrap;font-size:0.9rem;color:var(--muted);}
+    .chart-axis{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;color:var(--muted);text-align:center;margin-top:6px;}
+    .line-legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);}
     .line-legend span{display:inline-flex;align-items:center;gap:6px;}
     .line-dot{width:12px;height:12px;border-radius:999px;display:inline-block;}
-    .heatmap{display:grid;gap:6px;} .heatmap-head,.heatmap-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;} .heatmap-head div{text-align:center;font-size:0.8rem;color:#475569;} .heatmap-cell{height:28px;border-radius:4px;border:1px solid #fff;display:flex;align-items:center;justify-content:center;font-size:0.8rem;color:#0f172a;}
+    .heatmap{display:grid;gap:6px;} .heatmap-head,.heatmap-row{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:4px;} .heatmap-head div{text-align:center;color:#475569;} .heatmap-cell{height:28px;border-radius:4px;border:1px solid #fff;display:flex;align-items:center;justify-content:center;color:#0f172a;}
     .ratio-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));margin-top:12px;}
     .ratio-card{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;box-shadow:0 8px 18px rgba(15,23,42,0.06);display:grid;gap:8px;}
     .ratio-card .ratio-header{display:flex;justify-content:space-between;gap:8px;align-items:flex-start;}
     .ratio-card .ratio-name{font-weight:700;}
-    .ratio-card .ratio-meta{color:var(--muted);font-size:0.88rem;text-align:right;display:grid;gap:2px;}
+    .ratio-card .ratio-meta{color:var(--muted);text-align:right;display:grid;gap:2px;}
     .ratio-bar{height:14px;border-radius:999px;background:#e5e7eb;overflow:hidden;display:flex;box-shadow:inset 0 0 0 1px rgba(15,23,42,0.04);}
-    .ratio-bar span{display:block;height:100%;font-size:0.75rem;color:#fff;text-align:center;line-height:14px;}
+    .ratio-bar span{display:block;height:100%;color:#fff;text-align:center;line-height:14px;}
     .ratio-bar .pfk{background:linear-gradient(135deg,#22c55e,#16a34a);}
     .ratio-bar .pfa{background:linear-gradient(135deg,#3b82f6,#1d4ed8);}
-    .legend{display:flex;gap:12px;flex-wrap:wrap;font-size:0.9rem;color:var(--muted);} .legend span{display:inline-flex;align-items:center;gap:6px;} .dot{width:12px;height:12px;border-radius:999px;display:inline-block;}
+    .legend{display:flex;gap:12px;flex-wrap:wrap;color:var(--muted);} .legend span{display:inline-flex;align-items:center;gap:6px;} .dot{width:12px;height:12px;border-radius:999px;display:inline-block;}
     .qual-grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));}
     .qual-panel{display:flex;flex-direction:column;gap:8px;}
     .qual-table-wrap{border:1px solid var(--line);border-radius:10px;overflow:auto;}
-    .qual-table-wrap th,.qual-table-wrap td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;font-size:.95rem;}
+    .qual-table-wrap th,.qual-table-wrap td{padding:9px 10px;border-bottom:1px solid var(--line);text-align:left;}
     .qual-table-wrap th{background:linear-gradient(135deg,#f7faff,#e8f1ff);font-weight:800;}
     .qual-table-wrap tr:nth-child(even) td{background:#fafbfc;}
     .qual-table-wrap tr.is-total td{font-weight:800;background:#fff;}
-    .hint{color:var(--muted);font-size:.95rem;}
+    .hint{color:var(--muted);}
     .cockpit-grid{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));margin-top:6px;}
     .cockpit-tile{border:1px solid var(--line);border-radius:10px;padding:10px 12px;background:#fff;box-shadow:0 8px 18px rgba(15,23,42,0.06);display:grid;gap:4px;}
-    .cockpit-tile span{color:#475569;font-size:0.9rem;} .cockpit-tile strong{font-size:1.3rem;}
+    .cockpit-tile span{color:#475569;} .cockpit-tile strong{}
     /* Neue Insights-Styles (helle Variante) */
     .insights-section{border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 12px 28px rgba(15,23,42,0.08);padding:16px;}
     .insights-section+.insights-section{margin-top:12px;}
     .insights-head{display:flex;justify-content:space-between;gap:10px;align-items:flex-start;flex-wrap:wrap;}
     .insights-head .title{display:flex;align-items:center;gap:8px;font-weight:700;}
-    .insights-tag{font-size:0.75rem;padding:3px 8px;border-radius:999px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:700;box-shadow:0 6px 16px rgba(22,163,74,0.2);}
-    .insights-sub{color:var(--muted);font-size:0.92rem;margin:2px 0 0;}
+    .insights-tag{padding:3px 8px;border-radius:999px;background:linear-gradient(135deg,#22c55e,#16a34a);color:#fff;font-weight:700;box-shadow:0 6px 16px rgba(22,163,74,0.2);}
+    .insights-sub{color:var(--muted);margin:2px 0 0;}
     .pill-row-new{display:flex;flex-wrap:wrap;gap:8px;}
     .pill-new{border-radius:14px;padding:10px 12px;display:flex;gap:8px;align-items:center;border:1px solid var(--line);background:#fff;box-shadow:0 8px 18px rgba(15,23,42,0.06);}
-    .pill-new .label{color:var(--muted);font-size:0.9rem;}
+    .pill-new .label{color:var(--muted);}
     .pill-new .value{font-weight:700;}
-    .pill-new .badge{padding:2px 8px;border-radius:999px;border:1px solid var(--line);font-size:0.78rem;}
+    .pill-new .badge{padding:2px 8px;border-radius:999px;border:1px solid var(--line);}
     .badge.ok{color:#16a34a;border-color:#16a34a;}
     .badge.warn{color:#d97706;border-color:#d97706;}
     .badge.danger{color:#b91c1c;border-color:#b91c1c;}
@@ -83,14 +83,14 @@
     .donut{position:relative;width:82px;height:82px;border-radius:50%;background:conic-gradient(#22c55e var(--pfk-angle,180deg), #3b82f6 var(--pfk-angle,180deg) 360deg);display:flex;align-items:center;justify-content:center;box-shadow:inset 0 0 0 10px #fff;}
     .donut::after{content:"";position:absolute;inset:22%;border-radius:50%;background:#fff;}
     .donut span{position:relative;font-weight:700;color:#0f172a;}
-    .donut-legend{display:grid;gap:4px;font-size:0.9rem;color:var(--muted);}
+    .donut-legend{display:grid;gap:4px;color:var(--muted);}
     .donut-legend .row{display:flex;align-items:center;gap:6px;}
     .donut-dot{width:10px;height:10px;border-radius:999px;display:inline-block;}
     .donut-dot.pfk{background:#22c55e;}
     .donut-dot.pfa{background:#3b82f6;}
     .spark-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px;}
     .spark-card{border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 10px 22px rgba(15,23,42,0.08);padding:12px;display:grid;gap:6px;}
-    .spark-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:0.9rem;}
+    .spark-meta{display:flex;justify-content:space-between;color:var(--muted);}
     .sparkline{width:100%;height:40px;}
     .capacity-row{display:flex;flex-wrap:wrap;gap:10px;align-items:flex-end;}
     .capacity-card{border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 10px 22px rgba(15,23,42,0.08);padding:12px;min-width:200px;}
@@ -98,7 +98,7 @@
     .thermo-fill{width:100%;border-radius:999px;background:linear-gradient(180deg,#22c55e,#facc15,#ef4444);}
     .bubble-row{display:flex;flex-wrap:wrap;gap:10px;}
     .bubble{border-radius:50%;border:2px solid var(--line);background:#fff;box-shadow:0 10px 22px rgba(15,23,42,0.08);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:6px;min-width:60px;min-height:60px;}
-    .bubble-label{color:var(--muted);font-size:0.8rem;}
+    .bubble-label{color:var(--muted);}
     .line-card{border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 10px 22px rgba(15,23,42,0.08);padding:12px;}
     .line-chart-svg{width:100%;height:90px;}
     .scenario-panel{border:1px solid var(--line);border-radius:14px;padding:12px;background:#fff;box-shadow:0 8px 18px rgba(15,23,42,0.06);display:grid;gap:10px;}
@@ -106,9 +106,9 @@
     .scenario-totals{display:flex;gap:12px;flex-wrap:wrap;font-weight:700;color:#0f172a;}
     .scenario-totals span{font-weight:600;}
     .scenario-inputs{display:grid;grid-template-columns:repeat(auto-fit,minmax(60px,1fr));gap:6px;}
-    .scenario-inputs label{display:grid;gap:4px;font-size:0.84rem;color:var(--muted);}
+    .scenario-inputs label{display:grid;gap:4px;color:var(--muted);}
     .scenario-inputs input{padding:6px;border:1px solid var(--line);border-radius:10px;font:inherit;min-width:0;}
-    .scenario-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;color:var(--muted);font-size:0.9rem;}
+    .scenario-controls{display:flex;gap:12px;flex-wrap:wrap;align-items:center;color:var(--muted);}
     .scenario-controls input[type="range"]{width:180px;}
     .pyramid{display:flex;flex-direction:column;gap:6px;}
     .pyramid-level{display:flex;justify-content:center;}
@@ -116,8 +116,8 @@
     .glass-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;}
     .glass-card{border:1px solid rgba(148,163,184,0.5);border-radius:14px;background:linear-gradient(180deg,rgba(255,255,255,0.9),rgba(248,250,252,0.85));box-shadow:0 10px 24px rgba(15,23,42,0.06);padding:12px;}
     .glass-card-title{font-weight:700;}
-    .glass-card-value{font-size:1.2rem;font-weight:700;color:#1f4b82;}
-    .glass-card-label{color:var(--muted);font-size:0.9rem;}
+    .glass-card-value{font-weight:700;color:#1f4b82;}
+    .glass-card-label{color:var(--muted);}
     .section-hidden{display:none!important;}
     @media(max-width:720px){main{padding:18px;}.controls input,.controls select{min-width:140px;}}
   </style>
@@ -175,7 +175,7 @@
           <div class="tile"><span>Peak-Monat</span><strong id="kpiPeak">-</strong></div>
         </div>
         <div class="chart">
-          <div class="chart-meta">VerhÃ¤ltnis Pflegefachkraft / -assistenz</div>
+          <div class="chart-meta">Verhältnis Pflegefachkraft / -assistenz</div>
           <div id="heatmapRatios" class="ratio-grid"></div>
         </div>
         <div class="chart" style="margin-top:12px;">
@@ -219,7 +219,7 @@
         <div class="insights-section">
           <div class="insights-head">
             <div>
-              <div class="title">VerhÃ¤ltnis Pflegefachkraft / Assistenz <span class="insights-tag">PFK / PFA / VK</span></div>
+              <div class="title">Verhältnis Pflegefachkraft / Assistenz <span class="insights-tag">PFK / PFA / VK</span></div>
               <p class="insights-sub">VK-Werte, Prozentverteilung und Gesamt je Station.</p>
             </div>
           </div>
@@ -250,7 +250,7 @@
           <div class="insights-head">
             <div>
               <div class="title">Station-Trends (Sparkline)</div>
-              <p class="insights-sub">Mini-Trends je Station (Monate Janâ€“Dez).</p>
+              <p class="insights-sub">Mini-Trends je Station (Monate Jan–Dez).</p>
             </div>
           </div>
           <div id="sparkGrid" class="spark-grid"></div>
@@ -284,12 +284,12 @@
 
         <div class="insights-section">
           <div class="insights-head">
-            <div class="title">PyramidenÃ¼bersicht</div>
+            <div class="title">Pyramidenübersicht</div>
             <p class="insights-sub">Strukturierte Ansicht deiner Bereiche.</p>
           </div>
           <div class="pyramid">
             <div class="pyramid-level"><div class="pyramid-box">Intensivstationen</div></div>
-            <div class="pyramid-level"><div class="pyramid-box">IMC / Ãœberwachung</div></div>
+            <div class="pyramid-level"><div class="pyramid-box">IMC / Überwachung</div></div>
             <div class="pyramid-level"><div class="pyramid-box">Normalstationen</div></div>
             <div class="pyramid-level"><div class="pyramid-box">Funktionsbereiche / OP / Endoskopie</div></div>
           </div>
@@ -705,9 +705,9 @@
             const pfaW=`${Math.max(4,pfaPct)}%`;
             return `<div class="ratio-card">
                 <strong>${r.dept}</strong>
-                <div style="font-size:0.9rem;color:${'var(--muted)'};">PFK: ${fmt(r.pfk)} | PFA: ${fmt(r.pfa)} | VK: ${fmt(r.total)}</div>
+                <div style="color:${'var(--muted)'};">PFK: ${fmt(r.pfk)} | PFA: ${fmt(r.pfa)} | VK: ${fmt(r.total)}</div>
                 <div class="ratio-bar"><span class="pfk" style="width:${pfkW};"></span><span class="pfa" style="width:${pfaW};"></span></div>
-                <div style="display:flex;justify-content:space-between;font-size:0.85rem;color:${'var(--muted)'};margin-top:4px;">
+                <div style="display:flex;justify-content:space-between;color:${'var(--muted)'};margin-top:4px;">
                   <span>PFK ${pfkPct.toFixed(1)}%</span>
                   <span>PFA ${pfaPct.toFixed(1)}%</span>
                 </div>
@@ -729,14 +729,14 @@
             <div class="ratio-name">${r.dept}</div>
             <div class="ratio-meta">
               <span><strong>${fmt(r.total)}</strong> VK gesamt</span>
-              <span>${pfkPct.toFixed(0)} % PFK Â· ${pfaPct.toFixed(0)} % PFA</span>
+              <span>${pfkPct.toFixed(0)} % PFK · ${pfaPct.toFixed(0)} % PFA</span>
             </div>
           </div>
           <div class="ratio-bar">
             <span class="pfk" style="width:${Math.max(4,pfkPct)}%;">${pfkPct>12?pfkPct.toFixed(0)+'% PFK':''}</span>
             <span class="pfa" style="width:${Math.max(4,pfaPct)}%;">${pfaPct>12?pfaPct.toFixed(0)+'% PFA':''}</span>
           </div>
-          <div style="display:flex;justify-content:space-between;color:${'var(--muted)'};font-size:0.9rem;">
+          <div style="display:flex;justify-content:space-between;color:${'var(--muted)'};">
             <span><strong>${r.pfk.toFixed(1)}</strong> VK PFK</span>
             <span><strong>${r.pfa.toFixed(1)}</strong> VK PFA</span>
           </div>
@@ -775,7 +775,7 @@
       const pills=[
         {label:'VK gesamt Pflege',value:`${fmt(totalVK)} VK`,state:'ok'},
         {label:'PFK-Quote',value:`${pfkQuote.toFixed(1)} %`,state:pfkQuote>=70?'ok':pfkQuote>=60?'warn':'danger'},
-        {label:'Deckungsgrad Ã˜/Dept',value:`${coverage.toFixed(0)} %`,state:coverage>=90?'ok':coverage>=75?'warn':'danger'},
+        {label:'Deckungsgrad Ø/Dept',value:`${coverage.toFixed(0)} %`,state:coverage>=90?'ok':coverage>=75?'warn':'danger'},
         {label:'PFK VK',value:`${fmt(totalPFK)} VK`,state:'ok'},
         {label:'PFA VK',value:`${fmt(totalPFA)} VK`,state:'warn'}
       ];
@@ -819,7 +819,7 @@
           <div class="capacity-label" style="font-weight:700;">${m.dept}</div>
           <div style="display:flex;gap:10px;align-items:flex-end;">
             <div class="thermo"><div class="thermo-fill" style="height:${height}%;"></div></div>
-            <div style="color:var(--muted);font-size:0.9rem;">
+            <div style="color:var(--muted);">
               Deckungsgrad: <strong>${coverage.toFixed(0)} %</strong><br/>
               Ziel (VK/Monat): <strong>${target}</strong><br/>
               Bewertung: <span style="color:${color};">${statusLabel}</span>
@@ -887,8 +887,8 @@
       const pfkQuote=totalVK>0?(totalPFK/totalVK)*100:0;
       const cards=[
         {title:'VK gesamt Pflege',value:`${fmt(totalVK)} VK`,label:'Alle Stationen summiert.'},
-        {title:'PFK-Quote',value:`${pfkQuote.toFixed(1)} %`,label:'Zielkorridor 70â€“80 %.'},
-        {title:'PFK VK',value:`${fmt(totalPFK)} VK`,label:'PflegefachkrÃ¤fte gesamt.'},
+        {title:'PFK-Quote',value:`${pfkQuote.toFixed(1)} %`,label:'Zielkorridor 70–80 %.'},
+        {title:'PFK VK',value:`${fmt(totalPFK)} VK`,label:'Pflegefachkräfte gesamt.'},
         {title:'PFA VK',value:`${fmt(totalPFA)} VK`,label:'Pflegeassistenz gesamt.'},
       ];
       els.glassGrid.innerHTML=cards.map(c=>`<div class="glass-card">
@@ -940,7 +940,7 @@
       if(!els.planSummary) return;
       const sum = (depts||[]).reduce((acc,d)=>acc + getPlanValue(d),0);
       const rest = planTotalVal - sum;
-      els.planSummary.textContent = `Vergeben: ${fmt(sum)} VK Â· Rest: ${fmt(rest)} VK`;
+      els.planSummary.textContent = `Vergeben: ${fmt(sum)} VK · Rest: ${fmt(rest)} VK`;
     }
 
     function initScenarioInputs(){
@@ -981,13 +981,13 @@
       const globalDelta = Number(els.scenarioInput?.value||0);
       let runningAdd = 0;
       const scenario = baseForecast.map((v,i)=>{
-        runningAdd += Number(scenarioDeltas[i])||0; // ZugÃ¤nge wirken fortlaufend in Folgemonaten
+        runningAdd += Number(scenarioDeltas[i])||0; // Zugänge wirken fortlaufend in Folgemonaten
         const val = (Number(v)||0) + globalDelta + runningAdd + sinScaled[i];
         return Math.max(0,val);
       });
       if(els.scenarioTotal){
         const avg = scenario.reduce((a,b)=>a+b,0) / (scenario.length || 1);
-        els.scenarioTotal.textContent = `${fmt(avg)} Ã˜ VK`;
+        els.scenarioTotal.textContent = `${fmt(avg)} Ø VK`;
       }
       renderDashLines(actual, baseForecast, scenario);
     }
@@ -1043,7 +1043,7 @@
     function renderGroupedBars(actual){const svg=els.groupedChart;if(!svg)return;const width=svg.clientWidth||svg.parentElement.clientWidth||900;const height=320;const pad={top:20,right:16,bottom:30,left:32};const innerW=Math.max(1,width-pad.left-pad.right);const innerH=Math.max(1,height-pad.top-pad.bottom);const n=12;const max=Math.max(...actual,1);const colW=innerW/n;const barW=Math.max(12,colW*0.5);let bars='';for(let i=0;i<n;i++){const x0=pad.left+colW*i;const val=actual[i]||0;const h=Math.max(4,(val/max)*innerH);const x=x0+(colW-barW)/2;const y=pad.top+innerH-h;bars+=`<rect x="${x}" y="${y}" width="${barW}" height="${h}" rx="4" fill="#1f4b82"><title>${MONTHS[i]}: ${fmt(val)}</title></rect>`;}svg.setAttribute('viewBox',`0 0 ${width} ${height}`);svg.innerHTML=bars;}
     function renderBubbleChart(actual,forecast){if(!els.bubbleChart)return;const svg=els.bubbleChart;const width=svg.clientWidth||svg.parentElement.clientWidth||600;const height=220;svg.setAttribute('viewBox',`0 0 ${width} ${height}`);const max=Math.max(...actual,...forecast,1);const colWidth=width/Math.max(1,actual.length);let circles='';actual.forEach((v,i)=>{const x=i*colWidth+colWidth/2;const y=height-(v/max)*(height-40)-20;const r=Math.max(6,Math.sqrt(Math.abs(v))*1.5);circles+=`<circle cx="${x}" cy="${y}" r="${r}" fill="#1f4b82" fill-opacity="0.65"><title>${MONTHS[i]} Ist: ${fmt(v)}</title></circle>`;});forecast.forEach((v,i)=>{const x=i*colWidth+colWidth/2+6;const y=height-(v/max)*(height-40)-20;const r=Math.max(6,Math.sqrt(Math.abs(v))*1.5);circles+=`<circle cx="${x}" cy="${y}" r="${r}" fill="#f9be00" fill-opacity="0.55"><title>${MONTHS[i]} Forecast: ${fmt(v)}</title></circle>`;});svg.innerHTML=circles;}
     function renderTable(actual,forecast,scenario,cA,cF,cS){const hasS=Array.isArray(scenario)&&scenario.length;const rows=[];rows.push(`<tr><th>Monat</th><th>Ist</th><th>Forecast</th><th>Szenario</th><th>Ist kum.</th><th>Forecast kum.</th><th>Szenario kum.</th></tr>`);MONTHS.forEach((m,i)=>{rows.push(`<tr><td>${m}</td><td>${fmt(actual[i]||0)}</td><td>${fmt(forecast[i]||0)}</td><td>${hasS?fmt(scenario[i]||0):'-'}</td><td>${fmt(cA[i]||0)}</td><td>${fmt(cF[i]||0)}</td><td>${hasS?fmt(cS[i]||0):'-'}</td></tr>`);});els.monthsTable.innerHTML=rows.join('');}
-    function renderHintsList(actual,forecast){const hints=[];const total=actual.reduce((a,b)=>a+b,0);const peak=Math.max(...actual,0);const idx=actual.indexOf(peak);if(peak>0&&idx>=0)hints.push(`Peak: ${MONTHS[idx]} mit ${fmt(peak)} VK.`);const avgF=forecast.reduce((a,b)=>a+b,0)/forecast.length||0;if(avgF<total/12)hints.push('Trend fallend: Forecast unter dem aktuellen Monatsmittel.');if(avgF>total/12)hints.push('Trend steigend: Forecast Ã¼ber dem aktuellen Monatsmittel.');return hints;}
+    function renderHintsList(actual,forecast){const hints=[];const total=actual.reduce((a,b)=>a+b,0);const peak=Math.max(...actual,0);const idx=actual.indexOf(peak);if(peak>0&&idx>=0)hints.push(`Peak: ${MONTHS[idx]} mit ${fmt(peak)} VK.`);const avgF=forecast.reduce((a,b)=>a+b,0)/forecast.length||0;if(avgF<total/12)hints.push('Trend fallend: Forecast unter dem aktuellen Monatsmittel.');if(avgF>total/12)hints.push('Trend steigend: Forecast über dem aktuellen Monatsmittel.');return hints;}
     function renderQualTiles(entries){if(!els.qualSummaryTiles)return;const active=entries.filter(e=>e.include!==false);const counts={};active.forEach(item=>normalizeQuals(item.qual).forEach(q=>{counts[q]=(counts[q]||0)+1;}));const totalQuals=Object.keys(counts).length;const totalPeople=active.length;const praxis=Object.entries(counts).filter(([q])=>q.toLowerCase().includes('praxisanleitung')).reduce((a,[,c])=>a+c,0);const hygiene=Object.entries(counts).filter(([q])=>q.toLowerCase().includes('hygiene')).reduce((a,[,c])=>a+c,0);els.qualSummaryTiles.innerHTML=[{label:'Mitarbeitende aktiv',value:totalPeople},{label:'Unterschiedliche Qualifikationen',value:totalQuals},{label:'Praxisanleitung',value:praxis},{label:'Hygiene',value:hygiene}].map(t=>`<div class="cockpit-tile"><span>${t.label}</span><strong>${t.value}</strong></div>`).join('');}
     function renderQualTables(currentEntries,allEntries,filterQual='__all__'){if(els.qualDeptLabel)els.qualDeptLabel.textContent=state.dept||'-';if(els.qualYearLabel)els.qualYearLabel.textContent=state.year||'-';if(els.qualSiteLabel)els.qualSiteLabel.textContent=SITE_LABEL||'-';const build=list=>list.filter(e=>e.include!==false).map(e=>({dept:e.dept||state.dept||'-',name:(e.name||'').trim()||(e.personalNumber||'Unbenannt'),personalNumber:e.personalNumber||'',qualList:normalizeQuals(e.qual),type:e.type||'Mitarbeiter',months:e.months||e.values||[]}));const cur=build(currentEntries);const all=build(allEntries);const filtCur=filterQual==='__all__'?cur:cur.filter(e=>e.qualList.includes(filterQual));const filtAll=filterQual==='__all__'?all:all.filter(e=>e.qualList.includes(filterQual));if(els.qualDeptTable){if(!filtCur.length)els.qualDeptTable.innerHTML='<tr><td>Keine Qualifikationen erfasst.</td></tr>';else{const head='<tr><th>Name</th><th>Qualifikationen</th><th>Typ</th></tr>';const body=filtCur.map(r=>{const label=r.personalNumber?`${r.name} (${r.personalNumber})`:r.name;return `<tr><td>${label}</td><td>${r.qualList.join(', ')}</td><td>${r.type}</td></tr>`;}).join('');els.qualDeptTable.innerHTML=`<thead>${head}</thead><tbody>${body}</tbody>`;}}if(els.qualSummaryTable){if(!filtAll.length)els.qualSummaryTable.innerHTML='<tr><td>Keine Qualifikationen erfasst.</td></tr>';else{const by={};filtAll.forEach(r=>r.qualList.forEach(q=>{const k=`${q}|||${r.dept}`;by[k]=(by[k]||0)+1;}));const totals={};Object.entries(by).forEach(([k,c])=>{const [q]=k.split('|||');totals[q]=(totals[q]||0)+c;});const rows=[...Object.entries(by).map(([k,c])=>{const [q,d]=k.split('|||');return {q,d,c,isTotal:false};}).sort((a,b)=>a.q.localeCompare(b.q,'de')||a.d.localeCompare(b.d,'de')),...Object.entries(totals).map(([q,c])=>({q,d:'Gesamt Haus',c,isTotal:true}))];const head='<tr><th>Qualifikation</th><th>Abteilung</th><th>Anzahl</th></tr>';const body=rows.map(r=>`<tr${r.isTotal?' class="is-total"':''}><td>${r.q}</td><td>${r.d}</td><td style="text-align:right;">${r.c}</td></tr>`).join('');els.qualSummaryTable.innerHTML=`<thead>${head}</thead><tbody>${body}</tbody>`;}}if(els.qualPeopleTable){if(!filtAll.length)els.qualPeopleTable.innerHTML='<tr><td>Keine Qualifikationen erfasst.</td></tr>';else{const rows=filtAll.sort((a,b)=>a.dept.localeCompare(b.dept,'de')||a.name.localeCompare(b.name,'de'));const head='<tr><th>Mitarbeiter:in</th><th>Abteilung</th><th>Qualifikationen</th><th>Typ</th></tr>';const body=rows.map(r=>{const label=r.personalNumber?`${r.name} (${r.personalNumber})`:r.name;return `<tr><td>${label}</td><td>${r.dept}</td><td>${r.qualList.join(', ')}</td><td>${r.type}</td></tr>`;}).join('');els.qualPeopleTable.innerHTML=`<thead>${head}</thead><tbody>${body}</tbody>`;}}renderQualTiles(filtAll);}
 
@@ -1161,7 +1161,7 @@
 
       renderQualTables(activeEntries,state.allEntries,activeFilter);
     }
-function computeQualAlerts(entries){const alerts=[];const active=(entries||[]).filter(e=>e.include!==false);const by=active.reduce((acc,e)=>{(acc[e.dept]=acc[e.dept]||[]).push(e);return acc;},{});Object.entries(by).forEach(([dept,list])=>{const total=list.length||1;const count=kw=>list.filter(e=>normalizeQuals(e.qual).some(q=>q.toLowerCase().includes(kw))).length;const praxis=count('praxisanleitung');const hygiene=count('hygiene');const anae=count('anÃ¤sthesie')+count('anaesthesie')+count('intensiv');const notfall=count('notfall');const qA=anae/total;const qN=notfall/total;if(praxis<=1)alerts.push(`Station ${dept}: Nur ${praxis} Praxisanleiter:in erfasst (FrÃ¼hwarnung).`);if(hygiene<=2)alerts.push(`Station ${dept}: Nur ${hygiene} Hygienefachkraft/FachkrÃ¤fte erfasst (FrÃ¼hwarnung).`);if(qA<0.5)alerts.push(`Station ${dept}: Fachweiterbildung AnÃ¤sthesie/Intensiv unter 50% (${Math.round(qA*100)}%).`);if(qN<0.5)alerts.push(`Station ${dept}: Fachweiterbildung Notfallpflege unter 50% (${Math.round(qN*100)}%).`);});return alerts;}
+function computeQualAlerts(entries){const alerts=[];const active=(entries||[]).filter(e=>e.include!==false);const by=active.reduce((acc,e)=>{(acc[e.dept]=acc[e.dept]||[]).push(e);return acc;},{});Object.entries(by).forEach(([dept,list])=>{const total=list.length||1;const count=kw=>list.filter(e=>normalizeQuals(e.qual).some(q=>q.toLowerCase().includes(kw))).length;const praxis=count('praxisanleitung');const hygiene=count('hygiene');const anae=count('anästhesie')+count('anaesthesie')+count('intensiv');const notfall=count('notfall');const qA=anae/total;const qN=notfall/total;if(praxis<=1)alerts.push(`Station ${dept}: Nur ${praxis} Praxisanleiter:in erfasst (Frühwarnung).`);if(hygiene<=2)alerts.push(`Station ${dept}: Nur ${hygiene} Hygienefachkraft/Fachkräfte erfasst (Frühwarnung).`);if(qA<0.5)alerts.push(`Station ${dept}: Fachweiterbildung Anästhesie/Intensiv unter 50% (${Math.round(qA*100)}%).`);if(qN<0.5)alerts.push(`Station ${dept}: Fachweiterbildung Notfallpflege unter 50% (${Math.round(qN*100)}%).`);});return alerts;}
 
     function syncDept(val){state.dept=val;if(els.deptSelect)els.deptSelect.value=val;if(els.chartsDeptSelect)els.chartsDeptSelect.value=val;}
     function syncYear(val){state.year=clampYear(val);if(els.yearSelect)els.yearSelect.value=state.year;if(els.chartsYearSelect)els.chartsYearSelect.value=state.year;if(els.planYearSelect)els.planYearSelect.value=state.year;}
@@ -1219,3 +1219,6 @@ function computeQualAlerts(entries){const alerts=[];const active=(entries||[]).f
   </script>
 </body>
 </html>
+
+
+

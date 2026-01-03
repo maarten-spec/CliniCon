@@ -109,7 +109,7 @@
   }
   .roadmap-grid{
     display:grid;
-    grid-template-columns:repeat(auto-fit, minmax(260px,1fr));
+    grid-template-columns:repeat(auto-fit, minmax(clamp(14rem, 28vw, 18rem), 1fr));
     gap:18px;
   }
   .roadmap-card{
@@ -124,18 +124,18 @@
   }
   .roadmap-card h3{
     margin:0;
-    font-size:1.1rem;
+    
   }
   .roadmap-card p{
     margin:0;
     color:var(--muted);
-    font-size:0.96rem;
+    
   }
   .roadmap-points{
     margin:0;
     padding-left:18px;
     color:var(--text);
-    font-size:0.95rem;
+    
     display:flex;
     flex-direction:column;
     gap:6px;
@@ -144,7 +144,7 @@
     display:inline-flex;
     align-items:center;
     gap:6px;
-    font-size:0.8rem;
+    
     font-weight:600;
     border-radius:999px;
     padding:4px 10px;
@@ -187,7 +187,7 @@
     gap:10px;
   }
   .update-item strong{
-    font-size:1rem;
+    
   }
   .roadmap-list{
     margin:0;
@@ -208,3 +208,4 @@
     text-decoration:underline;
   }
 </style>
+

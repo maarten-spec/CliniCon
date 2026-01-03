@@ -115,7 +115,7 @@
     display:grid;
     grid-template-columns:repeat(12,1fr);
     gap:16px;
-    padding:12px;
+    padding:clamp(0.7rem, 2vw, 0.9rem);
   }
   #ppug-tool .ppug-card{
     grid-column:1/-1;
@@ -125,23 +125,23 @@
     background:var(--panel, #fff);
     border:1px solid var(--line, #e2e8f0);
     border-radius:18px;
-    padding:22px;
+    padding:clamp(1rem, 2.6vw, 1.4rem);
     box-shadow:0 18px 32px rgba(15,23,42,.06);
   }
   #ppug-tool h2{
     margin:0;
-    font-size:1.35rem;
+    
     color:#0f172a;
   }
   #ppug-tool .table-heading{
     margin:0;
-    font-size:1.2rem;
+    
     color:#0f172a;
   }
   #ppug-tool p.muted{
     margin:4px 0 0;
     color:var(--muted, #64748b);
-    font-size:.95rem;
+    
   }
   #ppug-tool .note{
     margin:0;
@@ -159,7 +159,7 @@
     display:flex;
     flex-direction:column;
     gap:6px;
-    font-size:.9rem;
+    
     color:#475569;
   }
   #ppug-tool .span-3{grid-column:span 3;}
@@ -223,21 +223,21 @@
     text-align:center;
   }
   #ppug-tool .kpi.large{
-    min-height:110px;
+    min-height:clamp(5.5rem, 12vw, 7rem);
   }
   #ppug-tool .kpi.large small{
     color:var(--muted, #64748b);
-    font-size:.95rem;
+    
   }
   #ppug-tool .kpi.large strong{
-    font-size:2.1rem;
+    
     line-height:1.1;
   }
   #ppug-tool .kpi.small{
     grid-column:span 6;
   }
   #ppug-tool .kpi.small strong{
-    font-size:1.2rem;
+    
   }
   #ppug-tool .kpi.day{
     background:#f0f9ff;
@@ -253,7 +253,7 @@
   #ppug-tool table{
     width:100%;
     border-collapse:collapse;
-    min-width:820px;
+    min-width:51rem;
     background:#fff;
   }
   #ppug-tool th,
@@ -438,3 +438,4 @@
     calc();
   })();
 </script>
+

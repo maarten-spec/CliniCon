@@ -34,9 +34,9 @@
 </head>
 <body>
   <div class="shell">
-    <aside class="side" aria-label="GFO Navigation">
-      <a class="brand" href="#" onclick="handleBrandClick(event); return false;" style="flex-direction:column; gap:8px;">
-        <img src="../../../assets/Bilder/GFOLogo.jpg" alt="GFO Logo" style="width:180px; height:auto; object-fit:contain;" />
+    <aside class="side" aria-label="GFO Navigation" id="mainSidebar">
+      <a class="brand" href="#" onclick="handleBrandClick(event); return false;" style="flex-direction:column; gap:0.5rem;">
+        <img src="../../../assets/Bilder/GFOLogo.jpg" alt="GFO Logo" style="width:clamp(8rem, 18vw, 11rem); height:auto; object-fit:contain;" />
       </a>
 
       <nav class="nav" id="mainNav">
@@ -181,8 +181,12 @@
       </nav>
     </aside>
 
+    <div class="nav-backdrop" id="navBackdrop" aria-hidden="true"></div>
     <div>
       <header class="topbar">
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Menue oeffnen" aria-controls="mainSidebar" aria-expanded="false">
+          <span class="bar" aria-hidden="true"></span>
+        </button>
         <div class="topbar-left">
           <h1 id="pageHeading">CliniCon - GFO</h1>
           <p id="pageSubheading">Interner Bereich</p>
@@ -202,7 +206,14 @@
 
   <script>
     const frame = document.getElementById('pageFrame');
+    const topbar = document.querySelector('.topbar');
+    const updateTopbarHeight = () => {
+      if(!topbar) return;
+      document.documentElement.style.setProperty('--topbar-h', `${topbar.offsetHeight}px`);
+    };
     const navLinks = () => Array.from(document.querySelectorAll('#mainNav a'));
+    const navToggle = document.getElementById('navToggle');
+    const navBackdrop = document.getElementById('navBackdrop');
     const siteCode = (() => {
       const params = new URLSearchParams(location.search);
       const fromUrl = (params.get('site') || '').trim().toUpperCase();
@@ -218,6 +229,14 @@
     function setActive(el){
       navLinks().forEach(link => link.classList.remove('active'));
       el.classList.add('active');
+    }
+
+    function setNavOpen(isOpen){
+      document.body.classList.toggle('nav-open', isOpen);
+      if(navToggle){
+        navToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        navToggle.setAttribute('aria-label', isOpen ? 'Menue schliessen' : 'Menue oeffnen');
+      }
     }
 
     function updateHeading(title, subtitle){
@@ -249,6 +268,7 @@
       const subtitle = link.dataset.subtitle || '';
       if(!path) return;
       setActive(link);
+      setNavOpen(false);
       loadFrame(path, title, subtitle);
       if(push){
         const key = link.dataset.key || '';
@@ -274,6 +294,20 @@
         navigate(startLink);
       }
     }
+
+    if(navToggle){
+      navToggle.addEventListener('click', () => {
+        setNavOpen(!document.body.classList.contains('nav-open'));
+      });
+    }
+    if(navBackdrop){
+      navBackdrop.addEventListener('click', () => setNavOpen(false));
+    }
+    document.addEventListener('keydown', (event) => {
+      if(event.key === 'Escape'){
+        setNavOpen(false);
+      }
+    });
 
     function applyEmbedSkin(){
       const doc = frame.contentDocument;
@@ -373,7 +407,13 @@
       bindFrameClicks();
     });
 
-    window.addEventListener('resize', resizeFrame);
+    window.addEventListener('resize', () => {
+      updateTopbarHeight();
+      resizeFrame();
+      if(window.innerWidth >= 960){
+        setNavOpen(false);
+      }
+    });
 
     window.addEventListener('popstate', (event) => {
       if(event.state){
@@ -387,6 +427,7 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
+      updateTopbarHeight();
       const map = navLinks().reduce((acc, link) => {
         if(link.dataset.key){
           acc[link.dataset.key] = link;
@@ -408,6 +449,7 @@
   </script>
 </body>
 </html>
+
 
 
 

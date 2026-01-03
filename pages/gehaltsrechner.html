@@ -8,12 +8,12 @@
   #gehaltsrechner .hint{
     margin:0;
     color:var(--muted,#64748b);
-    font-size:0.95rem;
+    
   }
   #gehaltsrechner .result-meta{
     margin:0;
     color:var(--muted,#64748b);
-    font-size:0.9rem;
+    
   }
   #gehaltsrechner .result-meta strong{
     color:var(--text,#0f172a);
@@ -23,19 +23,19 @@
     margin-top:12px;
     border:1px solid var(--line,#e2e8f0);
     border-radius:14px;
-    padding:16px;
+    padding:clamp(0.9rem, 2.2vw, 1.2rem);
     background:#fff;
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:clamp(0.4rem, 1vw, 0.7rem);
   }
   #gehaltsrechner .task-card h4{
     margin:0;
-    font-size:1rem;
+    
   }
   #gehaltsrechner .task-text{
     color:var(--text,#0f172a);
-    font-size:0.95rem;
+    
     line-height:1.5;
   }
   #gehaltsrechner .task-text ul{
@@ -49,19 +49,19 @@
   }
   #gehaltsrechner .future-note{
     margin:10px 0 0;
-    padding:10px 12px;
+    padding:clamp(0.6rem, 1.8vw, 0.8rem) clamp(0.7rem, 2vw, 0.9rem);
     border-radius:12px;
     border:1px dashed var(--line,#e2e8f0);
     background:#f8fafc;
     color:var(--muted,#64748b);
-    font-size:0.92rem;
+    
   }
   #gehaltsrechner .calc-btn{
     background:var(--accent,#2563eb);
     color:#fff;
     border:1px solid var(--accent,#2563eb);
     border-radius:12px;
-    padding:11px 18px;
+    padding:clamp(0.6rem, 1.6vw, 0.8rem) clamp(1rem, 2.4vw, 1.3rem);
     font-weight:700;
     box-shadow:0 12px 24px rgba(37,99,235,.22);
     transition:.18s ease all;
@@ -84,7 +84,7 @@
 
       <div class="row">
         <label class="field span-4">
-          Examensjahr
+          Examsjahrgang
           <input id="avr-exam-year" type="number" min="1970" max="2100" step="1" placeholder="z.B. 2016" />
         </label>
         <label class="field span-4">
@@ -94,7 +94,7 @@
         <label class="field span-4">
           Bundesland
           <select id="avr-state">
-            <option value="">Bitte auswaehlen</option>
+            <option value="" disabled>Bitte auswaehlen</option>
             <option value="baden-wuerttemberg">Baden-W&uuml;rttemberg</option>
             <option value="bayern">Bayern</option>
             <option value="berlin">Berlin</option>
@@ -104,7 +104,7 @@
             <option value="hessen">Hessen</option>
             <option value="mecklenburg-vorpommern">Mecklenburg-Vorpommern</option>
             <option value="niedersachsen">Niedersachsen</option>
-            <option value="nordrhein-westfalen">Nordrhein-Westfalen</option>
+            <option value="nordrhein-westfalen" selected>Nordrhein-Westfalen</option>
             <option value="rheinland-pfalz">Rheinland-Pfalz</option>
             <option value="saarland">Saarland</option>
             <option value="sachsen">Sachsen</option>
@@ -308,6 +308,15 @@
       return STATE_TO_REGION[state] || 'west';
     }
 
+    function syncExperienceFromExam(){
+      if(!examInput || !expInput) return;
+      const examYear = parseInt(examInput.value, 10);
+      if(Number.isNaN(examYear)) return;
+      const currentYear = new Date().getFullYear();
+      const years = Math.max(0, currentYear - examYear);
+      expInput.value = String(years);
+    }
+
     function getExperienceYears(){
       const exp = parseFloat(expInput.value);
       if(!Number.isNaN(exp)){
@@ -404,9 +413,20 @@
     }
 
     populateGroups();
+    syncExperienceFromExam();
     update();
 
-    [examInput, expInput, stateSelect, groupSelect].forEach(el => {
+    if(examInput){
+      examInput.addEventListener('input', () => {
+        syncExperienceFromExam();
+        update();
+      });
+      examInput.addEventListener('change', () => {
+        syncExperienceFromExam();
+        update();
+      });
+    }
+    [expInput, stateSelect, groupSelect].forEach(el => {
       if(!el) return;
       el.addEventListener('input', update);
       el.addEventListener('change', update);
@@ -416,3 +436,4 @@
     }
   })();
 </script>
+

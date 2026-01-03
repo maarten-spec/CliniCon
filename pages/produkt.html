@@ -7,15 +7,15 @@
   }
   #produkt h2{
     margin:0;
-    font-size:1.5rem;
+    
   }
   #produkt h3{
     margin:0;
-    font-size:1.2rem;
+    
   }
   #produkt h4{
     margin:0;
-    font-size:1.05rem;
+    
     color:#0f172a;
   }
   #produkt p{
@@ -24,41 +24,41 @@
   #produkt .product-hero{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:clamp(0.7rem, 1.6vw, 1rem);
   }
   #produkt .product-eyebrow{
-    font-size:.82rem;
+    
     font-weight:700;
     letter-spacing:.14em;
     text-transform:uppercase;
     color:var(--accent,#2563eb);
   }
   #produkt .product-tagline{
-    font-size:.98rem;
+    
     color:var(--muted,#64748b);
   }
   #produkt .product-cta{
     display:flex;
     flex-wrap:wrap;
-    gap:12px;
+    gap:clamp(0.6rem, 1.6vw, 0.9rem);
     margin-top:4px;
   }
   #produkt .product-grid{
     display:grid;
-    gap:12px;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:clamp(0.6rem, 1.6vw, 0.9rem);
+    grid-template-columns:repeat(auto-fit, minmax(clamp(12rem, 24vw, 15rem), 1fr));
   }
   #produkt .module-card{
     border:1px solid var(--line,#e2e8f0);
     border-radius:14px;
-    padding:16px;
+    padding:clamp(0.9rem, 2.2vw, 1.2rem);
     background:#fff;
     display:flex;
     flex-direction:column;
-    gap:8px;
+    gap:clamp(0.4rem, 1vw, 0.7rem);
   }
   #produkt .muted{color:var(--muted,#64748b);}
-  #produkt .note{margin:0; font-size:.92rem;}
+  #produkt .note{margin:0; }
   #produkt ul{
     margin:0;
     padding-left:18px;
@@ -146,3 +146,4 @@
     </div>
   </div>
 </section>
+

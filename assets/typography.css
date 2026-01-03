@@ -2,12 +2,12 @@
 
 :root{
   --font-base:"Roboto","Go","Segoe UI","Helvetica",Arial,sans-serif;
-  --font-size-base:16px;
+  --font-size-base:clamp(0.96rem, 0.92rem + 0.35vw, 1.05rem);
   --line-height-base:1.6;
-  --font-size-h1:1.9rem;
-  --font-size-h2:1.5rem;
-  --font-size-h3:1.2rem;
-  --font-size-h4:1.05rem;
+  --font-size-h1:clamp(1.6rem, 1.25rem + 2vw, 2.4rem);
+  --font-size-h2:clamp(1.35rem, 1.1rem + 1.4vw, 1.9rem);
+  --font-size-h3:clamp(1.15rem, 1rem + 0.9vw, 1.5rem);
+  --font-size-h4:clamp(1.05rem, 0.95rem + 0.6vw, 1.3rem);
 }
 
 body{

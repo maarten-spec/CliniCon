@@ -209,7 +209,7 @@
   }
   #ppbv-tool .ppug-grid{
     gap: 16px;
-    padding: 12px;
+    padding: clamp(0.7rem, 2vw, 0.9rem);
   }
   #ppbv-tool .ppbv-hero {
     display: flex;
@@ -219,13 +219,13 @@
   }
   #ppbv-tool h2 {
     margin: 0 0 8px;
-    font-size: 1.35rem;
+    
     color: #0f172a;
   }
   #ppbv-tool .section-lead {
     margin: 0;
     color: var(--muted,#64748b);
-    font-size: .95rem;
+    
   }
   #ppbv-tool .section-head {
     display: flex;
@@ -267,10 +267,10 @@
     text-decoration: underline;
   }
   #ppbv-tool .kpi-grid.summary {
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(clamp(12rem, 24vw, 15rem), 1fr));
   }
   #ppbv-tool .kpi-tile strong {
-    font-size: 1.5rem;
+    
     color: #0f172a;
   }
   #ppbv-tool .kpi-tile.highlight {
@@ -287,8 +287,8 @@
     gap: 10px;
   }
   #ppbv-tool .ampel-dot {
-    width: 14px;
-    height: 14px;
+    width: 0.875rem;
+    height: 0.875rem;
     border-radius: 999px;
     background: #94a3b8;
   }
@@ -296,7 +296,7 @@
   #ppbv-tool .ampel-card.warn .ampel-dot { background: #f59e0b; }
   #ppbv-tool .ampel-card.danger .ampel-dot { background: #ef4444; }
   #ppbv-tool .ampel-value {
-    font-size: 1.75rem;
+    
   }
   @media (max-width: 960px) {
     #ppbv-tool .ppbv-hero {
@@ -323,7 +323,7 @@
   .ppbv-modal .modal-panel {
     position: relative;
     z-index: 1;
-    max-width: 960px;
+    max-width: 60rem;
     width: 100%;
     border-radius: 18px;
     background: #fff;
@@ -346,7 +346,7 @@
   }
   .ppbv-modal .faq-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(clamp(12rem, 24vw, 15rem), 1fr));
     gap: 16px;
   }
   .ppbv-modal .faq-card {
@@ -630,3 +630,4 @@
     calcAll();
   })();
 </script>
+
