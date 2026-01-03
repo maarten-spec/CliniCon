@@ -498,6 +498,7 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
+      setNavOpen(false);
       if(navToggle){
         navToggle.addEventListener('click', () => {
           setNavOpen(!document.body.classList.contains('nav-open'));
